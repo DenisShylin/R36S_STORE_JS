@@ -9,6 +9,7 @@
 @import './sections/reviews.css';
 @import './sections/contact.css';
 @import './sections/footer.css';
+@import './components/scroll.css';
 
 /* Импорт стилей компонентов */
 @import './components/modal.css';

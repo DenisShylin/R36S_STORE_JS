@@ -1,5 +1,10 @@
 // Импорт стилей
 import '../css/styles.css';
+import '../css/components/scroll.css';
+
+// Импорт утилит
+import { initLazyLoading } from './utils/lazyLoader';
+import { initScrollHandler } from './utils/scrollHandler';
 
 // Импорт секций
 import { initHero } from './sections/hero';
@@ -15,6 +20,10 @@ import { initFooter } from './sections/footer';
 
 // Функция инициализации
 const initApp = () => {
+  // Инициализация утилит
+  initLazyLoading();
+  initScrollHandler();
+
   // Инициализация секций
   const sections = {
     header: initHeader,

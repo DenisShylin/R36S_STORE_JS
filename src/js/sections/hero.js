@@ -1,12 +1,13 @@
+// Импорты изображений
+import heroImage1x from '../../img/herou1_1x_.png';
+import heroImage2x from '../../img/herou1_2x_.png';
+
+// Утилита для предзагрузки изображений
 const imagePreloader = {
   init() {
-    // Создаем link preload для критичных изображений
     const preloadLinks = [
-      { href: '/assets/img/hero/herou1_1x_.png', media: '(max-width: 1x)' },
-      {
-        href: '/assets/img/hero/herou1_2x_.png',
-        media: '(min-resolution: 2x)',
-      },
+      { href: heroImage1x, media: '(max-width: 1x)' },
+      { href: heroImage2x, media: '(min-resolution: 2x)' },
     ];
 
     preloadLinks.forEach(({ href, media }) => {
@@ -33,7 +34,6 @@ export const initHero = () => {
   const heroDescription = heroSection.querySelector('.hero__description');
   const primaryButton = heroSection.querySelector('.hero__button--primary');
   const secondaryButton = heroSection.querySelector('.hero__button--secondary');
-  const heroImage = heroSection.querySelector('.hero__console-img');
 
   // Состояние
   let isDesktop = window.innerWidth > 1280;
@@ -44,6 +44,34 @@ export const initHero = () => {
       'R36S HANDHELD GAME CONSOLE opens the door to the exciting world of retro gaming, offering an impressive collection of over 15,000 legendary games from different eras and platforms. Dive into a universe of gaming nostalgia with the R36S HANDHELD CONSOLE!',
     mobile:
       'R36S HANDHELD GAME CONSOLE - Gaming legends in the palm of your hand',
+  };
+
+  // Функция обновления изображения
+  const updateHeroImage = () => {
+    const imageContainer = heroSection.querySelector('.hero__image-wrapper');
+    if (imageContainer) {
+      imageContainer.innerHTML = `
+       <div class="hero__image-glow" aria-hidden="true"></div>
+       <picture>
+         <source
+           media="(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)"
+           srcset="${heroImage2x}"
+           type="image/png"
+         />
+         <source
+           srcset="${heroImage1x}"
+           type="image/png"
+         />
+         <img
+           src="${heroImage1x}"
+           alt="R36S Gaming Console - Портативная ретро консоль с 15000+ играми"
+           class="hero__console-img"
+           width="600"
+           height="400"
+         />
+       </picture>
+     `;
+    }
   };
 
   // Обновление описания
@@ -102,7 +130,9 @@ export const initHero = () => {
     secondaryButton.addEventListener('click', handleMoreDetailsClick);
 
   // Начальная инициализация
+  updateHeroImage();
   updateDescription();
+  imagePreloader.init();
 
   // Наблюдатель за появлением секции
   const observer = new IntersectionObserver(
@@ -126,4 +156,3 @@ export const initHero = () => {
     observer.disconnect();
   };
 };
-imagePreloader.init();

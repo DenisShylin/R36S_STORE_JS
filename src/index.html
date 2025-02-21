@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="uk">
   <head>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -10,19 +11,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Улучшенное мета-описание -->
+    <!-- Мета-описание и SEO -->
     <meta
       name="description"
       content="R36S HANDHELD GAME CONSOLE - Ретро игровая консоль с 15000+ играми. ✓ Доступная цена ✓ Быстрая доставка ✓ Гарантия качества. Купить портативную консоль R36S для любимых ретро игр."
     />
-
-    <!-- Расширенные ключевые слова -->
     <meta
       name="keywords"
       content="R36S, handheld console, retro console, portable gaming, ретро консоль, портативная консоль, игровая приставка, R36S HANDHELD GAME CONSOLE, retro games, эмулятор игр, купить консоль"
     />
 
-    <!-- Open Graph теги для соцсетей -->
+    <!-- Open Graph -->
     <meta
       property="og:title"
       content="R36S HANDHELD GAME CONSOLE | Портативная Ретро Консоль"
@@ -44,11 +43,12 @@
       content="Портативная ретро консоль с 15000+ играми"
     />
 
-    <!-- для мобильних устройст -->
+    <!-- Mobile -->
     <meta name="theme-color" content="#0F172A" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <!-- Расширенная Schema.org разметка -->
+
+    <!-- Schema.org -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org/",
@@ -85,7 +85,7 @@
           }
         },
         "aggregateRating": {
-          "@type": "AggateRating",
+          "@type": "AggregateRating",
           "ratingValue": "4.8",
           "reviewCount": "150"
         }
@@ -97,7 +97,6 @@
     <div id="app">
       <load src="partials/header.html" />
       <main>
-        <load src="partials/header.html" />
         <load src="partials/hero.html" />
         <load src="partials/about.html" />
         <load src="partials/features.html" />
@@ -106,7 +105,6 @@
         <load src="partials/articles.html" />
         <load src="partials/reviews.html" />
         <load src="partials/contact.html" />
-        <load src="partials/footer.html" />
       </main>
       <load src="partials/footer.html" />
     </div>
@@ -114,7 +112,7 @@
     <!-- Modal container -->
     <div id="modal-root"></div>
 
-    <!-- Подключение основного JavaScript файла -->
-    <script type="module" src="/js/main.js"></script>
+    <!-- JavaScript -->
+    <script type="module" src="./js/main.js"></script>
   </body>
 </html>
