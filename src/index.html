@@ -1,23 +1,120 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
   <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800&display=swap"
+      rel="stylesheet"
+    />
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla App Template</title>
-    <link rel="stylesheet" href="./css/styles.css" />
+
+    <!-- Улучшенное мета-описание -->
+    <meta
+      name="description"
+      content="R36S HANDHELD GAME CONSOLE - Ретро игровая консоль с 15000+ играми. ✓ Доступная цена ✓ Быстрая доставка ✓ Гарантия качества. Купить портативную консоль R36S для любимых ретро игр."
+    />
+
+    <!-- Расширенные ключевые слова -->
+    <meta
+      name="keywords"
+      content="R36S, handheld console, retro console, portable gaming, ретро консоль, портативная консоль, игровая приставка, R36S HANDHELD GAME CONSOLE, retro games, эмулятор игр, купить консоль"
+    />
+
+    <!-- Open Graph теги для соцсетей -->
+    <meta
+      property="og:title"
+      content="R36S HANDHELD GAME CONSOLE | Портативная Ретро Консоль"
+    />
+    <meta
+      property="og:description"
+      content="Откройте мир ретро-игр с R36S HANDHELD GAME CONSOLE. 15000+ игр, мощное железо, доступная цена!"
+    />
+    <meta property="og:type" content="product" />
+    <meta property="og:price:amount" content="35.48" />
+    <meta property="og:price:currency" content="USD" />
+    <meta property="og:availability" content="in stock" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="product" />
+    <meta name="twitter:title" content="R36S HANDHELD GAME CONSOLE" />
+    <meta
+      name="twitter:description"
+      content="Портативная ретро консоль с 15000+ играми"
+    />
+
+    <!-- для мобильних устройст -->
+    <meta name="theme-color" content="#0F172A" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <!-- Расширенная Schema.org разметка -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": "R36S HANDHELD GAME CONSOLE",
+        "description": "Портативная игровая консоль R36S с коллекцией из более чем 15000 ретро-игр. Поддержка множества платформ, высокое качество эмуляции.",
+        "brand": {
+          "@type": "Brand",
+          "name": "R36S"
+        },
+        "offers": {
+          "@type": "Offer",
+          "url": "https://www.aliexpress.com/item/1005007171465465.html",
+          "priceCurrency": "USD",
+          "price": "35.48",
+          "priceValidUntil": "2024-12-31",
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@type": "Organization",
+            "name": "Official R36S Store"
+          }
+        },
+        "review": {
+          "@type": "Review",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "4.8",
+            "bestRating": "5"
+          },
+          "author": {
+            "@type": "Person",
+            "name": "Game Reviewer"
+          }
+        },
+        "aggregateRating": {
+          "@type": "AggateRating",
+          "ratingValue": "4.8",
+          "reviewCount": "150"
+        }
+      }
+    </script>
   </head>
   <body>
-    <load src="./partials/header.html" icon-path="img/sprite.svg#logo" />
+    <!-- Основной контейнер -->
+    <div id="app">
+      <load src="partials/header.html" />
+      <main>
+        <load src="partials/header.html" />
+        <load src="partials/hero.html" />
+        <load src="partials/about.html" />
+        <load src="partials/features.html" />
+        <load src="partials/categories.html" />
+        <load src="partials/products.html" />
+        <load src="partials/articles.html" />
+        <load src="partials/reviews.html" />
+        <load src="partials/contact.html" />
+        <load src="partials/footer.html" />
+      </main>
+      <load src="partials/footer.html" />
+    </div>
 
-    <main>
-      <!-- Loads the specified .html file -->
-      <load src="./partials/vite-promo.html" />
-      <load src="./partials/badges.html" />
-    </main>
+    <!-- Modal container -->
+    <div id="modal-root"></div>
 
-    <load src="./partials/footer.html" />
-
-    <script type="module" src="./main.js"></script>
+    <!-- Подключение основного JavaScript файла -->
+    <script type="module" src="/js/main.js"></script>
   </body>
 </html>

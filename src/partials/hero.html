@@ -1,0 +1,74 @@
+<section id="hero" class="hero" aria-label="Product Introduction">
+  <div class="hero__background" role="presentation">
+    <div class="hero__overlay"></div>
+  </div>
+
+  <div class="hero__container">
+    <div class="hero__image">
+      <div class="hero__image-wrapper">
+        <div class="hero__image-glow" aria-hidden="true"></div>
+        <picture>
+          <source
+            media="(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)"
+            srcset="/assets/img/herou1_1x_.png"
+            type="image/png"
+          />
+          <img
+            src="/assets/img/herou1_1x_.png"
+            srcset="/assets/img/herou1_1x_.png, /assets/img/herou1_2x_.png 2x"
+            alt="R36S Gaming Console - Портативная ретро консоль с 15000+ играми"
+            class="hero__console-img"
+            width="600"
+            height="400"
+            loading="eager"
+          />
+        </picture>
+      </div>
+    </div>
+
+    <div class="hero__content">
+      <h1 class="hero__title">
+        <span class="hero__title-line">R36S HANDHELD</span>
+        <span class="hero__title-line">GAME CONSOLE</span>
+      </h1>
+      <p class="hero__description" itemprop="description"></p>
+
+      <div
+        class="hero__pricing desktop-only"
+        itemprop="offers"
+        itemscope
+        itemtype="https://schema.org/Offer"
+      >
+        <div class="hero__price-wrapper">
+          <span class="hero__original-price">US $108.06</span>
+          <span class="hero__current-price" itemprop="price" content="35.48">
+            $35.48
+            <span itemprop="priceCurrency" content="USD" style="font-size: 24px"
+              >US</span
+            >
+          </span>
+        </div>
+        <span class="hero__discount-badge" aria-label="Скидка 68 процентов"
+          >-68%</span
+        >
+      </div>
+
+      <div class="hero__buttons">
+        <button
+          class="hero__button hero__button--primary"
+          aria-label="Купить со скидкой на AliExpress"
+        >
+          <span class="hero__button-pulse" aria-hidden="true"></span>
+          <span class="hero__button-text">Shop With Discount</span>
+          <span class="hero__button-shine" aria-hidden="true"></span>
+        </button>
+        <button
+          class="hero__button hero__button--secondary"
+          aria-label="Узнать больше о консоли"
+        >
+          More details
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
