@@ -34,14 +34,20 @@ export const initHero = () => {
   const heroDescription = heroSection.querySelector('.hero__description');
   const primaryButton = heroSection.querySelector('.hero__button--primary');
   const secondaryButton = heroSection.querySelector('.hero__button--secondary');
+  const titleLines = heroSection.querySelectorAll('.hero__title-line');
 
   // Состояние
   let isDesktop = window.innerWidth > 1280;
 
+  // Тексты заголовков
+  const title = {
+    mobile: 'R36S HANDHELD CONSOLE',
+  };
+
   // Тексты описаний
   const descriptions = {
     desktop:
-      'R36S HANDHELD GAME CONSOLE opens the door to the exciting world of retro gaming, offering an impressive collection of over 15,000 legendary games from different eras and platforms. Dive into a universe of gaming nostalgia with the R36S HANDHELD CONSOLE!',
+      'R36S HANDHELD GAME CONSOLE opens the door to the exciting world of retro gaming, offering an impressive collection of over 15,000 legendary games from different eras and platforms. Experience the ultimate portable gaming paradise with crystal-clear visuals and ergonomic design that fits perfectly in your hands. Play anywhere, anytime! Dive into a universe of gaming nostalgia with the R36S HANDHELD CONSOLE!',
     mobile:
       'R36S HANDHELD GAME CONSOLE - Gaming legends in the palm of your hand',
   };
@@ -74,6 +80,21 @@ export const initHero = () => {
     }
   };
 
+  // Функция обновления заголовка только для мобильной версии
+  const updateTitle = () => {
+    if (titleLines.length === 2) {
+      if (window.innerWidth <= 480) {
+        // Только для мобильной версии
+        titleLines[0].textContent = title.mobile;
+        titleLines[1].style.display = 'none';
+      } else {
+        titleLines[0].textContent = 'R36S HANDHELD';
+        titleLines[1].textContent = 'GAME CONSOLE';
+        titleLines[1].style.display = 'block';
+      }
+    }
+  };
+
   // Обновление описания
   const updateDescription = () => {
     if (heroDescription) {
@@ -90,6 +111,7 @@ export const initHero = () => {
       isDesktop = newIsDesktop;
       updateDescription();
     }
+    updateTitle(); // Обновляем заголовок при ресайзе
   };
 
   const handleBuyClick = () => {
@@ -132,6 +154,7 @@ export const initHero = () => {
   // Начальная инициализация
   updateHeroImage();
   updateDescription();
+  updateTitle();
   imagePreloader.init();
 
   // Наблюдатель за появлением секции

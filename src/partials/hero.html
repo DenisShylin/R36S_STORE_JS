@@ -4,14 +4,7 @@
   </div>
 
   <div class="hero__container">
-    <div class="hero__image">
-      <div class="hero__image-wrapper">
-        <div class="hero__image-glow" aria-hidden="true"></div>
-        <!-- Изображение будет добавлено через JavaScript -->
-      </div>
-    </div>
-
-    <div class="hero__content">
+    <div class="hero__content-wrapper">
       <h1 class="hero__title">
         <span
           class="hero__title-line"
@@ -29,41 +22,54 @@
         </span>
       </h1>
 
-      <p class="hero__description" itemprop="description"></p>
-
-      <div
-        class="hero__pricing desktop-only"
-        itemprop="offers"
-        itemscope
-        itemtype="https://schema.org/Offer"
-      >
-        <div class="hero__price-wrapper">
-          <span class="hero__original-price">US $108.06</span>
-          <span class="hero__current-price" itemprop="price" content="35.48">
-            $35.48
-            <span itemprop="priceCurrency" content="USD">US</span>
-          </span>
+      <div class="hero__image">
+        <div class="hero__image-wrapper">
+          <div class="hero__image-glow" aria-hidden="true"></div>
+          <!-- Изображение будет добавлено через JavaScript -->
         </div>
-        <span class="hero__discount-badge" aria-label="Скидка 68 процентов"
-          >-68%</span
-        >
       </div>
 
-      <div class="hero__buttons">
-        <button
-          class="hero__button hero__button--primary"
-          aria-label="Купить со скидкой на AliExpress"
+      <div class="hero__content">
+        <p class="hero__description" itemprop="description"></p>
+
+        <div
+          class="hero__pricing desktop-only"
+          itemprop="offers"
+          itemscope
+          itemtype="https://schema.org/Offer"
         >
-          <span class="hero__button-pulse" aria-hidden="true"></span>
-          <span class="hero__button-text">Shop With Discount</span>
-          <span class="hero__button-shine" aria-hidden="true"></span>
-        </button>
-        <button
-          class="hero__button hero__button--secondary"
-          aria-label="Узнать больше о консоли"
-        >
-          More details
-        </button>
+          <div class="hero__price-wrapper">
+            <span class="hero__original-price"></span>
+            <span
+              class="hero__current-price"
+              itemprop="price"
+              content="Discount"
+            >
+              Discount
+              <span itemprop="priceCurrency" content="USD"></span>
+            </span>
+          </div>
+          <span class="hero__discount-badge" aria-label="Скидка 68 процентов"
+            >-68%</span
+          >
+        </div>
+
+        <div class="hero__buttons">
+          <button
+            class="hero__button hero__button--primary"
+            aria-label="Купить со скидкой на AliExpress"
+          >
+            <span class="hero__button-pulse" aria-hidden="true"></span>
+            <span class="hero__button-text">Shop With Discount</span>
+            <span class="hero__button-shine" aria-hidden="true"></span>
+          </button>
+          <button
+            class="hero__button hero__button--secondary"
+            aria-label="Узнать больше о консоли"
+          >
+            More details
+          </button>
+        </div>
       </div>
     </div>
   </div>
