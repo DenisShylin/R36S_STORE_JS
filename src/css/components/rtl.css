@@ -1,0 +1,61 @@
+/* RTL Support Styles */
+html[dir="rtl"] {
+
+    /* Text alignment */
+    .text-left {
+        text-align: right;
+    }
+
+    .text-right {
+        text-align: left;
+    }
+
+    /* Margins and Paddings */
+    .ml-auto {
+        margin-left: 0;
+        margin-right: auto;
+    }
+
+    .mr-auto {
+        margin-right: 0;
+        margin-left: auto;
+    }
+
+    /* Flexbox direction */
+    .flex-row {
+        flex-direction: row-reverse;
+    }
+
+    /* Icons and arrows */
+    .icon-arrow-right {
+        transform: rotate(180deg);
+    }
+
+    /* Navigation */
+    .nav-item {
+        margin-right: 0;
+        margin-left: 1rem;
+    }
+
+    /* Forms */
+    input[type="text"],
+    input[type="email"],
+    textarea {
+        text-align: right;
+    }
+
+    /* Lists */
+    ul,
+    ol {
+        padding-left: 0;
+        padding-right: 1.5rem;
+    }
+}
+
+/* Language specific adjustments */
+html[lang="ar"],
+html[lang="fa"],
+html[lang="he"] {
+    /* Font adjustments for RTL languages */
+    font-family: system-ui, -apple-system, sans-serif;
+}

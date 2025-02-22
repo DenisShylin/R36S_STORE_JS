@@ -1,0 +1,97 @@
+{
+  "meta": {
+    "description": "R36S HANDHELD GAME CONSOLE - Retro igrovaya konsol s 15000+ igrami. ✓ Dostupnaya cena ✓ Bystraya dostavka ✓ Garantiya kachestva. Kupit portativnuyu konsol R36S dlya lyubimyh retro igr.",
+    "keywords": "R36S, portativnaya konsol, retro konsol, portativnyj gaming, emulyator igr, retro igry, R36S HANDHELD GAME CONSOLE, kupit konsol, igrovoe ustrojstvo, portativnaya igrovaya sistema"
+  },
+  "og": {
+    "title": "R36S HANDHELD GAME CONSOLE | Portativnaya Retro Konsol",
+    "description": "Otkrojte mir retro-igr s R36S HANDHELD GAME CONSOLE. 15000+ igr, moshchnoe zhelezo, dostupnaya cena!"
+  },
+  "header": {
+    "menu": {
+      "home": "Glavnaya",
+      "about": "O konsoli",
+      "features": "Osobennosti",
+      "categories": "Kategorii",
+      "products": "Produkty",
+      "articles": "Stati",
+      "reviews": "Otzyvy",
+      "contact": "Kontakty"
+    }
+  },
+  "hero": {
+    "title": {
+      "line1": "R36S PORTATIVNAYA",
+      "line2": "IGROVAYA KONSOL"
+    },
+    "description": "Otkrojte mir retro-igr s portativnoj konsolyu R36S. Bolee 15000 igr, moshchnoe zhelezo, dostupnaya cena!",
+    "buttons": {
+      "primary": "Kupit so skidkoj",
+      "secondary": "Podrobnee"
+    }
+  },
+  "about": {
+    "title": "O konsoli",
+    "description": "Otkrojte novoe izmerenie v mire igr",
+    "features": {
+      "games": "15000+ Igr",
+      "battery": "Dolgaya rabota ot batarei",
+      "screen": "Yarkij displej"
+    }
+  },
+  "features": {
+    "title": "Osobennosti",
+    "performance": "Vysokaya proizvoditelnost",
+    "graphics": "Realistichnaya grafika",
+    "sound": "Obyomnyj zvuk",
+    "list": {
+      "power": "Moshchnoe zhelezo",
+      "memory": "Rasshiryaemaya pamyat",
+      "compatibility": "Shirokaya sovmestimost s igrami",
+      "controls": "Ergonomichnoe upravlenie"
+    }
+  },
+  "categories": {
+    "title": "Kategorii igr",
+    "action": "Ekshen",
+    "adventure": "Priklyucheniya",
+    "sports": "Sport",
+    "racing": "Gonki",
+    "rpg": "RPG",
+    "strategy": "Strategii"
+  },
+  "products": {
+    "title": "Nashi produkty",
+    "description": "Vyberite svoego idealnogo igrovogo kompanona",
+    "buyNow": "Kupit sejchas",
+    "learnMore": "Uznat bolshe"
+  },
+  "articles": {
+    "title": "Poslednie stati",
+    "readMore": "Chitat dalee"
+  },
+  "reviews": {
+    "title": "Otzyvy pokupatelej",
+    "writeReview": "Napisat otzyv",
+    "overall": "Obshchij rejting"
+  },
+  "contact": {
+    "title": "Svyazhites s nami",
+    "name": "Imya",
+    "email": "Email",
+    "message": "Soobshchenie",
+    "send": "Otpravit soobshchenie"
+  },
+  "footer": {
+    "rights": "Vse prava zashchishcheny",
+    "privacy": "Politika konfidencialnosti",
+    "terms": "Usloviya ispolzovaniya",
+    "support": "Podderzhka",
+    "social": {
+      "follow": "Podpisyvajtes na nas",
+      "facebook": "Facebook",
+      "twitter": "Twitter",
+      "instagram": "Instagram"
+    }
+  }
+}

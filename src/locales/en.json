@@ -1,0 +1,97 @@
+{
+  "meta": {
+    "description": "R36S HANDHELD GAME CONSOLE - Retro gaming console with 15000+ games. ✓ Affordable price ✓ Fast shipping ✓ Quality guarantee. Buy portable R36S console for your favorite retro games.",
+    "keywords": "R36S, handheld console, retro console, portable gaming, game emulator, retro games, R36S HANDHELD GAME CONSOLE, buy console, gaming device, portable gaming system"
+  },
+  "og": {
+    "title": "R36S HANDHELD GAME CONSOLE | Portable Retro Console",
+    "description": "Discover the world of retro gaming with R36S HANDHELD GAME CONSOLE. 15000+ games, powerful hardware, affordable price!"
+  },
+  "header": {
+    "menu": {
+      "home": "Home",
+      "about": "About",
+      "features": "Features",
+      "categories": "Categories",
+      "products": "Products",
+      "articles": "Articles",
+      "reviews": "Reviews",
+      "contact": "Contact"
+    }
+  },
+  "hero": {
+    "title": {
+      "line1": "R36S HANDHELD",
+      "line2": "GAME CONSOLE"
+    },
+    "description": "Discover the world of retro gaming with R36S HANDHELD GAME CONSOLE. 15000+ games, powerful hardware, affordable price!",
+    "buttons": {
+      "primary": "Shop With Discount",
+      "secondary": "More details"
+    }
+  },
+  "about": {
+    "title": "About Console",
+    "description": "Discover a new dimension of gaming",
+    "features": {
+      "games": "15000+ Games",
+      "battery": "Long Battery Life",
+      "screen": "Bright Display"
+    }
+  },
+  "features": {
+    "title": "Features",
+    "performance": "High Performance",
+    "graphics": "Realistic Graphics",
+    "sound": "Surround Sound",
+    "list": {
+      "power": "Powerful Hardware",
+      "memory": "Expandable Memory",
+      "compatibility": "Wide Game Compatibility",
+      "controls": "Ergonomic Controls"
+    }
+  },
+  "categories": {
+    "title": "Game Categories",
+    "action": "Action",
+    "adventure": "Adventure",
+    "sports": "Sports",
+    "racing": "Racing",
+    "rpg": "RPG",
+    "strategy": "Strategy"
+  },
+  "products": {
+    "title": "Our Products",
+    "description": "Choose your perfect gaming companion",
+    "buyNow": "Buy Now",
+    "learnMore": "Learn More"
+  },
+  "articles": {
+    "title": "Latest Articles",
+    "readMore": "Read More"
+  },
+  "reviews": {
+    "title": "Customer Reviews",
+    "writeReview": "Write a Review",
+    "overall": "Overall Rating"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send Message"
+  },
+  "footer": {
+    "rights": "All Rights Reserved",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Use",
+    "support": "Support",
+    "social": {
+      "follow": "Follow Us",
+      "facebook": "Facebook",
+      "twitter": "Twitter",
+      "instagram": "Instagram"
+    }
+  }
+}

@@ -8,26 +8,33 @@
       href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800&display=swap"
       rel="stylesheet"
     />
+    <!-- Language styles -->
+    <link rel="stylesheet" href="./css/components/languageSelector.css" />
+    <link rel="stylesheet" href="./css/components/rtl.css" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Мета-описание и SEO -->
     <meta
       name="description"
+      data-i18n="meta.description"
       content="R36S HANDHELD GAME CONSOLE - Ретро игровая консоль с 15000+ играми. ✓ Доступная цена ✓ Быстрая доставка ✓ Гарантия качества. Купить портативную консоль R36S для любимых ретро игр."
     />
     <meta
       name="keywords"
+      data-i18n="meta.keywords"
       content="R36S, handheld console, retro console, portable gaming, ретро консоль, портативная консоль, игровая приставка, R36S HANDHELD GAME CONSOLE, retro games, эмулятор игр, купить консоль"
     />
 
     <!-- Open Graph -->
     <meta
       property="og:title"
+      data-i18n="og.title"
       content="R36S HANDHELD GAME CONSOLE | Портативная Ретро Консоль"
     />
     <meta
       property="og:description"
+      data-i18n="og.description"
       content="Откройте мир ретро-игр с R36S HANDHELD GAME CONSOLE. 15000+ игр, мощное железо, доступная цена!"
     />
     <meta property="og:type" content="product" />
@@ -48,7 +55,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
-    <!-- Schema.org -->
+    <!-- Schema.org остается без изменений -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org/",
@@ -93,6 +100,14 @@
     </script>
   </head>
   <body>
+    <!-- Language selector -->
+    <div class="language-selector">
+      <select id="language-selector">
+        <option value="en">English</option>
+        <option value="ru">Русский</option>
+        <option value="tr">Türkçe</option>
+      </select>
+    </div>
     <!-- Основной контейнер -->
     <div id="app">
       <load src="partials/header.html" />

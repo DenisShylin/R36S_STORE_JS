@@ -11,15 +11,17 @@ export default defineConfig(({ command }) => {
       [command === 'serve' ? 'global' : '_global']: {},
     },
     root: 'src',
-    publicDir: 'assets', // Добавляем publicDir для статических ассетов
+    publicDir: 'assets',
     resolve: {
       alias: {
-        '@': resolve(__dirname, './src'), // Добавляем алиас для удобства импортов
+        '@': resolve(__dirname, './src'),
         '@assets': resolve(__dirname, './src/assets'),
         '@js': resolve(__dirname, './src/js'),
         '@css': resolve(__dirname, './src/css'),
+        '@locales': resolve(__dirname, './src/locales'), // Добавляем алиас для локализаций
       },
     },
+    assetsInclude: ['**/*.json'], // Добавляем поддержку JSON файлов
     build: {
       sourcemap: true,
       rollupOptions: {
@@ -39,6 +41,10 @@ export default defineConfig(({ command }) => {
             if (/\.css$/.test(name ?? '')) {
               return 'css/[name]-[hash][extname]';
             }
+            if (/\.json$/.test(name ?? '')) {
+              // Добавляем обработку JSON файлов
+              return 'locales/[name]-[hash][extname]';
+            }
             return 'assets/[name]-[hash][extname]';
           },
         },
@@ -52,7 +58,7 @@ export default defineConfig(({ command }) => {
           data: {},
         },
       }),
-      FullReload(['**/*.html']),
+      FullReload(['**/*.html', '**/*.json']), // Добавляем слежение за JSON файлами
     ],
     css: {
       postcss: {
@@ -64,11 +70,11 @@ export default defineConfig(({ command }) => {
       },
     },
     server: {
-      host: true, // Добавляем для доступа по сети
+      host: true,
       port: 5174,
-      open: true, // Автоматически открывать браузер
+      open: true,
       watch: {
-        usePolling: true, // Для лучшей работы с Windows
+        usePolling: true,
       },
     },
   };

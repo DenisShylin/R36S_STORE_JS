@@ -10,6 +10,7 @@
           class="hero__title-line"
           data-scroll="fade-up"
           data-scroll-delay="1"
+          data-i18n="hero.title.line1"
         >
           R36S HANDHELD
         </span>
@@ -17,6 +18,7 @@
           class="hero__title-line"
           data-scroll="fade-up"
           data-scroll-delay="2"
+          data-i18n="hero.title.line2"
         >
           GAME CONSOLE
         </span>
@@ -25,12 +27,15 @@
       <div class="hero__image">
         <div class="hero__image-wrapper">
           <div class="hero__image-glow" aria-hidden="true"></div>
-          <!-- Изображение будет добавлено через JavaScript -->
         </div>
       </div>
 
       <div class="hero__content">
-        <p class="hero__description" itemprop="description"></p>
+        <p
+          class="hero__description"
+          itemprop="description"
+          data-i18n="hero.description"
+        ></p>
 
         <div
           class="hero__pricing desktop-only"
@@ -39,7 +44,6 @@
           itemtype="https://schema.org/Offer"
         >
           <div class="hero__price-wrapper">
-            <span class="hero__original-price"></span>
             <span
               class="hero__current-price"
               itemprop="price"
@@ -49,25 +53,26 @@
               <span itemprop="priceCurrency" content="USD"></span>
             </span>
           </div>
-          <span class="hero__discount-badge" aria-label="Скидка 68 процентов"
+          <span
+            class="hero__discount-badge"
+            data-i18n="[aria-label]hero.discount.aria-label"
+            aria-label="Скидка 68 процентов"
             >-68%</span
           >
         </div>
 
         <div class="hero__buttons">
-          <button
-            class="hero__button hero__button--primary"
-            aria-label="Купить со скидкой на AliExpress"
-          >
+          <button class="hero__button hero__button--primary">
             <span class="hero__button-pulse" aria-hidden="true"></span>
-            <span class="hero__button-text">Shop With Discount</span>
+            <span class="hero__button-text" data-i18n="hero.buttons.primary"
+              >Shop With Discount</span
+            >
             <span class="hero__button-shine" aria-hidden="true"></span>
           </button>
-          <button
-            class="hero__button hero__button--secondary"
-            aria-label="Узнать больше о консоли"
-          >
-            More details
+          <button class="hero__button hero__button--secondary">
+            <span class="hero__button-text" data-i18n="hero.buttons.secondary"
+              >More details</span
+            >
           </button>
         </div>
       </div>

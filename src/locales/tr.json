@@ -1,0 +1,97 @@
+{
+  "meta": {
+    "description": "R36S HANDHELD GAME CONSOLE - 15000+ oyunlu retro oyun konsolu. ✓ Uygun fiyat ✓ Hizli kargo ✓ Kalite garantisi. Favori retro oyunlariniz icin tasinabilir R36S konsolunu satin alin.",
+    "keywords": "R36S, el konsolu, retro konsol, tasinabilir oyun, oyun emulatoru, retro oyunlar, R36S HANDHELD GAME CONSOLE, konsol satin al, oyun cihazi, tasinabilir oyun sistemi"
+  },
+  "og": {
+    "title": "R36S HANDHELD GAME CONSOLE | Tasinabilir Retro Konsol",
+    "description": "R36S HANDHELD GAME CONSOLE ile retro oyun dunyasini kesfedin. 15000+ oyun, guclu donanim, uygun fiyat!"
+  },
+  "header": {
+    "menu": {
+      "home": "Ana Sayfa",
+      "about": "Hakkinda",
+      "features": "Ozellikler",
+      "categories": "Kategoriler",
+      "products": "Urunler",
+      "articles": "Makaleler",
+      "reviews": "Yorumlar",
+      "contact": "Iletisim"
+    }
+  },
+  "hero": {
+    "title": {
+      "line1": "R36S TASINABILIR",
+      "line2": "OYUN KONSOLU"
+    },
+    "description": "R36S tasinabilir konsol ile retro oyun dunyasini kesfedin. 15000'den fazla oyun, guclu donanim, uygun fiyat!",
+    "buttons": {
+      "primary": "Indirimli Satin Al",
+      "secondary": "Detaylar"
+    }
+  },
+  "about": {
+    "title": "Konsol Hakkinda",
+    "description": "Oyun dunyasinda yeni bir boyut kesfedin",
+    "features": {
+      "games": "15000+ Oyun",
+      "battery": "Uzun Pil Omru",
+      "screen": "Parlak Ekran"
+    }
+  },
+  "features": {
+    "title": "Ozellikler",
+    "performance": "Yuksek Performans",
+    "graphics": "Gercekci Grafikler",
+    "sound": "Surround Ses",
+    "list": {
+      "power": "Guclu Donanim",
+      "memory": "Genisletilebilir Bellek",
+      "compatibility": "Genis Oyun Uyumlulugu",
+      "controls": "Ergonomik Kontroller"
+    }
+  },
+  "categories": {
+    "title": "Oyun Kategorileri",
+    "action": "Aksiyon",
+    "adventure": "Macera",
+    "sports": "Spor",
+    "racing": "Yaris",
+    "rpg": "RPG",
+    "strategy": "Strateji"
+  },
+  "products": {
+    "title": "Urunlerimiz",
+    "description": "Mukemmel oyun arkadasinizi secin",
+    "buyNow": "Simdi Satin Al",
+    "learnMore": "Daha Fazla Bilgi"
+  },
+  "articles": {
+    "title": "Son Makaleler",
+    "readMore": "Devamini Oku"
+  },
+  "reviews": {
+    "title": "Musteri Yorumlari",
+    "writeReview": "Yorum Yaz",
+    "overall": "Genel Degerlendirme"
+  },
+  "contact": {
+    "title": "Bize Ulasin",
+    "name": "Isim",
+    "email": "E-posta",
+    "message": "Mesaj",
+    "send": "Mesaj Gonder"
+  },
+  "footer": {
+    "rights": "Tum Haklari Saklidir",
+    "privacy": "Gizlilik Politikasi",
+    "terms": "Kullanim Kosullari",
+    "support": "Destek",
+    "social": {
+      "follow": "Bizi Takip Edin",
+      "facebook": "Facebook",
+      "twitter": "Twitter",
+      "instagram": "Instagram"
+    }
+  }
+}
