@@ -1,0 +1,63 @@
+/* Базовые настройки для анимируемых элементов */
+[data-scroll] {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Класс анимации */
+.scroll-animated {
+    opacity: 1;
+    transform: translateY(0) !important;
+}
+
+/* Типы анимаций */
+[data-scroll="fade-up"] {
+    transform: translateY(40px);
+}
+
+[data-scroll="fade-down"] {
+    transform: translateY(-40px);
+}
+
+[data-scroll="fade-left"] {
+    transform: translateX(-40px);
+}
+
+[data-scroll="fade-right"] {
+    transform: translateX(40px);
+}
+
+[data-scroll="zoom-in"] {
+    transform: scale(0.9);
+}
+
+/* Задержки анимации */
+[data-scroll-delay="1"] {
+    transition-delay: 0.1s;
+}
+
+[data-scroll-delay="2"] {
+    transition-delay: 0.2s;
+}
+
+[data-scroll-delay="3"] {
+    transition-delay: 0.3s;
+}
+
+[data-scroll-delay="4"] {
+    transition-delay: 0.4s;
+}
+
+[data-scroll-delay="5"] {
+    transition-delay: 0.5s;
+}
+
+/* Медиа-запрос для отключения анимаций */
+@media (prefers-reduced-motion: reduce) {
+    [data-scroll] {
+        transition: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+    }
+}

@@ -1,10 +1,12 @@
 // Импорт стилей
 import '../css/styles.css';
 import '../css/components/scroll.css';
+import '../css/components/scrollAnimations.css';
 
 // Импорт утилит
 import { initLazyLoading } from './utils/lazyLoader';
 import { initScrollHandler } from './utils/scrollHandler';
+import { ScrollAnimations } from './utils/scrollAnimations';
 
 // Импорт секций
 import { initHero } from './sections/hero';
@@ -23,6 +25,9 @@ const initApp = () => {
   // Инициализация утилит
   initLazyLoading();
   initScrollHandler();
+
+  // Инициализация анимаций при скролле
+  const scrollAnimations = new ScrollAnimations();
 
   // Инициализация секций
   const sections = {
@@ -51,3 +56,6 @@ const initApp = () => {
 
 // Запуск после загрузки DOM
 document.addEventListener('DOMContentLoaded', initApp);
+
+// Экспорт для возможного использования в других модулях
+export { initApp };

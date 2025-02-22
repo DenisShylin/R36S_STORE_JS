@@ -6,15 +6,29 @@
   <div class="hero__container">
     <div class="hero__image">
       <div class="hero__image-wrapper">
+        <div class="hero__image-glow" aria-hidden="true"></div>
         <!-- Изображение будет добавлено через JavaScript -->
       </div>
     </div>
 
     <div class="hero__content">
       <h1 class="hero__title">
-        <span class="hero__title-line">R36S HANDHELD</span>
-        <span class="hero__title-line">GAME CONSOLE</span>
+        <span
+          class="hero__title-line"
+          data-scroll="fade-up"
+          data-scroll-delay="1"
+        >
+          R36S HANDHELD
+        </span>
+        <span
+          class="hero__title-line"
+          data-scroll="fade-up"
+          data-scroll-delay="2"
+        >
+          GAME CONSOLE
+        </span>
       </h1>
+
       <p class="hero__description" itemprop="description"></p>
 
       <div
@@ -27,9 +41,7 @@
           <span class="hero__original-price">US $108.06</span>
           <span class="hero__current-price" itemprop="price" content="35.48">
             $35.48
-            <span itemprop="priceCurrency" content="USD" style="font-size: 24px"
-              >US</span
-            >
+            <span itemprop="priceCurrency" content="USD">US</span>
           </span>
         </div>
         <span class="hero__discount-badge" aria-label="Скидка 68 процентов"
