@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite';
 import injectHTML from 'vite-plugin-html-inject';
 import FullReload from 'vite-plugin-full-reload';
-import SortCss from 'postcss-sort-media-queries';
 import { resolve } from 'path';
 
 export default defineConfig(({ command }) => {
@@ -11,21 +10,22 @@ export default defineConfig(({ command }) => {
       [command === 'serve' ? 'global' : '_global']: {},
     },
     root: 'src',
-    publicDir: 'assets',
+    publicDir: '../public',
     resolve: {
       alias: {
         '@': resolve(__dirname, './src'),
         '@assets': resolve(__dirname, './src/assets'),
         '@js': resolve(__dirname, './src/js'),
         '@css': resolve(__dirname, './src/css'),
-        '@locales': resolve(__dirname, './src/locales'), // Добавляем алиас для локализаций
+        '@locales': resolve(__dirname, './src/locales'),
       },
     },
-    assetsInclude: ['**/*.json'], // Добавляем поддержку JSON файлов
     build: {
       sourcemap: true,
       rollupOptions: {
-        input: resolve(__dirname, 'src/index.html'),
+        input: {
+          main: resolve(__dirname, 'src/index.html'),
+        },
         output: {
           manualChunks(id) {
             if (id.includes('node_modules')) {
@@ -42,8 +42,7 @@ export default defineConfig(({ command }) => {
               return 'css/[name]-[hash][extname]';
             }
             if (/\.json$/.test(name ?? '')) {
-              // Добавляем обработку JSON файлов
-              return 'locales/[name]-[hash][extname]';
+              return 'locales/[name][extname]';
             }
             return 'assets/[name]-[hash][extname]';
           },
@@ -58,17 +57,8 @@ export default defineConfig(({ command }) => {
           data: {},
         },
       }),
-      FullReload(['**/*.html', '**/*.json']), // Добавляем слежение за JSON файлами
+      FullReload(['**/*.html', '**/*.json']),
     ],
-    css: {
-      postcss: {
-        plugins: [
-          SortCss({
-            sort: 'mobile-first',
-          }),
-        ],
-      },
-    },
     server: {
       host: true,
       port: 5174,
@@ -76,6 +66,13 @@ export default defineConfig(({ command }) => {
       watch: {
         usePolling: true,
       },
+      fs: {
+        strict: false,
+        allow: ['..'],
+      },
+    },
+    optimizeDeps: {
+      include: ['i18next'],
     },
   };
 });

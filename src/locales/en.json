@@ -7,6 +7,10 @@
     "title": "R36S HANDHELD GAME CONSOLE | Portable Retro Console",
     "description": "Discover the world of retro gaming with R36S HANDHELD GAME CONSOLE. 15000+ games, powerful hardware, affordable price!"
   },
+  "twitter": {
+    "title": "R36S HANDHELD GAME CONSOLE",
+    "description": "Portable retro console with 15000+ games"
+  },
   "header": {
     "menu": {
       "home": "Home",
@@ -21,10 +25,18 @@
   },
   "hero": {
     "title": {
-      "line1": "R36S HANDHELD",
-      "line2": "GAME CONSOLE"
+      "line1": "R36S",
+      "line2": "HANDHELD",
+      "line3": "GAME CONSOLE"
     },
-    "description": "Discover the world of retro gaming with R36S HANDHELD GAME CONSOLE. 15000+ games, powerful hardware, affordable price!",
+    "description": {
+      "mobile": "Discover the world of retro gaming with R36S HANDHELD GAME CONSOLE. 15000+ games, powerful hardware, affordable price!",
+      "desktop": "R36S HANDHELD GAME CONSOLE opens the door to the exciting world of retro gaming, offering an impressive collection of over 15,000 legendary games from different eras and platforms.  Play anywhere, anytime! Dive into a universe of gaming nostalgia with the R36S HANDHELD CONSOLE!"
+    },
+    "pricing": {
+      "discount": "-68%",
+      "aria-label": "68 percent discount"
+    },
     "buttons": {
       "primary": "Shop With Discount",
       "secondary": "More details"

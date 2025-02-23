@@ -12,13 +12,21 @@
           data-scroll-delay="1"
           data-i18n="hero.title.line1"
         >
-          R36S HANDHELD
+          R36S
         </span>
         <span
           class="hero__title-line"
           data-scroll="fade-up"
           data-scroll-delay="2"
           data-i18n="hero.title.line2"
+        >
+          HANDHELD
+        </span>
+        <span
+          class="hero__title-line"
+          data-scroll="fade-up"
+          data-scroll-delay="3"
+          data-i18n="hero.title.line3"
         >
           GAME CONSOLE
         </span>
@@ -31,31 +39,36 @@
       </div>
 
       <div class="hero__content">
+        <!-- Мобильное описание -->
         <p
-          class="hero__description"
+          class="hero__description hero__description--mobile"
           itemprop="description"
-          data-i18n="hero.description"
+          data-i18n="hero.description.mobile"
+        ></p>
+
+        <!-- Десктопное описание -->
+        <p
+          class="hero__description hero__description--desktop"
+          itemprop="description"
+          data-i18n="hero.description.desktop"
         ></p>
 
         <div
-          class="hero__pricing desktop-only"
+          class="hero__pricing"
           itemprop="offers"
           itemscope
           itemtype="https://schema.org/Offer"
         >
           <div class="hero__price-wrapper">
-            <span
-              class="hero__current-price"
-              itemprop="price"
-              content="Discount"
-            >
-              Discount
-              <span itemprop="priceCurrency" content="USD"></span>
+            <span class="hero__original-price">US $108.92</span>
+            <span class="hero__current-price" itemprop="price" content="33.91">
+              US $33.91
             </span>
+            <meta itemprop="priceCurrency" content="USD" />
           </div>
           <span
             class="hero__discount-badge"
-            data-i18n="[aria-label]hero.discount.aria-label"
+            data-i18n="[aria-label]hero.pricing.aria-label"
             aria-label="Скидка 68 процентов"
             >-68%</span
           >
@@ -64,15 +77,15 @@
         <div class="hero__buttons">
           <button class="hero__button hero__button--primary">
             <span class="hero__button-pulse" aria-hidden="true"></span>
-            <span class="hero__button-text" data-i18n="hero.buttons.primary"
-              >Shop With Discount</span
-            >
+            <span class="hero__button-text" data-i18n="hero.buttons.primary">
+              Shop With Discount
+            </span>
             <span class="hero__button-shine" aria-hidden="true"></span>
           </button>
           <button class="hero__button hero__button--secondary">
-            <span class="hero__button-text" data-i18n="hero.buttons.secondary"
-              >More details</span
-            >
+            <span class="hero__button-text" data-i18n="hero.buttons.secondary">
+              More details
+            </span>
           </button>
         </div>
       </div>

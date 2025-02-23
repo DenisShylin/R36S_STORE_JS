@@ -1,11 +1,15 @@
 {
   "meta": {
-    "description": "R36S HANDHELD GAME CONSOLE - Retro igrovaya konsol s 15000+ igrami. ✓ Dostupnaya cena ✓ Bystraya dostavka ✓ Garantiya kachestva. Kupit portativnuyu konsol R36S dlya lyubimyh retro igr.",
-    "keywords": "R36S, portativnaya konsol, retro konsol, portativnyj gaming, emulyator igr, retro igry, R36S HANDHELD GAME CONSOLE, kupit konsol, igrovoe ustrojstvo, portativnaya igrovaya sistema"
+    "description": "R36S HANDHELD GAME CONSOLE - Ретро игровая консоль с 15000+ играми. ✓ Доступная цена ✓ Быстрая доставка ✓ Гарантия качества. Купить портативную консоль R36S для любимых ретро игр.",
+    "keywords": "R36S, портативная консоль, ретро консоль, портативные игры, эмулятор игр, ретро игры, R36S HANDHELD GAME CONSOLE, купить консоль, игровое устройство, портативная игровая система"
   },
   "og": {
-    "title": "R36S HANDHELD GAME CONSOLE | Portativnaya Retro Konsol",
-    "description": "Otkrojte mir retro-igr s R36S HANDHELD GAME CONSOLE. 15000+ igr, moshchnoe zhelezo, dostupnaya cena!"
+    "title": "R36S HANDHELD GAME CONSOLE | Портативная Ретро Консоль",
+    "description": "Откройте мир ретро-игр с R36S HANDHELD GAME CONSOLE. 15000+ игр, мощное железо, доступная цена!"
+  },
+  "twitter": {
+    "title": "R36S HANDHELD GAME CONSOLE",
+    "description": "Портативная ретро консоль с 15000+ играми"
   },
   "header": {
     "menu": {
@@ -21,13 +25,21 @@
   },
   "hero": {
     "title": {
-      "line1": "R36S PORTATIVNAYA",
-      "line2": "IGROVAYA KONSOL"
+      "line1": "R36S",
+      "line2": "ПОРТАТИВНАЯ",
+      "line3": "ИГРОВАЯ КОНСОЛЬ"
     },
-    "description": "Otkrojte mir retro-igr s portativnoj konsolyu R36S. Bolee 15000 igr, moshchnoe zhelezo, dostupnaya cena!",
+    "description": {
+      "mobile": "Откройте мир ретро-игр с портативной консолью R36S. Более 15000 игр, мощное железо и доступная цена!",
+      "desktop": "R36S ПОРТАТИВНАЯ ИГРОВАЯ КОНСОЛЬ открывает двери в захватывающий мир ретро-игр, предлагая впечатляющую коллекцию из более чем 15 000 легендарных игр разных эпох и платформ. Играйте где угодно и когда угодно! Погрузитесь во вселенную игровой ностальгии с ПОРТАТИВНОЙ КОНСОЛЬЮ R36S!"
+    },
+    "pricing": {
+      "discount": "-68%",
+      "aria-label": "Скидка 68 процентов"
+    },
     "buttons": {
-      "primary": "Kupit so skidkoj",
-      "secondary": "Podrobnee"
+      "primary": "Купить со скидкой",
+      "secondary": "Подробнее"
     }
   },
   "about": {

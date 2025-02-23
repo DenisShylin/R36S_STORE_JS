@@ -1,11 +1,15 @@
 {
   "meta": {
-    "description": "R36S HANDHELD GAME CONSOLE - 15000+ oyunlu retro oyun konsolu. ✓ Uygun fiyat ✓ Hizli kargo ✓ Kalite garantisi. Favori retro oyunlariniz icin tasinabilir R36S konsolunu satin alin.",
-    "keywords": "R36S, el konsolu, retro konsol, tasinabilir oyun, oyun emulatoru, retro oyunlar, R36S HANDHELD GAME CONSOLE, konsol satin al, oyun cihazi, tasinabilir oyun sistemi"
+    "description": "R36S HANDHELD GAME CONSOLE - 15000+ oyunlu retro oyun konsolu. ✓ Uygun fiyat ✓ Hızlı teslimat ✓ Kalite garantisi. Favori retro oyunlarınız için taşınabilir R36S konsolunu satın alın.",
+    "keywords": "R36S, el konsolu, retro konsol, taşınabilir oyun, oyun emülatörü, retro oyunlar, R36S HANDHELD GAME CONSOLE, konsol satın al, oyun cihazı, taşınabilir oyun sistemi"
   },
   "og": {
-    "title": "R36S HANDHELD GAME CONSOLE | Tasinabilir Retro Konsol",
-    "description": "R36S HANDHELD GAME CONSOLE ile retro oyun dunyasini kesfedin. 15000+ oyun, guclu donanim, uygun fiyat!"
+    "title": "R36S HANDHELD GAME CONSOLE | Taşınabilir Retro Konsol",
+    "description": "R36S HANDHELD GAME CONSOLE ile retro oyun dünyasını keşfedin. 15000+ oyun, güçlü donanım, uygun fiyat!"
+  },
+  "twitter": {
+    "title": "R36S HANDHELD GAME CONSOLE",
+    "description": "15000+ oyunlu taşınabilir retro konsol"
   },
   "header": {
     "menu": {
@@ -21,12 +25,20 @@
   },
   "hero": {
     "title": {
-      "line1": "R36S TASINABILIR",
-      "line2": "OYUN KONSOLU"
+      "line1": "R36S",
+      "line2": "TAŞINABİLİR",
+      "line3": "OYUN KONSOLU"
     },
-    "description": "R36S tasinabilir konsol ile retro oyun dunyasini kesfedin. 15000'den fazla oyun, guclu donanim, uygun fiyat!",
+    "description": {
+      "mobile": "R36S taşınabilir konsol ile retro oyun dünyasını keşfedin. 15000'den fazla oyun, güçlü donanım ve uygun fiyat!",
+      "desktop": "R36S TAŞINABILIR OYUN KONSOLU, farklı dönemlerden ve platformlardan 15.000'den fazla efsanevi oyun koleksiyonu sunarak retro oyun dünyasının kapılarını açıyor. Her yerde, her zaman oynayın! R36S TAŞINABILIR KONSOL ile oyun nostaljisi evrenine dalın!"
+    },
+    "pricing": {
+      "discount": "-68%",
+      "aria-label": "Yüzde 68 indirim"
+    },
     "buttons": {
-      "primary": "Indirimli Satin Al",
+      "primary": "İndirimli Satın Al",
       "secondary": "Detaylar"
     }
   },

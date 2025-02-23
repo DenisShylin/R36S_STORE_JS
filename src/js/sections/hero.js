@@ -1,6 +1,7 @@
 // Импорты изображений
 import heroImage1x from '../../img/herou1_1x_.png';
 import heroImage2x from '../../img/herou1_2x_.png';
+import i18next from 'i18next';
 
 // Утилита для предзагрузки изображений
 const imagePreloader = {
@@ -39,59 +40,46 @@ export const initHero = () => {
   // Состояние
   let isDesktop = window.innerWidth > 1280;
 
-  // Тексты заголовков
-  const title = {
-    mobile: 'R36S HANDHELD CONSOLE',
-  };
-
-  // Тексты описаний
-  const descriptions = {
-    desktop:
-      'R36S HANDHELD GAME CONSOLE opens the door to the exciting world of retro gaming, offering an impressive collection of over 15,000 legendary games from different eras and platforms. Experience the ultimate portable gaming paradise with crystal-clear visuals and ergonomic design that fits perfectly in your hands. Play anywhere, anytime! Dive into a universe of gaming nostalgia with the R36S HANDHELD CONSOLE!',
-    mobile:
-      'R36S HANDHELD GAME CONSOLE - Gaming legends in the palm of your hand',
-  };
-
   // Функция обновления изображения
   const updateHeroImage = () => {
     const imageContainer = heroSection.querySelector('.hero__image-wrapper');
     if (imageContainer) {
       imageContainer.innerHTML = `
-       <div class="hero__image-glow" aria-hidden="true"></div>
-       <picture>
-         <source
-           media="(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)"
-           srcset="${heroImage2x}"
-           type="image/png"
-         />
-         <source
-           srcset="${heroImage1x}"
-           type="image/png"
-         />
-         <img
-           src="${heroImage1x}"
-           alt="R36S Gaming Console - Портативная ретро консоль с 15000+ играми"
-           class="hero__console-img"
-           width="600"
-           height="400"
-         />
-       </picture>
-     `;
+        <div class="hero__image-glow" aria-hidden="true"></div>
+        <picture>
+          <source
+            media="(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)"
+            srcset="${heroImage2x}"
+            type="image/png"
+          />
+          <source
+            srcset="${heroImage1x}"
+            type="image/png"
+          />
+          <img
+            src="${heroImage1x}"
+            alt="${i18next.t('hero.image.alt')}"
+            class="hero__console-img"
+            width="600"
+            height="400"
+          />
+        </picture>
+      `;
     }
   };
 
-  // Функция обновления заголовка только для мобильной версии
+  // Функция обновления заголовка
   const updateTitle = () => {
-    if (titleLines.length === 2) {
-      if (window.innerWidth <= 480) {
-        // Только для мобильной версии
-        titleLines[0].textContent = title.mobile;
-        titleLines[1].style.display = 'none';
-      } else {
-        titleLines[0].textContent = 'R36S HANDHELD';
-        titleLines[1].textContent = 'GAME CONSOLE';
-        titleLines[1].style.display = 'block';
-      }
+    if (titleLines.length === 3) {
+      // Теперь всегда показываем все три строки независимо от разрешения
+      titleLines[0].textContent = i18next.t('hero.title.line1'); // R36S
+      titleLines[1].textContent = i18next.t('hero.title.line2'); // HANDHELD
+      titleLines[2].textContent = i18next.t('hero.title.line3'); // GAME CONSOLE
+
+      // Показываем все строки
+      titleLines.forEach(line => {
+        line.style.display = 'block';
+      });
     }
   };
 
@@ -99,8 +87,8 @@ export const initHero = () => {
   const updateDescription = () => {
     if (heroDescription) {
       heroDescription.textContent = isDesktop
-        ? descriptions.desktop
-        : descriptions.mobile;
+        ? i18next.t('hero.description.desktop')
+        : i18next.t('hero.description.mobile');
     }
   };
 
@@ -111,7 +99,7 @@ export const initHero = () => {
       isDesktop = newIsDesktop;
       updateDescription();
     }
-    updateTitle(); // Обновляем заголовок при ресайзе
+    updateTitle();
   };
 
   const handleBuyClick = () => {
@@ -145,11 +133,18 @@ export const initHero = () => {
     }
   };
 
-  // Установка обработчиков
+  // Установка обработчиков событий
   window.addEventListener('resize', handleResize);
   if (primaryButton) primaryButton.addEventListener('click', handleBuyClick);
   if (secondaryButton)
     secondaryButton.addEventListener('click', handleMoreDetailsClick);
+
+  // Слушаем событие изменения языка
+  window.addEventListener('languageChanged', () => {
+    updateTitle();
+    updateDescription();
+    updateHeroImage(); // Обновляем alt текст изображения
+  });
 
   // Начальная инициализация
   updateHeroImage();
@@ -172,6 +167,7 @@ export const initHero = () => {
   // Возвращаем функцию очистки
   return () => {
     window.removeEventListener('resize', handleResize);
+    window.removeEventListener('languageChanged', updateTitle);
     if (primaryButton)
       primaryButton.removeEventListener('click', handleBuyClick);
     if (secondaryButton)
