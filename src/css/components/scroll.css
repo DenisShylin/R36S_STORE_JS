@@ -1,0 +1,227 @@
+/* Индикатор прогресса прокрутки */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(to right, #2563EB, #60A5FA);
+    width: 0%;
+    z-index: 9999;
+    transition: width 0.1s;
+    box-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
+}
+
+/* Кнопка "Наверх" */
+.corner-controls {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 900;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.back-to-top {
+    width: 50px;
+    height: 50px;
+    background: rgba(37, 99, 235, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    transform: translateY(100px);
+    opacity: 0;
+    visibility: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4px);
+    color: white;
+}
+
+.back-to-top.visible {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    background: rgba(37, 99, 235, 0.5);
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.back-to-top:active {
+    transform: scale(0.95);
+}
+
+.back-to-top svg {
+    transition: transform 0.3s ease;
+}
+
+.back-to-top:hover svg {
+    transform: translateY(-3px);
+}
+
+/* Анимации для элементов при скролле */
+[data-scroll] {
+    opacity: 0;
+    transition: all 0.6s ease;
+}
+
+/* Базовая анимация появления */
+.scroll-animated {
+    opacity: 1;
+}
+
+/* Анимация появления снизу */
+[data-scroll="fade-up"] {
+    transform: translateY(30px);
+}
+
+.scroll-fade-up {
+    transform: translateY(0);
+}
+
+/* Анимация появления сверху */
+[data-scroll="fade-down"] {
+    transform: translateY(-30px);
+}
+
+.scroll-fade-down {
+    transform: translateY(0);
+}
+
+/* Анимация появления слева */
+[data-scroll="fade-right"] {
+    transform: translateX(-30px);
+}
+
+.scroll-fade-right {
+    transform: translateX(0);
+}
+
+/* Анимация появления справа */
+[data-scroll="fade-left"] {
+    transform: translateX(30px);
+}
+
+.scroll-fade-left {
+    transform: translateX(0);
+}
+
+/* Анимация появления с масштабированием */
+[data-scroll="zoom-in"] {
+    transform: scale(0.9);
+}
+
+.scroll-zoom-in {
+    transform: scale(1);
+}
+
+[data-scroll="zoom-out"] {
+    transform: scale(1.1);
+}
+
+.scroll-zoom-out {
+    transform: scale(1);
+}
+
+/* Анимация появления с вращением */
+[data-scroll="rotate"] {
+    transform: rotate(-10deg);
+    transform-origin: center;
+}
+
+.scroll-rotate {
+    transform: rotate(0);
+}
+
+/* Анимация появления с затуханием */
+[data-scroll="blur"] {
+    filter: blur(10px);
+}
+
+.scroll-blur {
+    filter: blur(0);
+}
+
+/* Комбинированные анимации */
+[data-scroll="flip-up"] {
+    transform: perspective(400px) rotateX(90deg);
+    transform-origin: bottom;
+}
+
+.scroll-flip-up {
+    transform: perspective(400px) rotateX(0);
+}
+
+[data-scroll="flip-down"] {
+    transform: perspective(400px) rotateX(-90deg);
+    transform-origin: top;
+}
+
+.scroll-flip-down {
+    transform: perspective(400px) rotateX(0);
+}
+
+/* Задержки анимации */
+[data-scroll-delay="100"] {
+    transition-delay: 100ms;
+}
+
+[data-scroll-delay="200"] {
+    transition-delay: 200ms;
+}
+
+[data-scroll-delay="300"] {
+    transition-delay: 300ms;
+}
+
+[data-scroll-delay="400"] {
+    transition-delay: 400ms;
+}
+
+[data-scroll-delay="500"] {
+    transition-delay: 500ms;
+}
+
+/* Медиа-запросы */
+@media (max-width: 768px) {
+    .corner-controls {
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .back-to-top {
+        width: 40px;
+        height: 40px;
+    }
+
+    .back-to-top svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .corner-controls {
+        bottom: 15px;
+        right: 15px;
+    }
+
+    .back-to-top {
+        width: 35px;
+        height: 35px;
+    }
+
+    .back-to-top svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .scroll-progress {
+        height: 2px;
+    }
+}

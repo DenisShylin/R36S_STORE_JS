@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title data-i18n="meta.title">
+      R36S Retro Game Console - Official Website
+    </title>
+
+    <!-- Мета-теги для SEO -->
+    <meta
+      name="description"
+      content="R36S Retro Game Console with 15,000+ classic games. 3.5-inch IPS display, long battery life, and portable design"
+      data-i18n="meta.description"
+    />
+    <meta
+      name="keywords"
+      content="R36S, retro game console, portable console, retro gaming, classic games"
+      data-i18n="meta.keywords"
+    />
+
+    <!-- Open Graph для социальных сетей -->
+    <meta
+      property="og:title"
+      content="R36S Retro Game Console - Official Website"
+      data-i18n="meta.og_title"
+    />
+    <meta
+      property="og:description"
+      content="R36S Retro Game Console with 15,000+ classic games. 3.5-inch IPS display, long battery life, and portable design"
+      data-i18n="meta.og_description"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://r36s.com/" />
+    <meta property="og:image" content="/img/og-image.jpg" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Предзагрузка шрифтов -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Основные стили -->
+    <link rel="stylesheet" href="/css/main.css" />
+
+    <!-- Структурированные данные для поисковиков -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": "R36S Retro Game Console",
+        "image": "/img/r36s-console.jpg",
+        "description": "Portable retro gaming console with 15,000+ classic games, 3.5-inch IPS display and long battery life",
+        "brand": {
+          "@type": "Brand",
+          "name": "R36S"
+        },
+        "offers": {
+          "@type": "Offer",
+          "url": "https://www.aliexpress.com/item/1005007171465465.html",
+          "priceCurrency": "USD",
+          "price": "35.48",
+          "availability": "https://schema.org/InStock"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <!-- Контейнер для шапки -->
+    <div id="header-container"></div>
+
+    <!-- Основное содержимое -->
+    <main>
+      <!-- Секция Hero -->
+      <div id="hero-container"></div>
+
+      <!-- Секция About -->
+      <div id="about-container"></div>
+
+      <!-- Секция Features -->
+      <div id="features-container"></div>
+
+      <!-- Секция Categories -->
+      <div id="categories-container"></div>
+
+      <!-- Секция Articles -->
+      <div id="articles-container"></div>
+
+      <!-- Секция Reviews -->
+      <div id="reviews-container"></div>
+
+      <!-- Секция Contact -->
+      <div id="contact-container"></div>
+
+      <!-- Секция Products -->
+      <div id="products-container"></div>
+    </main>
+
+    <!-- Подвал -->
+    <div id="footer-container"></div>
+
+    <!-- Модуль для прокрутки наверх -->
+    <div class="corner-controls">
+      <div class="back-to-top" id="backToTop" aria-label="Back to top">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="m18 15-6-6-6 6" />
+        </svg>
+      </div>
+    </div>
+
+    <!-- Индикатор прогресса прокрутки -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Основной JavaScript модуль -->
+    <script type="module" src="/js/main.js"></script>
+  </body>
+</html>

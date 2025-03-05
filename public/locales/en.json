@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "title": "R36S Retro Game Console - Official Website",
+    "description": "R36S Retro Game Console with 15,000+ classic games. 3.5-inch IPS display, long battery life, and portable design",
+    "keywords": "R36S, retro game console, portable console, retro gaming, classic games",
+    "og_title": "R36S Retro Game Console - Official Website",
+    "og_description": "R36S Retro Game Console with 15,000+ classic games. 3.5-inch IPS display, long battery life, and portable design"
+  },
+  "header": {
+    "functionality": "Functionality",
+    "about": "About R36S",
+    "video": "Video",
+    "reviews": "Reviews",
+    "contacts": "Contacts"
+  },
+  "hero": {
+    "title": {
+      "line1": "HANDHELD",
+      "line2": "GAME CONSOLE",
+      "brand": "R36S"
+    },
+    "description": "The Retro Handheld R36S portable gaming console opens the door to the exciting world of retro gaming, offering an impressive collection of over 15,000 legendary games from different eras and platforms.",
+    "original_price": "US $108.06",
+    "current_price": "$35.48 US",
+    "discount": "-68%",
+    "buttons": {
+      "buy_now": "Buy now -68%",
+      "show_details": "Show Details"
+    }
+  },
+  "about": {
+    "label": "Functionality",
+    "label_outline": "R36S",
+    "title": "Your Adventure Starts Here",
+    "subtitle": "Discover the world of retro gaming with modern technology",
+    "features": {
+      "retro_games": {
+        "title": "Retro Game Collection",
+        "description": "Get into the game with the r36s portable gaming console.",
+        "number": "15K+",
+        "detail": "classic games",
+        "full_description": "Discover a rich collection of classic games, including over 15,000 titles from different eras. From iconic arcade games to beloved console games, our library spans every significant platform of the past.\n\nThe collection includes:\n• Classic arcade games from the 80s and 90s\n• Complete libraries of NES, SNES, Sega and other consoles\n• Exclusive ports and rare releases\n• Optimized versions for modern hardware"
+      },
+      "display": {
+        "title": "Vibrant Display Technologies",
+        "description": "Enjoy vivid games on the 3.5* LCD display with crisp 640x480 resolution.",
+        "number": "3.5\"",
+        "detail": "IPS display",
+        "full_description": "R36S Console Display Specifications:\n• 3.5-inch IPS display\n• 640x480 resolution\n• High brightness and contrast\n• Wide viewing angles\n• Anti-glare coating\n• Energy-efficient backlight\n• Scratch-resistant surface"
+      },
+      "battery": {
+        "title": "Powerful battery",
+        "description": "Enjoy up to 7-8 hours of continuous gaming with the R36S.",
+        "number": "7-8",
+        "detail": "hours of play",
+        "full_description": "**Powerful 3200 mAh Battery**\n\nExperience up to 7-8 hours of extended gaming with the R36S. The high-capacity 3200 mAh battery powers its crisp 3.5-inch IPS display (640x480 resolution), delivering an immersive gaming experience without frequent charging.\n\nKey features:\n- Long-lasting gameplay \n- Full-screen IPS display\n- Portable design\n- Uninterrupted entertainment\n\nTake your gaming anywhere – play more, charge less."
+      },
+      "colors": {
+        "title": "Extensive color selection",
+        "description": "Experience our wide selection of stunning console colors.",
+        "number": "10+",
+        "detail": "COLORS",
+        "full_description": "Experience the R36S Collection:\n\nThe R36S console delivers 12+ captivating color variations in 2024, including our signature Midnight Black and eye-catching Galactic Purple. Each R36S model features recycled plastic finish and scratch-resistant coating.\n\nAvailable Colors:\n- Classic Black\n- Vibrant Orange\n- Mesmerizing Purple\n- Dynamic Red\n- Pure White\n- Radiant Yellow\n- Serene Lake Blue\n- Deep Marine Blue\n- Natural Olive Green\n- Premium Transparent Red"
+      },
+      "settings": {
+        "title": "Extensive settings",
+        "description": "Customize controls, brightness, sound and settings for maximum comfort",
+        "number": "30+",
+        "detail": "settings",
+        "full_description": "Features & Connectivity:\n\n- Connect to external displays via OTG for large-screen gaming\n- Compatible with modern gaming controllers and gamepads\n- Multi-language interface support\n- Customizable control schemes and button mapping\n- Advanced display settings with adjustable brightness and contrast\n- Audio optimization with multiple sound profiles\n- Screen mirroring capability\n- Low latency connection for seamless gameplay\n- Expandable storage support\n- Quick system updates\n- User-friendly interface"
+      },
+      "portability": {
+        "title": "Maximum portability",
+        "description": "Portable console with removable battery for gaming on the go.",
+        "number": "Ultra",
+        "detail": "Portable",
+        "full_description": "Whether commuting, traveling, or taking a quick break, the R36S is ready for instant entertainment. Its durable design and protected screen ensure worry-free portability, while the long-lasting battery keeps you gaming on the go.\n\nFeatures:\n• Pocket-sized dimensions for ultimate portability\n• Rugged construction for daily carry\n• Ergonomic grip for extended gaming sessions\n• Quick startup for instant gaming access\n\nNever compromise between portability and performance - the R36S delivers both in a perfectly portable package."
+      }
+    }
+  },
+  "features": {
+    "title": "Console R36S",
+    "description": "The Retro Handheld R36S portable gaming console opens the door to the exciting world of retro gaming, offering an impressive collection of over 15,000 legendary games from different eras and platforms. The heart of the console is a premium 3.5-inch IPS screen, which renders images with stunning clarity and color saturation. The R36S does not just play old games - it rethinks retro gaming for the modern era. Dive into the universe of games with the R36S console!",
+    "buttons": {
+      "buy_now": "Buy now -68%",
+      "show_details": "Show Details"
+    }
+  },
+  "categories": {
+    "label": "Demonstration",
+    "label_outline": "Gameplay",
+    "title": "R36S Video",
+    "description": "Immerse yourself in the world of classic games with improved graphics and smooth gameplay. Enjoy your favorite games in high quality on a bright IPS screen."
+  },
+  "reviews": {
+    "label": "Reviews",
+    "title": "Customer Reviews"
+  },
+  "contact": {
+    "label": "Start a Conversation",
+    "title": "Looking for Answers",
+    "description": "We are always ready to help you with choosing a console and answer any questions about the R36S console",
+    "form": {
+      "name": "Your name",
+      "email": "Email",
+      "phone": "Telephone",
+      "message": "Message",
+      "send": "Send message",
+      "sending": "Sending...",
+      "error": "Please fill in all fields"
+    },
+    "info": {
+      "phone": "Telephone",
+      "phone_hours": "Mon-Fri: 9:00 - 18:00",
+      "email": "Email",
+      "address": "Address",
+      "address_info": "We work all over the world"
+    }
+  },
+  "footer": {
+    "description": "Discover the world of retro gaming with a portable console R36S. Thousands of classic games in your pocket!",
+    "links": {
+      "products": "Products",
+      "reviews": "Reviews",
+      "support": "Support",
+      "contacts": "Contacts",
+      "company": "Company",
+      "partnership": "Partnership"
+    },
+    "copyright": "© 2025 R36S. All rights reserved."
+  },
+  "partnership": {
+    "title": "Partnership with R36S",
+    "company": "COMPANY INFORMATION",
+    "founded": "R36S brand was founded on February 28, 2007 in Zhejiang Province, China.",
+    "employees": "The company employs 11-50 people.",
+    "products": "Main products: handheld consoles, TV game consoles, game controllers.",
+    "revenue": "The company's annual revenue: 50-100 million US dollars.",
+    "markets": "R36S markets: Western Europe 11% East Asia 11% Middle East 11%",
+    "wholesale": {
+      "title": "R36S Wholesale Trade",
+      "text": "Wholesale prices, representative office registration and distribution:"
+    },
+    "introduction": {
+      "title": "Introduction to R36S Retro Handheld Game Console",
+      "text": "The R36S distributor network actively expands worldwide, bringing nostalgic gaming experiences to enthusiasts everywhere. Initially, the R36S headquarters established its presence in Asia, but now the brand confidently moves into international markets. Moreover, the company welcomes new partnerships across different continents, making the R36S Retro Handheld Game Console increasingly accessible to global consumers. Furthermore, the brand's commitment to quality and affordability has positioned it as a strong competitor in the retro gaming market."
+    }
+  },
+  "products": {
+    "title": "R36S Console Firmware Guide",
+    "sections": {
+      "preparation": {
+        "title": "Preparation",
+        "text": "Essential Guide: R36S Setup Instructions\nNote: These instructions are specifically for authentic R36S devices..."
+      },
+      "backup": {
+        "title": "Backing Up Original Firmware",
+        "text": "Creating a Safety Backup...",
+        "subsections": {
+          "win32diskimager": {
+            "title": "Backup Process Using Win32DiskImager",
+            "text": "Step 1: Configure Output Location..."
+          }
+        }
+      },
+      "flashing": {
+        "title": "Flashing Custom Firmware",
+        "text": "SD Card Setup Guide...",
+        "subsections": {
+          "balena": {
+            "title": "Method 1: Using Balena Etcher",
+            "text": "1. Start Balena Etcher..."
+          },
+          "win32": {
+            "title": "Method 2: Win32DiskImager Installation",
+            "text": "1. Launch Win32DiskImager..."
+          },
+          "raspberry": {
+            "title": "Method 3: Raspberry Pi Imager Process",
+            "text": "1. Open Raspberry Pi Imager..."
+          }
+        }
+      },
+      "firmware": {
+        "title": "Custom Firmware for R36S",
+        "text": "Available Firmware Options for Your R36S...",
+        "subsections": {
+          "arkos": {
+            "title": "ArkOS - Community Enhanced Edition",
+            "text": "Source: Find it on the ArkOS GitHub Project Page..."
+          },
+          "rocknix": {
+            "title": "ROCKNIX Operating System",
+            "text": "Source: Official ROCKNIX GitHub..."
+          },
+          "amberelec": {
+            "title": "AmberELEC System",
+            "text": "Source: AmberELEC GitHub Project..."
+          }
+        }
+      },
+      "roms": {
+        "title": "Setting Up ROMs and BIOS",
+        "text": "Game Installation Guide..."
+      },
+      "tips": {
+        "title": "General Tips",
+        "text": "Important System Operation Guidelines..."
+      },
+      "downloads": {
+        "title": "Available Downloads"
+      }
+    }
+  },
+  "mobile_menu": {
+    "functionality": "Functionality",
+    "about": "About R36S",
+    "video": "Video",
+    "reviews": "Reviews",
+    "contacts": "Contacts",
+    "footer": "© 2025 R36S. Official website"
+  },
+  "articles": {
+    "global_expansion": {
+      "title": "Global Expansion of R36S: A Growing Gaming Empire",
+      "sections": {
+        "global_market": {
+          "subtitle": "Global Market Presence",
+          "content": "The R36S Retro Handheld Game Console brand actively expands its presence across global markets through strategic partnerships. As an R36S distributor, companies gain access to a rapidly growing retro gaming market. Moreover, the brand welcomes partnerships in North America, Europe, Asia, and Australia, offering exclusive distribution rights to qualified partners. Currently, R36S cooperation extends to major marketplaces like Amazon, eBay, and regional e-commerce platforms."
+        }
+      }
+    }
+  }
+}

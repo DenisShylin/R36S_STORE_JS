@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@assets/*": ["./src/assets/*"],
+      "@js/*": ["./src/js/*"],
+      "@css/*": ["./src/css/*"],
+      "@locales/*": ["./public/locales/*"],
+      "@partials/*": ["./src/partials/*"]
+    },
+    "target": "es2020",
+    "module": "esnext",
+    "moduleResolution": "node"
+  },
+  "include": ["src/**/*.js", "src/**/*.jsx"],
+  "exclude": ["node_modules", "dist"]
+}
