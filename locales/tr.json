@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "title": "R36S Retro Oyun Konsolu - Resmi Websitesi",
+    "description": "R36S Retro Oyun Konsolu 15.000+ klasik oyunla. 3,5 inç IPS ekran, uzun pil ömrü ve taşınabilir tasarım",
+    "keywords": "R36S, retro oyun konsolu, taşınabilir konsol, retro oyun, klasik oyunlar",
+    "og_title": "R36S Retro Oyun Konsolu - Resmi Websitesi",
+    "og_description": "R36S Retro Oyun Konsolu 15.000+ klasik oyunla. 3,5 inç IPS ekran, uzun pil ömrü ve taşınabilir tasarım"
+  },
+  "header": {
+    "functionality": "İşlevsellik",
+    "about": "R36S Hakkında",
+    "video": "Video",
+    "reviews": "Yorumlar",
+    "contacts": "İletişim"
+  },
+  "hero": {
+    "title": {
+      "line1": "EL TİPİ",
+      "line2": "OYUN KONSOLU",
+      "brand": "R36S"
+    },
+    "description": "Retro El Tipi R36S taşınabilir oyun konsolu, farklı dönemlerden ve platformlardan 15.000'den fazla efsanevi oyun içeren etkileyici bir koleksiyon sunarak retro oyun dünyasının kapılarını açıyor.",
+    "original_price": "108,06 ABD $",
+    "current_price": "35,48 ABD $",
+    "discount": "-%68",
+    "buttons": {
+      "buy_now": "Hemen satın al -%68",
+      "show_details": "Detayları Göster"
+    }
+  },
+  "about": {
+    "label": "İşlevsellik",
+    "label_outline": "R36S",
+    "title": "Maceranız Burada Başlıyor",
+    "subtitle": "Modern teknoloji ile retro oyun dünyasını keşfedin",
+    "features": {
+      "retro_games": {
+        "title": "Retro Oyun Koleksiyonu",
+        "description": "R36s taşınabilir oyun konsolu ile oyuna başlayın.",
+        "number": "15K+",
+        "detail": "klasik oyun",
+        "full_description": "Farklı dönemlerden 15.000'den fazla başlık içeren zengin bir klasik oyun koleksiyonunu keşfedin. İkonik arcade oyunlarından sevilen konsol oyunlarına kadar, kütüphanemiz geçmişin her önemli platformunu kapsıyor.\n\nKoleksiyon şunları içerir:\n• 80'ler ve 90'lardan klasik arcade oyunları\n• NES, SNES, Sega ve diğer konsolların tam kütüphaneleri\n• Özel portlar ve nadir sürümler\n• Modern donanım için optimize edilmiş versiyonlar"
+      },
+      "display": {
+        "title": "Canlı Ekran Teknolojileri",
+        "description": "Net 640x480 çözünürlüklü 3,5* LCD ekranda canlı oyunların keyfini çıkarın.",
+        "number": "3,5\"",
+        "detail": "IPS ekran",
+        "full_description": "R36S Konsol Ekran Özellikleri:\n• 3,5 inç IPS ekran\n• 640x480 çözünürlük\n• Yüksek parlaklık ve kontrast\n• Geniş görüş açıları\n• Yansıma önleyici kaplama\n• Enerji tasarruflu arka aydınlatma\n• Çizilmeye dayanıklı yüzey"
+      },
+      "battery": {
+        "title": "Güçlü pil",
+        "description": "R36S ile 7-8 saate kadar kesintisiz oyun keyfi yaşayın.",
+        "number": "7-8",
+        "detail": "saat oyun",
+        "full_description": "**Güçlü 3200 mAh Pil**\n\nR36S ile 7-8 saate kadar uzun süreli oyun deneyimi yaşayın. Yüksek kapasiteli 3200 mAh pil, net 3,5 inç IPS ekranı (640x480 çözünürlüğünde) besleyerek sık şarj etmeden sürükleyici bir oyun deneyimi sunuyor.\n\nÖnemli özellikler:\n- Uzun süreli oyun \n- Tam ekran IPS görüntü\n- Taşınabilir tasarım\n- Kesintisiz eğlence\n\nOyunlarınızı her yere götürün – daha çok oynayın, daha az şarj edin."
+      },
+      "colors": {
+        "title": "Geniş renk seçimi",
+        "description": "Çarpıcı konsol renklerinin geniş seçkisini deneyimleyin.",
+        "number": "10+",
+        "detail": "RENK",
+        "full_description": "R36S Koleksiyonunu Deneyimleyin:\n\nR36S konsolu 2024'te, imza niteliğindeki Gece Yarısı Siyahı ve göz alıcı Galaktik Mor dahil olmak üzere 12+ büyüleyici renk varyasyonu sunuyor. Her R36S modeli geri dönüştürülmüş plastik kaplama ve çizilmeye dayanıklı yüzeye sahiptir.\n\nMevcut Renkler:\n- Klasik Siyah\n- Canlı Turuncu\n- Büyüleyici Mor\n- Dinamik Kırmızı\n- Saf Beyaz\n- Parlak Sarı\n- Huzur Verici Göl Mavisi\n- Derin Deniz Mavisi\n- Doğal Zeytin Yeşili\n- Premium Şeffaf Kırmızı"
+      },
+      "settings": {
+        "title": "Kapsamlı ayarlar",
+        "description": "Maksimum konfor için kontrolleri, parlaklığı, sesi ve ayarları özelleştirin",
+        "number": "30+",
+        "detail": "ayar",
+        "full_description": "Özellikler ve Bağlantı:\n\n- Büyük ekranda oyun için OTG üzerinden harici ekranlara bağlantı\n- Modern oyun kontrolcüleri ve oyun kollarıyla uyumlu\n- Çoklu dil arayüz desteği\n- Özelleştirilebilir kontrol şemaları ve düğme eşleştirmesi\n- Ayarlanabilir parlaklık ve kontrast ile gelişmiş ekran ayarları\n- Birden çok ses profili ile ses optimizasyonu\n- Ekran yansıtma özelliği\n- Sorunsuz oyun için düşük gecikme bağlantısı\n- Genişletilebilir depolama desteği\n- Hızlı sistem güncellemeleri\n- Kullanıcı dostu arayüz"
+      },
+      "portability": {
+        "title": "Maksimum taşınabilirlik",
+        "description": "Hareket halindeyken oyun için çıkarılabilir pile sahip taşınabilir konsol.",
+        "number": "Ultra",
+        "detail": "Taşınabilir",
+        "full_description": "İster işe giderken, ister seyahat ederken, ister kısa bir mola verirken olun, R36S anında eğlence için hazırdır. Dayanıklı tasarımı ve korumalı ekranı endişesiz taşınabilirlik sağlarken, uzun ömürlü pili hareket halindeyken oyun oynamanızı sağlar.\n\nÖzellikler:\n• Nihai taşınabilirlik için cep boyutunda boyutlar\n• Günlük taşıma için sağlam yapı\n• Uzun oyun oturumları için ergonomik tutuş\n• Anında oyun erişimi için hızlı başlatma\n\nTaşınabilirlik ve performans arasında asla ödün vermeyin - R36S mükemmel taşınabilir bir pakette her ikisini de sunar."
+      }
+    }
+  },
+  "features": {
+    "title": "Konsol R36S",
+    "description": "Retro El Tipi R36S taşınabilir oyun konsolu, farklı dönemlerden ve platformlardan 15.000'den fazla efsanevi oyun içeren etkileyici bir koleksiyon sunarak retro oyun dünyasının kapılarını açıyor. Konsolun kalbi, görüntüleri çarpıcı netlikte ve renk doygunluğunda işleyen premium 3,5 inç IPS ekrandır. R36S sadece eski oyunları oynamakla kalmıyor - modern çağ için retro oyunu yeniden düşünüyor. R36S konsolu ile oyunlar evrenine dalın!",
+    "buttons": {
+      "buy_now": "Hemen satın al -%68",
+      "show_details": "Detayları Göster"
+    }
+  },
+  "categories": {
+    "label": "Tanıtım",
+    "label_outline": "Oynanış",
+    "title": "R36S Video",
+    "description": "Geliştirilmiş grafikler ve akıcı oynanışla klasik oyunlar dünyasına dalın. Parlak IPS ekranda yüksek kalitede favori oyunlarınızın keyfini çıkarın."
+  },
+  "reviews": {
+    "label": "Yorumlar",
+    "title": "Müşteri Yorumları"
+  },
+  "contact": {
+    "label": "Bir Konuşma Başlatın",
+    "title": "Cevaplar Arıyorsunuz",
+    "description": "Konsol seçiminde size yardımcı olmak ve R36S konsolu hakkındaki tüm sorularınızı yanıtlamak için her zaman hazırız",
+    "form": {
+      "name": "Adınız",
+      "email": "E-posta",
+      "phone": "Telefon",
+      "message": "Mesaj",
+      "send": "Mesaj gönder",
+      "sending": "Gönderiliyor...",
+      "error": "Lütfen tüm alanları doldurun"
+    },
+    "info": {
+      "phone": "Telefon",
+      "phone_hours": "Pzt-Cum: 9:00 - 18:00",
+      "email": "E-posta",
+      "address": "Adres",
+      "address_info": "Dünya çapında çalışıyoruz"
+    }
+  },
+  "footer": {
+    "description": "Taşınabilir R36S konsolu ile retro oyun dünyasını keşfedin. Cebinizde binlerce klasik oyun!",
+    "links": {
+      "products": "Ürünler",
+      "reviews": "Yorumlar",
+      "support": "Destek",
+      "contacts": "İletişim",
+      "company": "Şirket",
+      "partnership": "Ortaklık"
+    },
+    "copyright": "© 2025 R36S. Tüm hakları saklıdır."
+  },
+  "partnership": {
+    "title": "R36S ile Ortaklık",
+    "company": "ŞİRKET BİLGİLERİ",
+    "founded": "R36S markası 28 Şubat 2007'de Çin'in Zhejiang Eyaleti'nde kuruldu.",
+    "employees": "Şirket 11-50 kişi istihdam etmektedir.",
+    "products": "Ana ürünler: el tipi konsollar, TV oyun konsolları, oyun kontrolcüleri.",
+    "revenue": "Şirketin yıllık geliri: 50-100 milyon ABD doları.",
+    "markets": "R36S pazarları: Batı Avrupa %11 Doğu Asya %11 Orta Doğu %11",
+    "wholesale": {
+      "title": "R36S Toptan Ticaret",
+      "text": "Toptan fiyatlar, temsilcilik kaydı ve dağıtım:"
+    },
+    "introduction": {
+      "title": "R36S Retro El Tipi Oyun Konsolu Tanıtımı",
+      "text": "R36S distribütör ağı, nostaljik oyun deneyimlerini her yerdeki oyun tutkunlarına ulaştırarak dünya çapında aktif olarak genişliyor. Başlangıçta, R36S genel merkezi Asya'da varlığını kurdu, ancak şimdi marka güvenle uluslararası pazarlara açılıyor. Dahası, şirket farklı kıtalarda yeni ortaklıkları memnuniyetle karşılıyor, R36S Retro El Tipi Oyun Konsolunu küresel tüketiciler için giderek daha erişilebilir hale getiriyor. Ayrıca, markanın kalite ve uygun fiyata olan bağlılığı, onu retro oyun pazarında güçlü bir rakip olarak konumlandırdı."
+    }
+  },
+  "products": {
+    "title": "R36S Konsol Yazılım Kılavuzu",
+    "sections": {
+      "preparation": {
+        "title": "Hazırlık",
+        "text": "Temel Kılavuz: R36S Kurulum Talimatları\nNot: Bu talimatlar özellikle orijinal R36S cihazları için..."
+      },
+      "backup": {
+        "title": "Orijinal Yazılımı Yedekleme",
+        "text": "Güvenlik Yedeği Oluşturma...",
+        "subsections": {
+          "win32diskimager": {
+            "title": "Win32DiskImager Kullanarak Yedekleme İşlemi",
+            "text": "Adım 1: Çıktı Konumunu Yapılandırın..."
+          }
+        }
+      },
+      "flashing": {
+        "title": "Özel Yazılım Yükleme",
+        "text": "SD Kart Kurulum Kılavuzu...",
+        "subsections": {
+          "balena": {
+            "title": "Yöntem 1: Balena Etcher Kullanımı",
+            "text": "1. Balena Etcher'ı başlatın..."
+          },
+          "win32": {
+            "title": "Yöntem 2: Win32DiskImager Kurulumu",
+            "text": "1. Win32DiskImager'ı başlatın..."
+          },
+          "raspberry": {
+            "title": "Yöntem 3: Raspberry Pi Imager İşlemi",
+            "text": "1. Raspberry Pi Imager'ı açın..."
+          }
+        }
+      },
+      "firmware": {
+        "title": "R36S için Özel Yazılım",
+        "text": "R36S'iniz için Mevcut Yazılım Seçenekleri...",
+        "subsections": {
+          "arkos": {
+            "title": "ArkOS - Topluluk Tarafından Geliştirilmiş Sürüm",
+            "text": "Kaynak: ArkOS GitHub Proje Sayfasında bulun..."
+          },
+          "rocknix": {
+            "title": "ROCKNIX İşletim Sistemi",
+            "text": "Kaynak: Resmi ROCKNIX GitHub..."
+          },
+          "amberelec": {
+            "title": "AmberELEC Sistemi",
+            "text": "Kaynak: AmberELEC GitHub Projesi..."
+          }
+        }
+      },
+      "roms": {
+        "title": "ROM ve BIOS Kurulumu",
+        "text": "Oyun Kurulum Kılavuzu..."
+      },
+      "tips": {
+        "title": "Genel İpuçları",
+        "text": "Önemli Sistem Çalıştırma Yönergeleri..."
+      },
+      "downloads": {
+        "title": "Mevcut İndirmeler"
+      }
+    }
+  },
+  "mobile_menu": {
+    "functionality": "İşlevsellik",
+    "about": "R36S Hakkında",
+    "video": "Video",
+    "reviews": "Yorumlar",
+    "contacts": "İletişim",
+    "footer": "© 2025 R36S. Resmi websitesi"
+  },
+  "articles": {
+    "global_expansion": {
+      "title": "R36S'in Küresel Genişlemesi: Büyüyen Bir Oyun İmparatorluğu",
+      "sections": {
+        "global_market": {
+          "subtitle": "Küresel Pazar Varlığı",
+          "content": "R36S Retro El Tipi Oyun Konsolu markası, stratejik ortaklıklar aracılığıyla küresel pazarlardaki varlığını aktif olarak genişletiyor. Bir R36S distribütörü olarak, şirketler hızla büyüyen retro oyun pazarına erişim kazanıyor. Dahası, marka Kuzey Amerika, Avrupa, Asya ve Avustralya'da ortaklıkları memnuniyetle karşılıyor ve nitelikli ortaklara özel dağıtım hakları sunuyor. Şu anda, R36S işbirliği Amazon, eBay ve bölgesel e-ticaret platformları gibi büyük pazarlara kadar uzanıyor."
+        }
+      }
+    }
+  }
+}
