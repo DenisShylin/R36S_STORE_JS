@@ -3,21 +3,32 @@ name: Build and deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  workflow_dispatch: # Позволяет запускать workflow вручную
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v2.3.1
+        uses: actions/checkout@v3 # Обновлено до более новой версии
 
-      - name: Install and build 🔧
-        run: |
-          npm install
-          npm run build
+      - name: Setup Node.js ⚙️
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18 # Использование Node.js 18 для сборки
+          cache: 'npm' # Кэширование node_modules для ускорения сборки
+
+      - name: Install dependencies 📦
+        run: npm ci # Использует package-lock.json для более надежной установки
+
+      - name: Build 🔧
+        run: npm run build
 
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.0
+        uses: JamesIves/github-pages-deploy-action@v4 # Обновлено до более новой версии
         with:
-          branch: gh-pages
-          folder: dist
+          branch: gh-pages # Ветка для развертывания
+          folder: dist # Папка с собранными файлами
+          clean: true # Очистка предыдущих файлов
+          token: ${{ secrets.GITHUB_TOKEN }} # Токен для доступа к репозиторию

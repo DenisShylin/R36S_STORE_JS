@@ -2,22 +2,53 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/ico" href="/public/AliExpress.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla App Template</title>
-    <link rel="stylesheet" href="./css/styles.css" />
+    <meta
+      name="description"
+      content="R36S Handheld Game Console - Gaming legends in the palm of your hand"
+    />
+    <title>R36S Gaming Console</title>
+    <!-- CSS файлы с абсолютными путями от корня проекта -->
+    <link rel="stylesheet" href="/src/normalize.css" />
+    <link rel="stylesheet" href="/src/styles.css" />
+    <link rel="stylesheet" href="/src/media.css" />
+    <link rel="stylesheet" href="/src/index.css" />
+
+    <!-- CSS секций -->
+    <link rel="stylesheet" href="/src/sections/Header/Header.css" />
+    <link rel="stylesheet" href="/src/sections/Hero/Hero.css" />
+    <link rel="stylesheet" href="/src/sections/About/About.css" />
+    <link rel="stylesheet" href="/src/sections/Features/Features.css" />
+    <link rel="stylesheet" href="/src/sections/Categories/Categories.css" />
+    <link rel="stylesheet" href="/src/sections/Articles/Articles.css" />
+    <link rel="stylesheet" href="/src/sections/Contact/Contact.css" />
+    <link rel="stylesheet" href="/src/sections/Products/Products.css" />
+    <link rel="stylesheet" href="/src/sections/Reviews/Reviews.css" />
+    <link rel="stylesheet" href="/src/sections/Footer/Footer.css" />
+
+    <!-- CSS компонентов -->
+    <link rel="stylesheet" href="/src/components/MobileMenu/MobileMenu.css" />
+    <link rel="stylesheet" href="/src/components/Modal/Modal.css" />
+
+    <!-- Accordion.js стили (если используются) -->
+    <link
+      rel="stylesheet"
+      href="/node_modules/accordion-js/dist/accordion.min.css"
+    />
   </head>
   <body>
-    <load src="./partials/header.html" icon-path="img/sprite.svg#logo" />
+    <div id="root">
+      <!-- <h1 style="padding: 20px; color: red">
+        Тестовый заголовок для проверки отображения
+      </h1> -->
+      <!-- Здесь будут вставляться HTML-секции через JavaScript -->
+    </div>
+    <div id="root">
+      <!-- Здесь будут вставляться HTML-секции через JavaScript -->
+    </div>
 
-    <main>
-      <!-- Loads the specified .html file -->
-      <load src="./partials/vite-promo.html" />
-      <load src="./partials/badges.html" />
-    </main>
-
-    <load src="./partials/footer.html" />
-
-    <script type="module" src="./main.js"></script>
+    <!-- Основной скрипт приложения -->
+    <script type="module" src="/js/main.js"></script>
   </body>
 </html>

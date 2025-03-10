@@ -1,48 +1,43 @@
 import { defineConfig } from 'vite';
-import { glob } from 'glob';
-import injectHTML from 'vite-plugin-html-inject';
-import FullReload from 'vite-plugin-full-reload';
-import SortCss from 'postcss-sort-media-queries';
+import { fileURLToPath } from 'node:url';
+import { dirname, resolve } from 'node:path';
 
-export default defineConfig(({ command }) => {
-  return {
-    define: {
-      [command === 'serve' ? 'global' : '_global']: {},
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+export default defineConfig(({ mode }) => ({
+  base: mode === 'production' ? '/r32s/' : '/',
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, './src'),
     },
-    root: 'src',
-    build: {
-      sourcemap: true,
-      rollupOptions: {
-        input: glob.sync('./src/*.html'),
-        output: {
-          manualChunks(id) {
-            if (id.includes('node_modules')) {
-              return 'vendor';
-            }
-          },
-          entryFileNames: chunkInfo => {
-            if (chunkInfo.name === 'commonHelpers') {
-              return 'commonHelpers.js';
-            }
-            return '[name].js';
-          },
-          assetFileNames: assetInfo => {
-            if (assetInfo.name && assetInfo.name.endsWith('.html')) {
-              return '[name].[ext]';
-            }
-            return 'assets/[name]-[hash][extname]';
-          },
-        },
+  },
+  publicDir: 'public',
+  assetsInclude: ['**/*.MP4', '**/*.mp4', '**/*.webm', '**/*.gif', '**/*.ico'],
+
+  server: {
+    port: 5173, // Порт изменился на 5173 (вижу в адресной строке браузера)
+    open: true,
+    host: true,
+  },
+
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
+    minify: 'esbuild',
+    sourcemap: mode === 'development',
+    emptyOutDir: true,
+    cssCodeSplit: true,
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, 'src/index.html'), // Правильное место для входного файла
       },
-      outDir: '../dist',
-      emptyOutDir: true,
+      output: {
+        assetFileNames: 'assets/[name].[hash][extname]',
+        chunkFileNames: 'assets/js/[name].[hash].js',
+        entryFileNames: 'assets/js/[name].[hash].js',
+      },
     },
-    plugins: [
-      injectHTML(),
-      FullReload(['./src/**/**.html']),
-      SortCss({
-        sort: 'mobile-first',
-      }),
-    ],
-  };
-});
+    target: 'es2015',
+  },
+}));
