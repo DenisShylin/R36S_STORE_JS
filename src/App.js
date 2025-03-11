@@ -3,14 +3,14 @@
 // Импорт инициализаторов секций
 import { initHeader } from '/sections/Header/Header.js';
 import { initHero } from '/sections/Hero/Hero.js';
-// import { initAbout } from '/sections/About/About.js';
-// import { initFeatures } from '/sections/Features/Features.js';
-// import { initCategories } from '/sections/Categories/Categories.js';
-// import { initArticles } from '/sections/Articles/Articles.js';
-// import { initReviews } from '/sections/Reviews/Reviews.js';
-// import { initContact } from '/sections/Contact/Contact.js';
-// import { initProducts } from '/sections/Products/Products.js';
-// import { initFooter } from '/sections/Footer/Footer.js';
+import { initAbout } from '/sections/About/About.js';
+import { initFeatures } from '/sections/Features/Features.js';
+import { initCategories } from '/sections/Categories/Categories.js';
+import { initArticles } from '/sections/Articles/Articles.js';
+import { initReviews } from '/sections/Reviews/Reviews.js';
+import { initContact } from '/sections/Contact/Contact.js';
+import { initProducts } from '/sections/Products/Products.js';
+import { initFooter } from '/sections/Footer/Footer.js';
 
 // Импорт инициализаторов компонентов
 import { initMobileMenu } from '/components/MobileMenu/MobileMenu.js';
@@ -39,7 +39,13 @@ async function checkResourceExists(url) {
 
 // Загрузка HTML-фрагментов секций с проверкой
 async function loadHtmlSection(name) {
-  const url = `/sections/${name}/${name}.html`;
+  // Получаем базовый путь для корректных URL
+  const isDevelopment = import.meta.env.MODE === 'development';
+  const basename = isDevelopment ? '/' : '/R36S_STORE_JS/';
+
+  // Формируем URL с учетом базового пути
+  const url = `${basename}sections/${name}/${name}.html`;
+
   try {
     const exists = await checkResourceExists(url);
 
@@ -66,7 +72,13 @@ async function loadHtmlSection(name) {
 
 // Загрузка HTML-фрагментов компонентов с проверкой
 async function loadHtmlComponent(name) {
-  const url = `/components/${name}/${name}.html`;
+  // Получаем базовый путь для корректных URL
+  const isDevelopment = import.meta.env.MODE === 'development';
+  const basename = isDevelopment ? '/' : '/R36S_STORE_JS/';
+
+  // Формируем URL с учетом базового пути
+  const url = `${basename}components/${name}/${name}.html`;
+
   try {
     const exists = await checkResourceExists(url);
 
@@ -192,15 +204,15 @@ async function initApp() {
       safeInit('Header', initHeader);
       safeInit('MobileMenu', initMobileMenu);
       safeInit('Hero', initHero);
-      // safeInit('About', initAbout);
-      // safeInit('Features', initFeatures);
-      // safeInit('Categories', initCategories);
-      // safeInit('Articles', initArticles);
-      // safeInit('Reviews', initReviews);
-      // safeInit('Contact', initContact);
-      // safeInit('Products', initProducts);
-      // safeInit('Footer', initFooter);
-      // safeInit('Modal', initModal);
+      safeInit('About', initAbout);
+      safeInit('Features', initFeatures);
+      safeInit('Categories', initCategories);
+      safeInit('Articles', initArticles);
+      safeInit('Reviews', initReviews);
+      safeInit('Contact', initContact);
+      safeInit('Products', initProducts);
+      safeInit('Footer', initFooter);
+      safeInit('Modal', initModal);
     } else {
       // Страница 404
       const footerHtml = await loadHtmlSection('Footer').catch(
@@ -214,7 +226,7 @@ async function initApp() {
           <div class="container">
             <h1>404</h1>
             <p>Страница не найдена</p>
-            <a href="/" class="back-home">Вернуться на главную</a>
+            <a href="${basename}" class="back-home">Вернуться на главную</a>
           </div>
         </div>
         ${footerHtml}
@@ -222,7 +234,7 @@ async function initApp() {
 
       safeInit('Header', initHeader);
       safeInit('MobileMenu', initMobileMenu);
-      // safeInit('Footer', initFooter);
+      safeInit('Footer', initFooter);
     }
 
     console.log('Приложение инициализировано');

@@ -26,7 +26,17 @@ export default defineConfig(({ mode }) => ({
 
   // Публичная директория относительно корня проекта, а не корня src
   publicDir: resolve(__dirname, './public'),
-  assetsInclude: ['**/*.MP4', '**/*.mp4', '**/*.webm', '**/*.gif', '**/*.ico'],
+  assetsInclude: [
+    '**/*.MP4',
+    '**/*.mp4',
+    '**/*.webm',
+    '**/*.gif',
+    '**/*.ico',
+    '**/*.png',
+    '**/*.jpg',
+    '**/*.jpeg',
+    '**/*.svg',
+  ],
 
   server: {
     port: 5173,
