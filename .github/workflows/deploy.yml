@@ -56,10 +56,18 @@ jobs:
             cat dist/index.html || echo "index.html not found in dist"
           fi
 
+      # Добавляем дополнительную проверку на случай, если файлы оказались в другом месте
+      - name: Additional build output checks 🔎
+        run: |
+          echo "Searching for index.html files:"
+          find . -name "index.html"
+          echo "Checking src/dist directory:"
+          ls -la src/dist || echo "src/dist directory not found"
+
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: dist
+          folder: dist # Проверьте, что dist находится в корне, а не в src/dist
           clean: true
           token: ${{ secrets.GITHUB_TOKEN }}
