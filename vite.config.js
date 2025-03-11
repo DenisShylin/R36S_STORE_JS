@@ -6,17 +6,19 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 export default defineConfig(({ mode }) => ({
-  base: mode === 'production' ? '/r32s/' : '/',
+  base: mode === 'production' ? '/R36S_STORE_JS/' : '/', // Измените на название вашего репозитория
   resolve: {
     alias: {
       '@': resolve(__dirname, './src'),
+      '/sections': resolve(__dirname, './src/sections'),
+      '/components': resolve(__dirname, './src/components'),
     },
   },
   publicDir: 'public',
   assetsInclude: ['**/*.MP4', '**/*.mp4', '**/*.webm', '**/*.gif', '**/*.ico'],
 
   server: {
-    port: 5173, // Порт изменился на 5173 (вижу в адресной строке браузера)
+    port: 5173,
     open: true,
     host: true,
   },
@@ -30,7 +32,7 @@ export default defineConfig(({ mode }) => ({
     cssCodeSplit: true,
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'src/index.html'), // Правильное место для входного файла
+        main: resolve(__dirname, 'index.html'), // Проверьте, что index.html находится в корне проекта
       },
       output: {
         assetFileNames: 'assets/[name].[hash][extname]',

@@ -3,7 +3,7 @@ name: Build and deploy to GitHub Pages
 on:
   push:
     branches: [main]
-  workflow_dispatch: # Позволяет запускать workflow вручную
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
@@ -11,24 +11,38 @@ jobs:
 
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v3 # Обновлено до более новой версии
+        uses: actions/checkout@v3
 
       - name: Setup Node.js ⚙️
         uses: actions/setup-node@v3
         with:
-          node-version: 18 # Использование Node.js 18 для сборки
-          cache: 'npm' # Кэширование node_modules для ускорения сборки
+          node-version: 18
+          cache: 'npm'
 
       - name: Install dependencies 📦
-        run: npm ci # Использует package-lock.json для более надежной установки
+        run: npm ci
+
+      - name: Debug info
+        run: |
+          echo "Project structure:"
+          ls -la
+          echo "Content of src directory:"
+          ls -la src || echo "src directory not found"
+          echo "Checking for index.html:"
+          find . -name "index.html"
 
       - name: Build 🔧
         run: npm run build
+        env:
+          NODE_ENV: production
+
+      - name: List build output
+        run: ls -la dist
 
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4 # Обновлено до более новой версии
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages # Ветка для развертывания
-          folder: dist # Папка с собранными файлами
-          clean: true # Очистка предыдущих файлов
-          token: ${{ secrets.GITHUB_TOKEN }} # Токен для доступа к репозиторию
+          branch: gh-pages
+          folder: dist
+          clean: true
+          token: ${{ secrets.GITHUB_TOKEN }}
