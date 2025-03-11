@@ -6,15 +6,25 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 export default defineConfig(({ mode }) => ({
-  base: mode === 'production' ? '/R36S_STORE_JS/' : '/', // Измените на название вашего репозитория
+  // Исправленный базовый путь для GitHub Pages
+  base: mode === 'production' ? '/R36S_STORE_JS/' : '/',
+
+  // Указываем корневую директорию проекта
+  root: './src',
+
+  // Настраиваем разрешение путей
   resolve: {
     alias: {
       '@': resolve(__dirname, './src'),
+      // Настраиваем алиасы для абсолютных импортов начинающихся с /
       '/sections': resolve(__dirname, './src/sections'),
       '/components': resolve(__dirname, './src/components'),
+      '/js': resolve(__dirname, './src/js'),
+      '/assets': resolve(__dirname, './src/assets'),
     },
   },
-  publicDir: 'public',
+
+  publicDir: resolve(__dirname, './public'),
   assetsInclude: ['**/*.MP4', '**/*.mp4', '**/*.webm', '**/*.gif', '**/*.ico'],
 
   server: {
@@ -24,7 +34,8 @@ export default defineConfig(({ mode }) => ({
   },
 
   build: {
-    outDir: 'dist',
+    // Исправление пути выходной директории
+    outDir: resolve(__dirname, './dist'),
     assetsDir: 'assets',
     minify: 'esbuild',
     sourcemap: mode === 'development',
@@ -32,7 +43,7 @@ export default defineConfig(({ mode }) => ({
     cssCodeSplit: true,
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'index.html'), // Проверьте, что index.html находится в корне проекта
+        main: resolve(__dirname, './src/index.html'), // Правильный путь к index.html
       },
       output: {
         assetFileNames: 'assets/[name].[hash][extname]',

@@ -126,7 +126,7 @@ async function initApp() {
   `;
 
   const isDevelopment = import.meta.env.MODE === 'development';
-  const basename = isDevelopment ? '/' : '/r32s/';
+  const basename = isDevelopment ? '/' : '/R36S_STORE_JS/';
 
   console.log('Режим:', import.meta.env.MODE);
   console.log('Базовый путь:', basename);

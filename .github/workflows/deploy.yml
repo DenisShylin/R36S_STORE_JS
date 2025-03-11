@@ -22,22 +22,39 @@ jobs:
       - name: Install dependencies 📦
         run: npm ci
 
-      - name: Debug info
+      - name: Print Project Structure 🔍
         run: |
-          echo "Project structure:"
+          echo "Project root structure:"
           ls -la
-          echo "Content of src directory:"
-          ls -la src || echo "src directory not found"
-          echo "Checking for index.html:"
-          find . -name "index.html"
+          echo "Source directory structure:"
+          ls -la src
+          echo "Source sections directory:"
+          ls -la src/sections || echo "Sections directory not found"
+          echo "Source components directory:"
+          ls -la src/components || echo "Components directory not found"
+          echo "Checking vite.config.js content:"
+          cat vite.config.js
+
+      - name: Print package.json scripts 📜
+        run: |
+          echo "Package scripts:"
+          cat package.json | grep -A 10 "scripts"
 
       - name: Build 🔧
         run: npm run build
         env:
           NODE_ENV: production
 
-      - name: List build output
-        run: ls -la dist
+      - name: Check build output 📊
+        run: |
+          echo "Build output directory:"
+          ls -la dist || echo "Dist directory not found"
+          if [ -d "dist" ]; then
+            echo "Contents of dist directory:"
+            ls -la dist
+            echo "Checking index.html in dist:"
+            cat dist/index.html || echo "index.html not found in dist"
+          fi
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
