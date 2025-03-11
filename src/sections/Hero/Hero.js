@@ -1,23 +1,9 @@
-// Инициализация событий для секции Hero
+// Initialization function for Hero section
 export function initHero() {
-  // Обработка загрузки изображения
+  // DOM elements
   const heroSection = document.querySelector('.hero');
   const heroImage = document.querySelector('.hero__console-img');
   const heroContent = document.querySelector('.hero__content');
-
-  if (heroImage) {
-    heroImage.onload = () => {
-      heroSection.classList.add('hero--loaded');
-    };
-
-    // Если изображение уже загружено (из кэша)
-    if (heroImage.complete) {
-      heroSection.classList.add('hero--loaded');
-    }
-  }
-
-  // Настройка медиа-запросов для десктопа/мобильного
-  const isDesktop = window.innerWidth > 1280;
   const desktopDescription = document.querySelector(
     '.hero__description--desktop'
   );
@@ -25,75 +11,43 @@ export function initHero() {
     '.hero__description--mobile'
   );
   const heroPricing = document.querySelector('.hero__pricing');
-
-  // Показываем/скрываем нужные элементы в зависимости от разрешения
-  if (isDesktop) {
-    desktopDescription.style.display = 'block';
-    mobileDescription.style.display = 'none';
-    heroPricing.style.display = 'flex';
-  } else {
-    desktopDescription.style.display = 'none';
-    mobileDescription.style.display = 'block';
-    heroPricing.style.display = 'none';
-  }
-
-  // Обработчик изменения размера окна
-  window.addEventListener('resize', () => {
-    const isDesktopNow = window.innerWidth > 1280;
-
-    if (isDesktopNow) {
-      desktopDescription.style.display = 'block';
-      mobileDescription.style.display = 'none';
-      heroPricing.style.display = 'flex';
-    } else {
-      desktopDescription.style.display = 'none';
-      mobileDescription.style.display = 'block';
-      heroPricing.style.display = 'none';
-    }
-  });
-
-  // Кнопка "Shop With Discount"
   const buyButton = document.getElementById('buy-button');
-  if (buyButton) {
-    buyButton.addEventListener('click', () => {
-      window.open(
-        'https://www.aliexpress.com/item/1005007171465465.html',
-        '_blank',
-        'noopener,noreferrer'
-      );
-    });
-  }
-
-  // Кнопка "More details"
   const moreDetailsButton = document.getElementById('more-details-button');
-  if (moreDetailsButton) {
-    moreDetailsButton.addEventListener('click', e => {
-      e.preventDefault();
-      const featuresSection = document.getElementById('features');
-      const header = document.querySelector('.header');
 
-      if (featuresSection && header) {
-        const headerHeight = header.offsetHeight;
-        const elementPosition = featuresSection.getBoundingClientRect().top;
-        const currentScrollY = window.scrollY || window.pageYOffset;
-        const offsetPosition = elementPosition + currentScrollY - headerHeight;
+  // Handle image loading
+  if (heroImage) {
+    heroImage.onload = () => {
+      heroSection.classList.add('hero--loaded');
+    };
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth',
-        });
-
-        // Обновляем URL без перезагрузки страницы
-        window.history.replaceState(
-          null,
-          '',
-          `${window.location.pathname}#features`
-        );
-      }
-    });
+    // If image is already loaded (from cache)
+    if (heroImage.complete) {
+      heroSection.classList.add('hero--loaded');
+    }
   }
 
-  // Анимация появления контента
+  // Check viewport size and adjust content display
+  function adjustForViewport() {
+    const isDesktop = window.innerWidth > 992;
+
+    if (desktopDescription && mobileDescription && heroPricing) {
+      if (isDesktop) {
+        desktopDescription.style.display = 'block';
+        mobileDescription.style.display = 'none';
+      } else {
+        desktopDescription.style.display = 'none';
+        mobileDescription.style.display = 'block';
+      }
+    }
+  }
+
+  // Run on initialization
+  adjustForViewport();
+
+  // Listen for window resize events
+  window.addEventListener('resize', adjustForViewport);
+
+  // Add animation class when content is in viewport
   if (heroContent) {
     const observer = new IntersectionObserver(
       entries => {
@@ -107,5 +61,46 @@ export function initHero() {
     );
 
     observer.observe(heroContent);
+  }
+
+  // Button event handlers
+  if (buyButton) {
+    buyButton.addEventListener('click', () => {
+      // Open product link in new tab
+      window.open(
+        'https://www.aliexpress.com/item/1005007171465465.html',
+        '_blank',
+        'noopener,noreferrer'
+      );
+    });
+  }
+
+  if (moreDetailsButton) {
+    moreDetailsButton.addEventListener('click', e => {
+      e.preventDefault();
+      const featuresSection = document.getElementById('features');
+      const header = document.querySelector('.header');
+
+      if (featuresSection && header) {
+        // Calculate scroll position accounting for fixed header
+        const headerHeight = header.offsetHeight;
+        const elementPosition = featuresSection.getBoundingClientRect().top;
+        const currentScrollY = window.scrollY || window.pageYOffset;
+        const offsetPosition = elementPosition + currentScrollY - headerHeight;
+
+        // Smooth scroll to features section
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth',
+        });
+
+        // Update URL without reloading page
+        window.history.replaceState(
+          null,
+          '',
+          `${window.location.pathname}#features`
+        );
+      }
+    });
   }
 }

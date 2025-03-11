@@ -1,10 +1,13 @@
 // main.js - Точка входа в приложение
 
 // Импорт CSS файлов с абсолютными путями от корня проекта
-import '/normalize.css';
-import '/styles.css';
-import '/media.css';
-import '/index.css';
+import '../normalize.css';
+import '../styles.css';
+import '../media.css';
+import '../index.css';
+import '../sections/Hero/Hero.css';
+import '../sections/Header/Header.css';
+import '../components/MobileMenu/MobileMenu.css';
 
 // Импорт точки входа в приложение
 import '../App.js';

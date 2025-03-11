@@ -1,18 +1,35 @@
+/* Основные стили для шапки R36S */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #121930;
+    /* Темный фон как на скриншоте */
+    color: #fff;
+    min-height: 100vh;
+}
+
 .header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background: transparent;
+    background: rgba(18, 25, 48, 0.8);
+    /* Темно-синий полупрозрачный фон */
     transition: all 0.3s ease;
     z-index: 1000;
     transform: translateY(0);
 }
 
-/* .header.scrolled {
-    background: rgba(0, 0, 0, 0.8);
+.header.scrolled {
+    background: rgba(18, 25, 48, 0.95);
     backdrop-filter: blur(10px);
-} */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
 
 .header.hidden {
     transform: translateY(-100%);
@@ -33,12 +50,15 @@
 
 .logo {
     font-family: 'Orbitron', sans-serif;
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 800;
     background: linear-gradient(135deg, #fff 0%, #94A3B8 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
     display: inline-block;
+    text-decoration: none;
 }
 
 .desktop-menu {
@@ -52,11 +72,30 @@
 .our-menu-link {
     color: #fff;
     text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
     transition: color 0.3s ease;
+    padding: 8px 0;
+    position: relative;
 }
 
 .our-menu-link:hover {
-    color: #007bff;
+    color: #94A3B8;
+}
+
+.our-menu-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #94A3B8, transparent);
+    transition: width 0.3s ease;
+}
+
+.our-menu-link:hover::after {
+    width: 100%;
 }
 
 .burger-btn {
@@ -112,6 +151,7 @@
     bottom: 0;
 }
 
+/* Медиа-запросы для адаптивности */
 @media (max-width: 768px) {
     .desktop-menu {
         display: none;
@@ -122,6 +162,10 @@
     }
 
     .nav {
-        padding: 1.5rem;
+        padding: 1rem 1.5rem;
+    }
+
+    .logo {
+        font-size: 20px;
     }
 }

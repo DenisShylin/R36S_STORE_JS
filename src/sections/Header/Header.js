@@ -10,7 +10,6 @@ export function initHeader() {
   const burgerBtn = document.querySelector('.burger-btn');
   const burgerLine = document.querySelector('.burger-line');
   const mobileMenu = document.querySelector('.mobile-menu');
-  const closeButton = document.querySelector('.close-button');
   const menuLinks = document.querySelectorAll(
     '.our-menu-link, .mobile-menu__link'
   );
@@ -153,17 +152,13 @@ export function initHeader() {
     }
   });
 
-  // Обработчики для кнопки бургера и закрытия
+  // Обработчики для кнопки бургера
   if (burgerBtn) {
     burgerBtn.addEventListener('click', toggleMenu);
   }
 
-  if (closeButton) {
-    closeButton.addEventListener('click', () => {
-      isMenuOpen = false;
-      updateMenuState();
-    });
-  }
+  // Не добавляем обработчик для кнопки закрытия здесь,
+  // так как он добавляется в initMobileMenu
 
   // Обработчики для ссылок в меню
   menuLinks.forEach(link => {

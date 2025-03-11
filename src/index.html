@@ -2,22 +2,37 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/ico" href="/public/AliExpress.ico" />
+    <link
+      rel="icon"
+      type="image/ico"
+      href="/src/assets/icons/svg_browser.svg"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
       content="R36S Handheld Game Console - Gaming legends in the palm of your hand"
     />
     <title>R36S Gaming Console</title>
-    <!-- CSS файлы с абсолютными путями от корня проекта -->
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700;800&family=Orbitron:wght@600;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS styles -->
     <link rel="stylesheet" href="/src/normalize.css" />
     <link rel="stylesheet" href="/src/styles.css" />
     <link rel="stylesheet" href="/src/media.css" />
     <link rel="stylesheet" href="/src/index.css" />
 
-    <!-- CSS секций -->
+    <!-- CSS sections -->
     <link rel="stylesheet" href="/src/sections/Header/Header.css" />
     <link rel="stylesheet" href="/src/sections/Hero/Hero.css" />
+    <link rel="stylesheet" href="/src/sections/Features/Features.css" />
+    <link rel="stylesheet" href="/src/sections/Footer/Footer.css" />
     <link rel="stylesheet" href="/src/sections/About/About.css" />
     <link rel="stylesheet" href="/src/sections/Features/Features.css" />
     <link rel="stylesheet" href="/src/sections/Categories/Categories.css" />
@@ -28,27 +43,49 @@
     <link rel="stylesheet" href="/src/sections/Footer/Footer.css" />
 
     <!-- CSS компонентов -->
-    <link rel="stylesheet" href="/src/components/MobileMenu/MobileMenu.css" />
-    <link rel="stylesheet" href="/src/components/Modal/Modal.css" />
 
-    <!-- Accordion.js стили (если используются) -->
-    <link
-      rel="stylesheet"
-      href="/node_modules/accordion-js/dist/accordion.min.css"
-    />
+    <!-- CSS components -->
+    <link rel="stylesheet" href="/src/components/MobileMenu/MobileMenu.css" />
   </head>
   <body>
     <div id="root">
-      <!-- <h1 style="padding: 20px; color: red">
-        Тестовый заголовок для проверки отображения
-      </h1> -->
-      <!-- Здесь будут вставляться HTML-секции через JavaScript -->
-    </div>
-    <div id="root">
-      <!-- Здесь будут вставляться HTML-секции через JavaScript -->
+      <header class="header">
+        <div class="header__container">
+          <a href="/" class="header__logo">R36S</a>
+          <nav class="header__nav">
+            <ul class="header__menu">
+              <li><a href="#functionality">Functionality</a></li>
+              <li><a href="#about">About R36S</a></li>
+              <li><a href="#video">Video</a></li>
+              <li><a href="#reviews">Reviews</a></li>
+              <li><a href="#contacts">Contacts</a></li>
+            </ul>
+          </nav>
+          <button class="header__mobile-menu-toggle" id="mobile-menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Hero section will be included here -->
+
+      <section id="features" class="features">
+        <!-- Features content -->
+      </section>
+
+      <footer class="footer">
+        <!-- Footer content -->
+      </footer>
     </div>
 
-    <!-- Основной скрипт приложения -->
+    <!-- Mobile menu -->
+    <div class="mobile-menu" id="mobile-menu">
+      <!-- Mobile menu content -->
+    </div>
+
+    <!-- JavaScript -->
     <script type="module" src="/js/main.js"></script>
   </body>
 </html>

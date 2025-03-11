@@ -1,3 +1,5 @@
+// App.js - Модифицированная версия
+
 // Импорт инициализаторов секций
 import { initHeader } from '/sections/Header/Header.js';
 import { initHero } from '/sections/Hero/Hero.js';
@@ -12,21 +14,48 @@ import { initHero } from '/sections/Hero/Hero.js';
 
 // Импорт инициализаторов компонентов
 import { initMobileMenu } from '/components/MobileMenu/MobileMenu.js';
-// Условный импорт Modal
-let initModal;
-try {
-  initModal = (await import('/components/Modal/ModalPortal.js')).initModal;
-} catch (error) {
-  console.log('Modal.js не загружен:', error);
-  initModal = () => console.log('Modal компонент недоступен');
+
+// Безопасный импорт Modal
+let initModal = () => console.log('Modal компонент недоступен');
+(async function loadModal() {
+  try {
+    const module = await import('/components/Modal/ModalPortal.js');
+    initModal = module.initModal;
+  } catch (error) {
+    console.log('Modal.js не загружен:', error);
+  }
+})();
+
+// Функция проверки доступности ресурса перед fetch
+async function checkResourceExists(url) {
+  try {
+    const response = await fetch(url, { method: 'HEAD' });
+    return response.ok;
+  } catch (error) {
+    console.warn(`Ресурс ${url} недоступен:`, error);
+    return false;
+  }
 }
 
-// Загрузка HTML-фрагментов секций
+// Загрузка HTML-фрагментов секций с проверкой
 async function loadHtmlSection(name) {
+  const url = `/sections/${name}/${name}.html`;
   try {
-    const response = await fetch(`/sections/${name}/${name}.html`);
+    const exists = await checkResourceExists(url);
+
+    if (!exists) {
+      console.warn(`Секция ${name} недоступна, используем заглушку`);
+      return `<section id="${name.toLowerCase()}" class="section">
+                <div class="container">
+                  <h2>Секция ${name}</h2>
+                  <p>Контент будет доступен позже</p>
+                </div>
+              </section>`;
+    }
+
+    const response = await fetch(url);
     if (!response.ok) {
-      throw new Error(`Не удалось загрузить секцию ${name}`);
+      throw new Error(`HTTP ошибка ${response.status}`);
     }
     return await response.text();
   } catch (error) {
@@ -35,17 +64,39 @@ async function loadHtmlSection(name) {
   }
 }
 
-// Загрузка HTML-фрагментов компонентов
+// Загрузка HTML-фрагментов компонентов с проверкой
 async function loadHtmlComponent(name) {
+  const url = `/components/${name}/${name}.html`;
   try {
-    const response = await fetch(`/components/${name}/${name}.html`);
+    const exists = await checkResourceExists(url);
+
+    if (!exists) {
+      console.warn(`Компонент ${name} недоступен, используем заглушку`);
+      return `<div id="${name.toLowerCase()}" class="component">
+                <div class="container">
+                  <p>Компонент ${name} недоступен</p>
+                </div>
+              </div>`;
+    }
+
+    const response = await fetch(url);
     if (!response.ok) {
-      throw new Error(`Не удалось загрузить компонент ${name}`);
+      throw new Error(`HTTP ошибка ${response.status}`);
     }
     return await response.text();
   } catch (error) {
     console.error(`Ошибка загрузки компонента ${name}:`, error);
     return `<div class="error-component">Ошибка загрузки компонента ${name}</div>`;
+  }
+}
+
+// Безопасное выполнение инициализации компонентов
+function safeInit(name, initFunction) {
+  try {
+    initFunction();
+    console.log(`${name} инициализирован`);
+  } catch (error) {
+    console.error(`Ошибка инициализации ${name}:`, error);
   }
 }
 
@@ -55,8 +106,24 @@ async function initApp() {
   const root = document.getElementById('root');
   if (!root) {
     console.error('Элемент #root не найден');
-    return;
+    throw new Error('Элемент #root не найден');
   }
+
+  // Показываем индикатор загрузки
+  root.innerHTML = `
+    <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+      <div style="text-align: center;">
+        <div style="border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 50px; height: 50px; animation: spin 2s linear infinite; margin: 0 auto;"></div>
+        <p style="margin-top: 15px; font-family: Arial, sans-serif;">Загрузка...</p>
+      </div>
+    </div>
+    <style>
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
+  `;
 
   const isDevelopment = import.meta.env.MODE === 'development';
   const basename = isDevelopment ? '/' : '/r32s/';
@@ -65,77 +132,97 @@ async function initApp() {
   console.log('Базовый путь:', basename);
 
   try {
-    // Загрузка HTML-фрагментов
-    const headerHtml = await loadHtmlSection('Header');
-    const mobileMenuHtml = await loadHtmlComponent('MobileMenu');
+    // Загрузка базовых HTML-фрагментов с обработкой ошибок
+    const [headerHtml, mobileMenuHtml] = await Promise.all([
+      loadHtmlSection('Header').catch(
+        () => '<header class="header">Заголовок сайта</header>'
+      ),
+      loadHtmlComponent('MobileMenu').catch(
+        () => '<div class="mobile-menu"></div>'
+      ),
+    ]);
 
     // Определение текущего маршрута
     const path = window.location.pathname.replace(basename, '/');
 
     if (path === '/' || path === '/index.html') {
-      // Главная страница - загружаем все секции
-      const heroHtml = await loadHtmlSection('Hero');
-      const aboutHtml = await loadHtmlSection('About');
-      const featuresHtml = await loadHtmlSection('Features');
-      const categoriesHtml = await loadHtmlSection('Categories');
-      const articlesHtml = await loadHtmlSection('Articles');
-      const reviewsHtml = await loadHtmlSection('Reviews');
-      const contactHtml = await loadHtmlSection('Contact');
-      const productsHtml = await loadHtmlSection('Products');
-      const footerHtml = await loadHtmlSection('Footer');
+      // Главная страница - загружаем все секции параллельно для ускорения
+      const sectionsPromises = {
+        hero: loadHtmlSection('Hero'),
+        about: loadHtmlSection('About'),
+        features: loadHtmlSection('Features'),
+        categories: loadHtmlSection('Categories'),
+        articles: loadHtmlSection('Articles'),
+        reviews: loadHtmlSection('Reviews'),
+        contact: loadHtmlSection('Contact'),
+        products: loadHtmlSection('Products'),
+        footer: loadHtmlSection('Footer'),
+      };
+
+      // Ждем загрузки всех секций, даже если некоторые завершились с ошибкой
+      const results = await Promise.allSettled(Object.values(sectionsPromises));
+      const sections = {};
+
+      // Конвертируем результаты Promise.allSettled в удобную структуру
+      Object.keys(sectionsPromises).forEach((key, index) => {
+        sections[key] =
+          results[index].status === 'fulfilled'
+            ? results[index].value
+            : `<section id="${key}" class="error-section">Ошибка загрузки ${key}</section>`;
+      });
 
       // Вставляем HTML в DOM
       root.innerHTML = `
         ${headerHtml}
         ${mobileMenuHtml}
         <main id="main-content">
-          ${heroHtml}
-          ${aboutHtml}
-          ${featuresHtml}
-          ${categoriesHtml}
-          ${articlesHtml}
-          ${reviewsHtml}
-          ${contactHtml}
-          ${productsHtml}
+          ${sections.hero}
+          ${sections.about}
+          ${sections.features}
+          ${sections.categories}
+          ${sections.articles}
+          ${sections.reviews}
+          ${sections.contact}
+          ${sections.products}
         </main>
-        ${footerHtml}
+        ${sections.footer}
       `;
 
-      // Инициализация скриптов секций и компонентов
-      try {
-        initHeader();
-        initMobileMenu();
-        initHero();
-        // initAbout();
-        // initFeatures();
-        // initCategories();
-        // initArticles();
-        // initReviews();
-        // initContact();
-        // initProducts();
-        // initFooter();
-        // initModal();
-      } catch (error) {
-        console.error('Ошибка при инициализации скриптов:', error);
-      }
+      // Безопасная инициализация скриптов секций и компонентов
+      safeInit('Header', initHeader);
+      safeInit('MobileMenu', initMobileMenu);
+      safeInit('Hero', initHero);
+      // safeInit('About', initAbout);
+      // safeInit('Features', initFeatures);
+      // safeInit('Categories', initCategories);
+      // safeInit('Articles', initArticles);
+      // safeInit('Reviews', initReviews);
+      // safeInit('Contact', initContact);
+      // safeInit('Products', initProducts);
+      // safeInit('Footer', initFooter);
+      // safeInit('Modal', initModal);
     } else {
       // Страница 404
-      const footerHtml = await loadHtmlSection('Footer');
+      const footerHtml = await loadHtmlSection('Footer').catch(
+        () => '<footer class="footer"><p>© 2025</p></footer>'
+      );
 
       root.innerHTML = `
         ${headerHtml}
         ${mobileMenuHtml}
         <div class="not-found">
-          <h1>404</h1>
-          <p>Страница не найдена</p>
-          <a href="/" class="back-home">Вернуться на главную</a>
+          <div class="container">
+            <h1>404</h1>
+            <p>Страница не найдена</p>
+            <a href="/" class="back-home">Вернуться на главную</a>
+          </div>
         </div>
         ${footerHtml}
       `;
 
-      initHeader();
-      initMobileMenu();
-      initFooter();
+      safeInit('Header', initHeader);
+      safeInit('MobileMenu', initMobileMenu);
+      // safeInit('Footer', initFooter);
     }
 
     console.log('Приложение инициализировано');
@@ -149,6 +236,7 @@ async function initApp() {
         <button onclick="location.reload()">Перезагрузить страницу</button>
       </div>
     `;
+    throw error; // Пробрасываем ошибку дальше для обработки во внешнем обработчике
   }
 }
 
@@ -204,15 +292,60 @@ function setupAnchorLinks() {
   });
 }
 
-// Запускаем приложение после загрузки DOM
+// Запускаем приложение после загрузки DOM с ограничением по времени
 document.addEventListener('DOMContentLoaded', () => {
-  initApp().then(() => {
-    // После инициализации приложения проверяем хеш в URL
-    handleHash();
-    // Настраиваем обработчики для якорных ссылок
-    setupAnchorLinks();
+  // Показать временный контент пока загружается приложение
+  const root = document.getElementById('root');
+  if (root) {
+    root.innerHTML = `
+      <div style="padding: 20px; text-align: center;">
+        <div style="border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; margin: 0 auto;"></div>
+        <p style="margin-top: 10px;">Загрузка приложения...</p>
+      </div>
+      <style>
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+      </style>
+    `;
+  }
+
+  // Запускаем инициализацию с таймаутом для защиты от бесконечного ожидания
+  const appInitPromise = initApp();
+  const timeoutPromise = new Promise((_, reject) => {
+    setTimeout(
+      () =>
+        reject(new Error('Превышено время ожидания инициализации (15 сек)')),
+      15000
+    );
   });
+
+  // Используем Promise.race для ограничения времени ожидания
+  Promise.race([appInitPromise, timeoutPromise])
+    .then(() => {
+      // После инициализации выполняем действия с хешем и якорями
+      handleHash();
+      setupAnchorLinks();
+    })
+    .catch(error => {
+      console.error('Ошибка инициализации:', error);
+      if (root) {
+        root.innerHTML = `
+          <div style="padding: 20px; text-align: center; font-family: Arial, sans-serif;">
+            <h1>Не удалось загрузить приложение</h1>
+            <p>${error.message}</p>
+            <button onclick="location.reload()" style="padding: 10px 20px; margin-top: 15px; cursor: pointer;">
+              Попробовать снова
+            </button>
+          </div>
+        `;
+      }
+    });
 });
 
 // Обработка навигации вперед/назад в браузере
 window.addEventListener('popstate', handleHash);
+
+// Экспортируем функции, которые могут понадобиться в других модулях
+export { handleHash, setupAnchorLinks };
