@@ -16,11 +16,16 @@ export default defineConfig(({ mode }) => ({
   resolve: {
     alias: {
       '@': resolve(__dirname, './src'),
+      '~@': resolve(__dirname, './src'),
       // Настраиваем алиасы для абсолютных импортов начинающихся с /
       '/sections': resolve(__dirname, './src/sections'),
       '/components': resolve(__dirname, './src/components'),
       '/js': resolve(__dirname, './src/js'),
       '/assets': resolve(__dirname, './src/assets'),
+      // Добавляем прямой алиас для изображений
+      '/img': resolve(__dirname, './src/assets/img'),
+      // Алиас для корня src, чтобы путь /src/... работал
+      '/src': resolve(__dirname, './src'),
     },
   },
 
@@ -42,6 +47,10 @@ export default defineConfig(({ mode }) => ({
     port: 5173,
     open: true,
     host: true,
+    // Разрешаем доступ к файлам вне корневой директории src
+    fs: {
+      allow: ['.', '..'],
+    },
   },
 
   build: {

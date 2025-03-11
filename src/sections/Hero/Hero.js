@@ -1,8 +1,22 @@
-// Initialization function for Hero section
+/**
+ * @fileoverview Модуль инициализации секции Hero
+ * @description Содержит функцию для настройки секции Hero, управления изображениями,
+ * адаптивностью и обработчиками событий для кнопок.
+ */
+
+/**
+ * Инициализирует секцию Hero на странице.
+ * Устанавливает изображения, обрабатывает события загрузки,
+ * настраивает адаптивность и анимации.
+ * @returns {void}
+ */
 export function initHero() {
-  // DOM elements
+  console.log('Hero section initialized');
+
+  // DOM элементы
   const heroSection = document.querySelector('.hero');
   const heroImage = document.querySelector('.hero__console-img');
+  const heroImageSource = document.querySelector('.hero__image source');
   const heroContent = document.querySelector('.hero__content');
   const desktopDescription = document.querySelector(
     '.hero__description--desktop'
@@ -14,19 +28,64 @@ export function initHero() {
   const buyButton = document.getElementById('buy-button');
   const moreDetailsButton = document.getElementById('more-details-button');
 
-  // Handle image loading
-  if (heroImage) {
+  // Используем проверенные рабочие пути из публичной директории
+  const heroImage1x = '/img/hero/herou1_1x_.png';
+  const heroImage2x = '/img/hero/herou1_2x_.png';
+
+  console.log('Using image paths:', { heroImage1x, heroImage2x });
+
+  /**
+   * Настраивает изображения секции Hero.
+   * Устанавливает пути и обработчики событий для главного изображения.
+   * @private
+   */
+  function setupHeroImage() {
+    if (!heroImage) {
+      console.error('Hero image element not found');
+      return;
+    }
+
+    console.log('Setting hero image paths');
+
+    // Обработчики событий
+    heroImage.onerror = () => {
+      console.error('Failed to load hero image:', heroImage.src);
+      heroSection.classList.add('hero--loaded'); // Все равно показываем секцию
+    };
+
     heroImage.onload = () => {
+      console.log('Hero image loaded successfully');
       heroSection.classList.add('hero--loaded');
     };
 
-    // If image is already loaded (from cache)
+    // Устанавливаем атрибуты
+    heroImage.src = heroImage2x;
+    heroImage.srcset = `${heroImage1x} 1x, ${heroImage2x} 2x`;
+
+    // Если изображение уже загружено (из кэша)
     if (heroImage.complete) {
+      console.log('Hero image already loaded (from cache)');
       heroSection.classList.add('hero--loaded');
     }
   }
 
-  // Check viewport size and adjust content display
+  /**
+   * Настраивает source элемент для изображения с высоким разрешением.
+   * @private
+   */
+  function setupSourceElement() {
+    if (heroImageSource) {
+      heroImageSource.srcset = heroImage1x;
+    } else {
+      console.warn('Hero image source element not found');
+    }
+  }
+
+  /**
+   * Адаптирует контент под разные размеры экрана.
+   * Переключает между мобильной и десктопной версиями описания.
+   * @private
+   */
   function adjustForViewport() {
     const isDesktop = window.innerWidth > 992;
 
@@ -41,14 +100,14 @@ export function initHero() {
     }
   }
 
-  // Run on initialization
-  adjustForViewport();
+  /**
+   * Настраивает анимацию появления контента при прокрутке.
+   * Использует IntersectionObserver для определения видимости элемента.
+   * @private
+   */
+  function setupContentAnimation() {
+    if (!heroContent) return;
 
-  // Listen for window resize events
-  window.addEventListener('resize', adjustForViewport);
-
-  // Add animation class when content is in viewport
-  if (heroContent) {
     const observer = new IntersectionObserver(
       entries => {
         entries.forEach(entry => {
@@ -63,44 +122,69 @@ export function initHero() {
     observer.observe(heroContent);
   }
 
-  // Button event handlers
-  if (buyButton) {
-    buyButton.addEventListener('click', () => {
-      // Open product link in new tab
-      window.open(
-        'https://www.aliexpress.com/item/1005007171465465.html',
-        '_blank',
-        'noopener,noreferrer'
-      );
-    });
-  }
-
-  if (moreDetailsButton) {
-    moreDetailsButton.addEventListener('click', e => {
-      e.preventDefault();
-      const featuresSection = document.getElementById('features');
-      const header = document.querySelector('.header');
-
-      if (featuresSection && header) {
-        // Calculate scroll position accounting for fixed header
-        const headerHeight = header.offsetHeight;
-        const elementPosition = featuresSection.getBoundingClientRect().top;
-        const currentScrollY = window.scrollY || window.pageYOffset;
-        const offsetPosition = elementPosition + currentScrollY - headerHeight;
-
-        // Smooth scroll to features section
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth',
-        });
-
-        // Update URL without reloading page
-        window.history.replaceState(
-          null,
-          '',
-          `${window.location.pathname}#features`
+  /**
+   * Настраивает обработчики событий для кнопок секции.
+   * @private
+   */
+  function setupButtonHandlers() {
+    // Обработчик для кнопки покупки
+    if (buyButton) {
+      buyButton.addEventListener('click', () => {
+        // Открываем ссылку на продукт в новой вкладке
+        window.open(
+          'https://www.aliexpress.com/item/1005007171465465.html',
+          '_blank',
+          'noopener,noreferrer'
         );
-      }
-    });
+      });
+    }
+
+    // Обработчик для кнопки "Подробнее"
+    if (moreDetailsButton) {
+      moreDetailsButton.addEventListener('click', handleMoreDetailsClick);
+    }
   }
+
+  /**
+   * Обрабатывает клик по кнопке "Подробнее".
+   * Выполняет плавную прокрутку к секции features.
+   * @param {Event} e - Событие клика
+   * @private
+   */
+  function handleMoreDetailsClick(e) {
+    e.preventDefault();
+    const featuresSection = document.getElementById('features');
+    const header = document.querySelector('.header');
+
+    if (featuresSection && header) {
+      // Учитываем высоту фиксированного заголовка при прокрутке
+      const headerHeight = header.offsetHeight;
+      const elementPosition = featuresSection.getBoundingClientRect().top;
+      const currentScrollY = window.scrollY || window.pageYOffset;
+      const offsetPosition = elementPosition + currentScrollY - headerHeight;
+
+      // Плавная прокрутка к секции features
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth',
+      });
+
+      // Обновляем URL без перезагрузки страницы
+      window.history.replaceState(
+        null,
+        '',
+        `${window.location.pathname}#features`
+      );
+    }
+  }
+
+  // Инициализация компонента
+  setupHeroImage();
+  setupSourceElement();
+  adjustForViewport();
+  setupContentAnimation();
+  setupButtonHandlers();
+
+  // Слушаем событие изменения размера окна
+  window.addEventListener('resize', adjustForViewport);
 }
