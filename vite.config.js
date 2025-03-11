@@ -10,7 +10,7 @@ export default defineConfig(({ mode }) => ({
   base: mode === 'production' ? '/R36S_STORE_JS/' : '/',
 
   // Указываем корневую директорию проекта
-  root: './src',
+  root: 'src',
 
   // Настраиваем разрешение путей
   resolve: {
@@ -24,6 +24,7 @@ export default defineConfig(({ mode }) => ({
     },
   },
 
+  // Публичная директория относительно корня проекта, а не корня src
   publicDir: resolve(__dirname, './public'),
   assetsInclude: ['**/*.MP4', '**/*.mp4', '**/*.webm', '**/*.gif', '**/*.ico'],
 
@@ -34,8 +35,8 @@ export default defineConfig(({ mode }) => ({
   },
 
   build: {
-    // Исправление пути выходной директории
-    outDir: resolve(__dirname, './dist'),
+    // Путь относительно корня src, т.к. root: 'src'
+    outDir: '../dist',
     assetsDir: 'assets',
     minify: 'esbuild',
     sourcemap: mode === 'development',
@@ -43,7 +44,8 @@ export default defineConfig(({ mode }) => ({
     cssCodeSplit: true,
     rollupOptions: {
       input: {
-        main: resolve(__dirname, './src/index.html'), // Правильный путь к index.html
+        // index.html берется автоматически из корня (src), не нужно указывать
+        main: resolve(__dirname, './src/index.html'),
       },
       output: {
         assetFileNames: 'assets/[name].[hash][extname]',
