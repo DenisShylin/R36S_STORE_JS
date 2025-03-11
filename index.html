@@ -2,127 +2,91 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/R36S_STORE_JS/favicon.svg" />
+    <link
+      rel="icon"
+      type="image/ico"
+      href="/src/assets/icons/svg_browser.svg"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla App Template</title>
-    <script type="module" crossorigin src="/R36S_STORE_JS/index.js"></script>
-    <link rel="stylesheet" crossorigin href="/R36S_STORE_JS/assets/styles-DvPDDfy5.css">
+    <meta
+      name="description"
+      content="R36S Handheld Game Console - Gaming legends in the palm of your hand"
+    />
+    <title>R36S Gaming Console</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700;800&family=Orbitron:wght@600;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS styles -->
+    <link rel="stylesheet" href="/src/normalize.css" />
+    <link rel="stylesheet" href="/src/styles.css" />
+    <link rel="stylesheet" href="/src/media.css" />
+    <link rel="stylesheet" href="/src/index.css" />
+
+    <!-- CSS sections -->
+    <link rel="stylesheet" href="/src/sections/Header/Header.css" />
+    <link rel="stylesheet" href="/src/sections/Hero/Hero.css" />
+    <link rel="stylesheet" href="/src/sections/Features/Features.css" />
+    <link rel="stylesheet" href="/src/sections/Footer/Footer.css" />
+    <link rel="stylesheet" href="/src/sections/About/About.css" />
+    <link rel="stylesheet" href="/src/sections/Features/Features.css" />
+    <link rel="stylesheet" href="/src/sections/Categories/Categories.css" />
+    <link rel="stylesheet" href="/src/sections/Articles/Articles.css" />
+    <link rel="stylesheet" href="/src/sections/Contact/Contact.css" />
+    <link rel="stylesheet" href="/src/sections/Products/Products.css" />
+    <link rel="stylesheet" href="/src/sections/Reviews/Reviews.css" />
+    <link rel="stylesheet" href="/src/sections/Footer/Footer.css" />
+
+    <!-- CSS компонентов -->
+
+    <!-- CSS components -->
+    <link rel="stylesheet" href="/src/components/MobileMenu/MobileMenu.css" />
+    <script type="module" crossorigin src="/R36S_STORE_JS/assets/js/main.Doyav4si.js"></script>
+    <link rel="stylesheet" crossorigin href="/R36S_STORE_JS/assets/main.CpbXJM1S.css">
   </head>
   <body>
-    <header class="header">
-  <div class="container">
-    <nav class="nav">
-      <a class="nav-logo" href="./index.html" aria-label="Site logo">
-        <svg class="nav-logo-icon" width="100" height="30">
-          <use href="/R36S_STORE_JS/assets/sprite-E8vg0sBb.svg#logo"></use>
-        </svg>
-      </a>
-      <ul class="nav-list">
-        <li class="nav-item">
-          <a class="nav-link {=$highlight-act}" href="./page-2.html">Page 2</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {=$highlight-curr}" href="./page-3.html">Page 3</a>
-        </li>
-      </ul>
-    </nav>
-  </div>
-</header>
+    <div id="root">
+      <header class="header">
+        <div class="header__container">
+          <a href="/" class="header__logo">R36S</a>
+          <nav class="header__nav">
+            <ul class="header__menu">
+              <li><a href="#functionality">Functionality</a></li>
+              <li><a href="#about">About R36S</a></li>
+              <li><a href="#video">Video</a></li>
+              <li><a href="#reviews">Reviews</a></li>
+              <li><a href="#contacts">Contacts</a></li>
+            </ul>
+          </nav>
+          <button class="header__mobile-menu-toggle" id="mobile-menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </header>
 
+      <!-- Hero section will be included here -->
 
-    <main>
-      <!-- Loads the specified .html file -->
-      <section class="vite-promo">
-  <div class="container">
-    <div class="vite-promo-thumb">
-      <a
-        class="vite-promo-link"
-        href="https://vitejs.dev/"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Link to Vite official website"
-        title="Vite.js  build tool"
-      >
-        <!-- Path to images as from index.html file -->
-        <img
-          class="pic"
-          src="/R36S_STORE_JS/assets/vite-logo-9o_aqrTe.png"
-          alt="Vite logo"
-          width="640"
-          height="640"
-        />
-      </a>
+      <section id="features" class="features">
+        <!-- Features content -->
+      </section>
+
+      <footer class="footer">
+        <!-- Footer content -->
+      </footer>
     </div>
-    <h1 class="main-title">
-      <span class="main-title-gradient">Vite</span>
-      Template by
-      <a
-        class="main-title-link"
-        href="https://github.com/goitacademy/vanilla-app-template"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        GoIT
-      </a>
-    </h1>
-  </div>
-</section>
 
-      <article class="badges">
-  <div class="container">
-    <ul class="badges-list">
-      <li class="badges-item">
-        <a
-          class="badges-link"
-          href="https://www.npmjs.com/package/vite-plugin-html-inject"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          HTML Inject
-        </a>
-      </li>
-      <li class="badges-item">
-        <a
-          class="badges-link"
-          href="https://www.npmjs.com/package/vite-plugin-full-reload"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Full Reload
-        </a>
-      </li>
-      <li class="badges-item">
-        <a
-          class="badges-link"
-          href="https://www.npmjs.com/package/postcss-sort-media-queries"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Sort Media Queries
-        </a>
-      </li>
-    </ul>
-  </div>
-</article>
+    <!-- Mobile menu -->
+    <div class="mobile-menu" id="mobile-menu">
+      <!-- Mobile menu content -->
+    </div>
 
-    </main>
-
-    <footer class="footer">
-  <div class="container">
-    <p class="footer-desc">
-      Made with ✨ by
-      <a
-        class="footer-link"
-        href="https://goit.global/ua/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        GoIT team
-      </a>
-    </p>
-  </div>
-</footer>
-
-
+    <!-- JavaScript -->
   </body>
 </html>
