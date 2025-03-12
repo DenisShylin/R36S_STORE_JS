@@ -1,7 +1,105 @@
 <!-- Секция Features -->
 <section class="features" id="features">
   <div class="features__container">
-    <h2 class="section-title">Features</h2>
-    <!-- Содержимое секции features -->
+    <div class="features__content">
+      <h2 class="features__title">Console R36S</h2>
+
+      <div class="features__description">
+        <p>
+          The Retro Handheld R36S portable gaming console opens the door to the
+          exciting world of retro gaming, offering an impressive collection of
+          over 15,000 legendary games from different eras and platforms. The
+          heart of the console is a premium 3.5-inch IPS screen, which renders
+          images with stunning clarity and color saturation. The R36S does not
+          just play old games - it rethinks retro gaming for the modern era.
+          Dive into the universe of games with the R36S console!
+        </p>
+      </div>
+
+      <div class="features__buttons">
+        <button
+          class="features__button"
+          id="buyButton"
+          aria-label="Купить консоль R36S"
+        >
+          Buy now -68%
+        </button>
+
+        <button
+          class="features__button-secondary"
+          id="moreInfoButton"
+          aria-label="Узнать больше о R36S"
+        >
+          Show Details
+        </button>
+      </div>
+    </div>
+
+    <div class="features__image">
+      <div class="features__image-wrapper">
+        <video
+          id="featuresVideo"
+          class="features__console-img"
+          loop
+          muted
+          playsinline
+          autoplay
+          src="/video/features/video_features_.MP4"
+        >
+          Your browser does not support the video tag.
+        </video>
+        <button
+          class="features__sound-toggle"
+          id="soundToggleButton"
+          aria-label="Включить звук"
+        >
+          <!-- SVG иконка Volume X (звук выключен) -->
+          <svg
+            id="volumeOffIcon"
+            class="features__sound-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="1" y1="1" x2="23" y2="23"></line>
+            <path
+              d="M9 9v3a3 3 0 0 0 5.12 2.12M15 9.34V4a3 3 0 0 0-5.94-.6"
+            ></path>
+            <path
+              d="M17 16.95A7 7 0 0 1 5 12v-2m14 0v2a7 7 0 0 1-.11 1.23"
+            ></path>
+            <line x1="12" y1="19" x2="12" y2="23"></line>
+            <line x1="8" y1="23" x2="16" y2="23"></line>
+          </svg>
+
+          <!-- SVG иконка Volume 2 (звук включен) -->
+          <svg
+            id="volumeOnIcon"
+            class="features__sound-icon"
+            style="display: none"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path
+              d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"
+            ></path>
+          </svg>
+        </button>
+      </div>
+    </div>
   </div>
 </section>

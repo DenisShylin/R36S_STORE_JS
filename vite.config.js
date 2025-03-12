@@ -24,6 +24,9 @@ export default defineConfig(({ mode }) => ({
       '/assets': resolve(__dirname, './src/assets'),
       // Добавляем прямой алиас для изображений
       '/img': resolve(__dirname, './src/assets/img'),
+      // Добавим новые алиасы для медиафайлов
+      '/public': resolve(__dirname, './public'),
+      '/video': resolve(__dirname, './src/assets/video'),
       // Алиас для корня src, чтобы путь /src/... работал
       '/src': resolve(__dirname, './src'),
     },
