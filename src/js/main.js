@@ -17,6 +17,7 @@ import '../sections/Products/Products.css';
 import '../sections/Reviews/Reviews.css';
 import '../sections/About/ModalAbout/ModalAbout.css';
 import '../components/MobileMenu/MobileMenu.css';
+import '../sections/Footer/PartnershipModal/PartnershipModal.css';
 
 // Импорт точки входа в приложение
 import '../App.js';

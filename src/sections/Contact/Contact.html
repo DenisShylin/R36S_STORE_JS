@@ -1,4 +1,119 @@
-<contact class="Contact">
-  <div class="contact__container"></div>
-  <h2 class="section-title">Contact</h2>
-</contact>
+<!-- Contact.html - HTML для секции Contact -->
+<section class="contact" id="contact">
+  <div class="contact__noise"></div>
+  <div class="contact__container">
+    <div class="contact__header">
+      <span class="contact__label">Start a Conversation</span>
+      <h2 class="contact__title">Looking for Answers</h2>
+      <p class="contact__description">
+        We are always ready to help you with choosing a console and answer any
+        questions about the R36S console
+      </p>
+    </div>
+
+    <div class="contact__content">
+      <form class="contact__form">
+        <!-- Место для сообщения об ошибке добавляется динамически -->
+
+        <div class="form__group">
+          <label class="form__label" for="name">
+            <span
+              class="form__icon"
+              data-icon="message-circle"
+              data-size="16"
+            ></span>
+            Your name
+          </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            class="form__input"
+            placeholder="John Smith"
+            required
+          />
+        </div>
+
+        <div class="form__group">
+          <label class="form__label" for="email">
+            <span class="form__icon" data-icon="mail" data-size="16"></span>
+            Email
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form__input"
+            placeholder="example@email.com"
+            required
+          />
+        </div>
+
+        <div class="form__group">
+          <label class="form__label" for="phone">
+            <span
+              class="form__icon"
+              data-icon="phone-call"
+              data-size="16"
+            ></span>
+            Telephone
+          </label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            class="form__input"
+            placeholder="+7 (___) ___-__-__"
+            required
+          />
+        </div>
+
+        <div class="form__group">
+          <label class="form__label" for="message">
+            <span
+              class="form__icon"
+              data-icon="message-circle"
+              data-size="16"
+            ></span>
+            Message
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            class="form__textarea"
+            placeholder="Write your message..."
+            required
+          ></textarea>
+        </div>
+
+        <button type="submit" class="form__button">
+          <span class="button__icon" data-icon="send" data-size="20"></span>
+          Send message
+        </button>
+      </form>
+
+      <div class="contact__info">
+        <div class="info__card">
+          <div class="info__icon" data-icon="phone-call" data-size="40"></div>
+          <h3 class="info__title">Telephone</h3>
+          <p class="info__text">+7 (800) 555-35-35</p>
+          <p class="info__text">Mon-Fri: 9:00 - 18:00</p>
+        </div>
+
+        <div class="info__card">
+          <div class="info__icon" data-icon="mail" data-size="40"></div>
+          <h3 class="info__title">Email</h3>
+          <p class="info__text">support@R36S.com</p>
+          <p class="info__text">sales@R36S.com</p>
+        </div>
+
+        <div class="info__card">
+          <div class="info__icon" data-icon="map-pin" data-size="40"></div>
+          <h3 class="info__title">Address</h3>
+          <p class="info__text">Zhejiang, China.</p>
+          <p class="info__text">We work all over the world</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

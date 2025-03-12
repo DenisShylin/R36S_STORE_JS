@@ -1,4 +1,113 @@
-<categories class="Categories">
-  <div class="Categories__container"></div>
-  <h2 class="section-title">Categories</h2>
-</categories>
+<section class="categories" id="categories">
+  <div class="categories__container">
+    <div class="categories__content">
+      <div class="categories__info">
+        <div class="categories__labels">
+          <span class="categories__label">Demonstration</span>
+          <span class="categories__label categories__label--outline">
+            Gameplay
+          </span>
+        </div>
+        <h2 class="categories__title">R36S Video</h2>
+        <p class="categories__description">
+          Immerse yourself in the world of classic games with improved graphics
+          and smooth gameplay. Enjoy your favorite games in high quality on a
+          bright IPS screen.
+        </p>
+      </div>
+
+      <div class="categories__video-wrapper">
+        <div class="categories__video-container">
+          <!-- Использование тега img в качестве плейсхолдера, пока видео не загрузится -->
+          <img
+            class="categories__video-placeholder"
+            src="/img/video-placeholder.jpg"
+            alt="Video preview"
+            style="display: none; width: 100%; border-radius: 24px"
+          />
+
+          <!-- Видео с несколькими вариантами путей -->
+          <video class="categories__video" muted loop playsinline>
+            <!-- Подтвержденный работающий путь к видео -->
+            <source
+              src="/video/categories/video_categories_.MP4"
+              type="video/mp4"
+            />
+            <source
+              src="/public/video/categories/video_categories_.MP4"
+              type="video/mp4"
+            />
+            <source src="video_categories_.MP4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <div class="categories__video-overlay"></div>
+
+          <div class="categories__video-controls">
+            <button class="categories__video-play" aria-label="Пауза">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <rect x="6" y="4" width="4" height="16"></rect>
+                <rect x="14" y="4" width="4" height="16"></rect>
+              </svg>
+            </button>
+
+            <button class="categories__video-mute" aria-label="Включить звук">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+              </svg>
+            </button>
+
+            <div class="categories__video-progress">
+              <input
+                type="range"
+                min="0"
+                max="100"
+                value="0"
+                step="0.1"
+                class="categories__video-slider"
+              />
+              <div class="categories__video-time">
+                <span>0:00</span>
+                <span>0:00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="categories__video-info">
+          <div class="categories__video-stats">
+            <div class="categories__stat">
+              <span class="categories__stat-number">60</span>
+              <span class="categories__stat-label">FPS</span>
+            </div>
+            <div class="categories__stat">
+              <span class="categories__stat-number">HD</span>
+              <span class="categories__stat-label">Quality</span>
+            </div>
+            <div class="categories__stat">
+              <span class="categories__stat-number">3.5*</span>
+              <span class="categories__stat-label">IPS Screen</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
