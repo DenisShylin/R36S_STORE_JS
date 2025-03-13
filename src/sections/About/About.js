@@ -167,11 +167,7 @@ Available Colors:
 - Mesmerizing Purple
 - Dynamic Red
 - Pure White
-- Radiant Yellow
-- Serene Lake Blue
-- Deep Marine Blue
-- Natural Olive Green
-- Premium Transparent Red`,
+- Radiant Yellow ...`,
       colorImages: [untitled1, untitled2, untitled3, untitled4],
       imageAlt: 'R36S Color Variants',
     },

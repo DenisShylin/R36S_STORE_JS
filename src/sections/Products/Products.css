@@ -304,7 +304,7 @@
 
 .section-image,
 .subsection-image {
-    width: 100%;
+    width: 80%;
     height: auto;
     display: block;
     border-radius: 12px;
@@ -361,9 +361,11 @@
         margin: 0 auto;
         display: block;
     }
+
 }
 
 @media (max-width: 768px) {
+
     .guide {
         padding: 40px 0;
     }

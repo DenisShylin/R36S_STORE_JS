@@ -465,6 +465,11 @@
         font-size: 42px;
     }
 
+    .hero__content-wrapper {
+        margin-top: 20px;
+        /* При необходимости можно добавить отступ для мобильных устройств */
+    }
+
     .hero__container {
         padding: 80px 20px;
     }
@@ -537,6 +542,11 @@
     }
 
     .hero__content-wrapper {
+        margin-top: 20px;
+        /* При необходимости можно добавить отступ для мобильных устройств */
+    }
+
+    .hero__content-wrapper {
         gap: 5px;
     }
 
@@ -591,6 +601,11 @@
         font-size: 8.5vw;
     }
 
+    .hero__content-wrapper {
+        margin-top: 20px;
+        /* При необходимости можно добавить отступ для мобильных устройств */
+    }
+
     .hero__title-line:not(:first-child) {
         display: inline-block;
         white-space: nowrap;
@@ -607,6 +622,11 @@
 @media (max-width: 380px) {
     .hero__title {
         font-size: 8.5vw;
+    }
+
+    .hero__content-wrapper {
+        margin-top: 20px;
+        /* При необходимости можно добавить отступ для мобильных устройств */
     }
 
     .hero__title-line {

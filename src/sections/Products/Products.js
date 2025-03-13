@@ -10,6 +10,10 @@ export function initProducts() {
 
   // Данные из constants/productData.js с исправленными путями
   const productImages = {
+    i0_0: {
+      jpg: `${basename}img/products/i_0_0x.jpg`,
+      webp: `${basename}img/products/i_0_0x.webp`,
+    },
     i1: {
       jpg: `${basename}img/products/i_1_1x.jpg`,
       webp: `${basename}img/products/i_1_1x.webp`,
@@ -55,31 +59,48 @@ export function initProducts() {
   // Структура данных секций (остальной код без изменений)
   const sections = [
     {
-      id: 'preparation',
-      title: 'Preparation',
+      id: 'getting-started',
+      title: 'Getting Started',
       content: {
-        text: `Essential Guide: R36S Setup Instructions
-        Note: These instructions are specifically for authentic R36S devices...`,
+        text: `Please be aware that this tutorial does not apply to K36 devices or clones marketed as R36S. For additional information about your hardware, please refer to the comprehensive R36S Wiki Page.
+
+Essential Items:
+- R36S handheld device
+- Computer with USB port
+- MicroSD cards (suggestions: 16GB for custom firmware, 128GB for game files)
+- MicroSD card reader
+- Recommended software: Balena Etcher, Rufus, 7-Zip, MiniTool Partition Wizard
+- Optional: Linux system or Ubuntu Live USB
+
+All information provided is for educational purposes, and users accept full responsibility for any potential damage to their hardware.
+
+To identify which version of the R36S you have, use the quick identification tool on the R36 Wiki – "Screen Identification Guide". This step is crucial as it determines which custom firmware image is compatible with your device.`,
         images: {
-          jpg: productImages.i1.jpg,
-          webp: productImages.i1.webp,
+          jpg: productImages.i0_0.jpg,
+          webp: productImages.i0_0.webp,
         },
       },
     },
     {
-      id: 'backup',
-      title: 'Backing Up Original Firmware',
+      id: 'original-backup',
+      title: 'Creating Original Firmware Backup',
       content: {
-        text: `Creating a Safety Backup...`,
+        text: `This step can be critical in your modification journey. Having a complete backup of the stock firmware ensures you can restore your device if anything goes wrong during the flashing process, or if you want to revert to the original state later.`,
         subsections: [
           {
-            id: 'win32diskimager',
-            title: 'Backup Process Using Win32DiskImager',
+            id: 'backup-procedure',
+            title: 'Backup Using Win32DiskImager',
             content: {
-              text: `Step 1: Configure Output Location...`,
+              text: `1. Launch Win32DiskImager: Click the folder icon in the "Image File" section and select a location to save your backup, making sure to add the .img extension to your filename.
+              
+2. Select the device: Choose the drive letter corresponding to your R36S. *Exercise extreme caution during this selection to avoid accidentally erasing unintended drives.
+              
+3. Enable Read Only mode: Make sure the "Read Only Allocated Partitions" option is selected to avoid copying empty sectors along with the data.
+              
+4. Start the backup: Click the "Read" button to begin creating the backup image file at your chosen location.`,
               images: {
-                jpg: productImages.i2.jpg,
-                webp: productImages.i2.webp,
+                jpg: productImages.i1.jpg,
+                webp: productImages.i1.webp,
               },
             },
           },
@@ -87,16 +108,41 @@ export function initProducts() {
       },
     },
     {
-      id: 'flashing',
-      title: 'Flashing Custom Firmware',
+      id: 'custom-installation',
+      title: 'Installing Custom Firmware',
       content: {
-        text: `SD Card Setup Guide...`,
+        text: `As mentioned previously, one of your first priorities should be obtaining a quality brand-name SD card. The cards included with the R36S are typically unreliable. It's not a question of if they will fail, but when.
+
+Single vs. Dual Card Configuration – The R36S features two microSD card slots. You can choose to have everything on a single card or separate the operating system from your game collection.`,
         subsections: [
           {
-            id: 'balena',
-            title: 'Method 1: Using Balena Etcher',
+            id: 'method-balena',
+            title: 'Option 1: Balena Etcher Method',
             content: {
-              text: `1. Start Balena Etcher...`,
+              text: `While the general process is similar for all custom firmware options, there are some differences to note during installation.
+
+1. Start Balena Etcher and select "Flash From File", then browse to your downloaded .img firmware file.
+              
+2. Select "Select Target" and choose your blank SD card from the device list.
+              
+3. Allow Balena Etcher to write and verify the image, and you're finished!
+              
+*Note – If verification fails with ArkOS using Balena Etcher, the installation may still work correctly, but you can try alternative image writing software if preferred.`,
+              images: {
+                jpg: productImages.i2.jpg,
+                webp: productImages.i2.webp,
+              },
+            },
+          },
+          {
+            id: 'method-win32',
+            title: 'Option 2: Win32DiskImager Method',
+            content: {
+              text: `1. Open Win32DiskImager and click the folder icon in the "Image File" section to select your downloaded custom firmware.
+              
+2. Select destination: Choose the correct SD card as your target device. Double-check to ensure you're writing to the correct location.
+              
+3. Write image: Click the Write button to begin the flashing process.`,
               images: {
                 jpg: productImages.i3.jpg,
                 webp: productImages.i3.webp,
@@ -104,24 +150,17 @@ export function initProducts() {
             },
           },
           {
-            id: 'win32',
-            title: 'Method 2: Win32DiskImager Installation',
+            id: 'method-raspberry',
+            title: 'Option 3: Raspberry Pi Imager',
             content: {
-              text: `1. Launch Win32DiskImager...`,
+              text: `1. Open Raspberry Pi Imager and click "Choose OS", then select "Use Custom" to locate your firmware file.
+              
+2. Select storage: Choose your SD card carefully, NOT your computer's internal drive!
+              
+3. Begin writing: Click the Write button to start flashing the image.`,
               images: {
                 jpg: productImages.i4.jpg,
                 webp: productImages.i4.webp,
-              },
-            },
-          },
-          {
-            id: 'raspberry',
-            title: 'Method 3: Raspberry Pi Imager Process',
-            content: {
-              text: `1. Open Raspberry Pi Imager...`,
-              images: {
-                jpg: productImages.i5.jpg,
-                webp: productImages.i5.webp,
               },
             },
           },
@@ -129,16 +168,44 @@ export function initProducts() {
       },
     },
     {
-      id: 'firmware',
-      title: 'Custom Firmware for R36S',
+      id: 'firmware-options',
+      title: 'R36S Firmware Options',
       content: {
-        text: `Available Firmware Options for Your R36S...`,
+        text: `Several custom firmware options are available for the R36S. Here are the most popular choices:`,
         subsections: [
           {
-            id: 'arkos',
+            id: 'option-arkos',
             title: 'ArkOS - Community Enhanced Edition',
             content: {
-              text: `Source: Find it on the ArkOS GitHub Project Page...`,
+              text: `GitHub Repository: ArkOS Community Edition
+
+This is a community-maintained fork of ArkOS developed by AeolusUX specifically for the 36S family of devices.
+              
+Installation guide:
+1. Download the latest ArkOS release from the project's GitHub page
+2. Extract the image file using 7-Zip, WinRAR, or similar extraction tool
+3. Flash the image to an SD card using your preferred imaging software
+4. If necessary, replace the DTB file on the boot partition based on your screen type
+5. Insert the SD card into your R36S
+6. Power on and follow on-screen setup instructions`,
+              images: {
+                jpg: productImages.i5.jpg,
+                webp: productImages.i5.webp,
+              },
+            },
+          },
+          {
+            id: 'option-rocknix',
+            title: 'ROCKNIX Operating System',
+            content: {
+              text: `GitHub Repository: ROCKNIX
+
+Installation guide:
+1. Download the latest ROCKNIX release from the GitHub repository
+2. Extract the image file using your preferred extraction tool
+3. Write the image to an SD card using any supported imaging software
+4. Insert the SD card into your R36S device and power it on
+5. Complete the initial configuration by following the on-screen prompts`,
               images: {
                 jpg: productImages.i6.jpg,
                 webp: productImages.i6.webp,
@@ -146,24 +213,19 @@ export function initProducts() {
             },
           },
           {
-            id: 'rocknix',
-            title: 'ROCKNIX Operating System',
+            id: 'option-amber',
+            title: 'AmberELEC System',
             content: {
-              text: `Source: Official ROCKNIX GitHub...`,
+              text: `GitHub Repository: AmberELEC
+
+Installation guide:
+1. Download the AmberELEC image specifically for R36S from their GitHub repository
+2. Flash the image to an SD card using Balena Etcher or an equivalent tool
+3. Insert the SD card into your R36S handheld and power it on
+4. Follow the on-screen instructions to finalize the setup process`,
               images: {
                 jpg: productImages.i7.jpg,
                 webp: productImages.i7.webp,
-              },
-            },
-          },
-          {
-            id: 'amberelec',
-            title: 'AmberELEC System',
-            content: {
-              text: `Source: AmberELEC GitHub Project...`,
-              images: {
-                jpg: productImages.i8.jpg,
-                webp: productImages.i8.webp,
               },
             },
           },
@@ -171,24 +233,36 @@ export function initProducts() {
       },
     },
     {
-      id: 'roms',
-      title: 'Setting Up ROMs and BIOS',
+      id: 'game-setup',
+      title: 'Adding Games and BIOS Files',
       content: {
-        text: `Game Installation Guide...`,
+        text: `1. For dual-card setups, format your second card to FAT32 or exFAT (depending on your card capacity)
+
+2. Connect your R36S to your computer via USB cable, or remove the game storage SD card and connect it directly to your PC.
+
+3. Copy your game files to the appropriate directories on the SD card. NOTE: North American users may be confused by some folder names initially. All systems use their original regional names, so NES is labeled as FC (Famicom), Genesis as MD (Mega Drive), and so on.
+
+4. Reinsert the SD card and refresh your game lists through the system menu.`,
         images: {
-          jpg: productImages.i9.jpg,
-          webp: productImages.i9.webp,
+          jpg: productImages.i8.jpg,
+          webp: productImages.i8.webp,
         },
       },
     },
     {
-      id: 'tips',
-      title: 'General Tips',
+      id: 'helpful-tips',
+      title: 'Usage Tips',
       content: {
-        text: `Important System Operation Guidelines...`,
+        text: `• NEVER force shutdown by holding the power button. Your device now functions like a computer that requires proper shutdown. Press START and navigate to QUIT —-> Shutdown
+
+• You can switch between Nintendo (default) or Xbox button layouts. Press START and go to Advanced Settings —-> Switch A/B
+
+• Change system themes locally by pressing START and navigating to UI Settings —-> Themes
+
+• A quick press of the power button will put the device into standby mode.`,
         images: {
-          jpg: productImages.i10.jpg,
-          webp: productImages.i10.webp,
+          jpg: productImages.i9.jpg,
+          webp: productImages.i9.webp,
         },
       },
     },
@@ -198,22 +272,26 @@ export function initProducts() {
       content: {
         downloads: [
           {
-            file: 'R36S_tg5040_20240413_v1.0.4_hotfix6.7z',
+            file: 'Firmware v1.0.4 2024.04.13',
+            link: 'https://drive.google.com/file/d/10z7j7IZ7WX3y10ZJBW_a2-agcIe1Dx9m/edit',
             date: '2024.04.13',
             version: 'v1.0.4',
           },
           {
-            file: 'R36S_tg5040_20231222_v1.0.3.7z',
+            file: 'ArkOS_K36_v2.0_03112025.img.xz',
+            link: 'https://drive.google.com/file/d/1F93Q1jXYaTCftOlzAt0BaM43rmVexXsn/view',
             date: '2023.12.22',
             version: 'v1.0.3',
           },
           {
-            file: 'R36S_tg5040_20231116_1539_v1.0.2.7z',
+            file: 'ArkOS_R35S-R36S_v2.0_02092025_P3.img.xz',
+            link: 'https://drive.google.com/file/d/18VL7uLNdyFKDH4_V8YM5zhHSjLiJdkUc/view',
             date: '2023.11.16',
             version: 'v1.0.2',
           },
           {
-            file: 'R36S_tg5040_20231105_v1.0.0.7z',
+            file: 'ArkOS_R35S-R36S_v2.0_02092025_P4.img.xz',
+            link: 'https://drive.google.com/file/d/1MT1AGGch6Ou4RAfxDvVCxUI4aXX6Qa5v/view',
             date: '2023.11.05',
             version: 'v1.0.0',
           },
@@ -323,13 +401,13 @@ export function initProducts() {
                 <div class="download-meta">Update: ${item.date} • ${item.version}</div>
               </div>
             </div>
-            <button class="download-button">
+            <a href="${item.link}" class="download-button" target="_blank">
               <svg class="button-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                 <polyline points="7 10 12 15 17 10"></polyline>
                 <line x1="12" y1="15" x2="12" y2="3"></line>
               </svg>
-            </button>
+            </a>
           </div>
         `;
       });

@@ -10,7 +10,7 @@
     align-items: center;
     justify-content: center;
     z-index: 1000;
-    padding: 17px;
+    padding: 30px;
     animation: modalAboutOverlayShow 0.3s ease;
 }
 
@@ -21,12 +21,17 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 20px;
     width: 100%;
-    max-width: 680px;
-    max-height: 76.5vh;
-    overflow-y: auto;
+    max-width: 980px;
+    /* Увеличенная максимальная ширина */
+    max-height: 85vh;
+    /* Увеличенная максимальная высота */
     position: relative;
     animation: modalAboutShow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     backdrop-filter: blur(12px);
+    overflow: hidden;
+    /* Изменено с overflow-y: auto на overflow: hidden */
+    display: flex;
+    flex-direction: column;
 }
 
 .modal-about-close {
@@ -51,19 +56,6 @@
 .modal-about-close:hover {
     background-color: rgba(0, 0, 0, 0.1);
     transform: scale(1.1);
-}
-
-.modal-about-close:active {
-    background-color: rgba(0, 0, 0, 0.2);
-    transform: scale(0.95);
-}
-
-.modal-about-close svg {
-    width: 20px;
-    height: 20px;
-    min-width: 20px;
-    min-height: 20px;
-    fill: white;
 }
 
 .modal-about-header {
@@ -93,15 +85,51 @@
 
 .modal-about-body {
     padding: 26px;
+    display: flex;
+    flex-direction: row;
+    /* Изменено на flex-row для десктопной версии */
+    gap: 30px;
+    flex: 1;
 }
 
-.modal-about-image {
+.modal-about-media-container {
+    width: 50%;
+    /* Размер блока с медиа */
+    flex-shrink: 0;
+}
+
+.modal-about-content-container {
+    width: 50%;
+    /* Размер блока с текстом */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: auto;
+    /* Добавлена прокрутка только для текстового контента */
+    max-height: calc(85vh - 82px);
+    /* Вычитаем высоту шапки модалки */
+    padding-right: 10px;
+    /* Отступ для прокрутки */
+}
+
+.modal-about-image,
+.modal-about-video {
     width: 100%;
-    aspect-ratio: 1;
-    object-fit: cover;
     border-radius: 14px;
-    margin-bottom: 20px;
     box-shadow: 0 7px 27px rgba(0, 0, 0, 0.2);
+    aspect-ratio: 1;
+    /* Поддерживаем соотношение сторон */
+    object-fit: cover;
+}
+
+.modal-about-video {
+    aspect-ratio: 16/9;
+    /* Видео в соотношении 16:9 */
+    max-height: calc(85vh - 82px - 52px);
+    /* Уменьшаем для соответствия контейнеру */
+    object-fit: contain;
+    /* Сохраняем соотношение сторон видео */
+    background-color: #000;
 }
 
 .modal-about-stats {
@@ -139,16 +167,6 @@
     text-shadow: 0 2px 3px rgba(34, 197, 94, 0.2);
 }
 
-.modal-about-discount-badge {
-    background: rgba(34, 197, 94, 0.1);
-    color: #22C55E;
-    padding: 3px 10px;
-    border-radius: 14px;
-    font-size: 14px;
-    font-weight: 600;
-    text-shadow: 0 1px 2px rgba(34, 197, 94, 0.2);
-}
-
 .modal-about-button {
     padding: 12px 23px;
     border-radius: 8px;
@@ -184,16 +202,6 @@
     animation: gradientShift 4s ease infinite;
 }
 
-.modal-about-button-text {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    text-transform: uppercase;
-}
-
 .modal-about-description {
     color: #94A3B8;
     line-height: 1.8;
@@ -201,16 +209,68 @@
     white-space: pre-line;
 }
 
-@media (max-width: 768px) {
-    .modal-about-content {
-        max-height: 72vh;
+@keyframes modalAboutOverlayShow {
+    from {
+        opacity: 0;
     }
 
-    .modal-about-header {
-        padding: 17px;
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes modalAboutShow {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .modal-about-content {
+        max-width: 680px;
+        max-height: 76.5vh;
+        overflow-y: auto;
     }
 
     .modal-about-body {
+        flex-direction: column;
+        padding: 17px;
+        gap: 20px;
+    }
+
+    .modal-about-media-container,
+    .modal-about-content-container {
+        width: 100%;
+    }
+
+    .modal-about-content-container {
+        overflow-y: visible;
+        max-height: none;
+        padding-right: 0;
+    }
+
+    .modal-about-header {
         padding: 17px;
     }
 
@@ -233,9 +293,18 @@
         min-width: 213px;
         max-width: 255px;
     }
+
+    .modal-about-video {
+        aspect-ratio: 16/9;
+        max-height: none;
+    }
 }
 
 @media (max-width: 480px) {
+    .modal-about-overlay {
+        padding: 17px;
+    }
+
     .modal-about-stats {
         padding: 10px;
     }
@@ -252,106 +321,8 @@
         font-size: 14px;
     }
 
-    .modal-about-discount-badge {
-        font-size: 12px;
-    }
-
     .modal-about-button {
         padding: 10px 17px;
         font-size: 12px;
     }
-
-    @keyframes modalAboutOverlayShow {
-        from {
-            opacity: 0;
-        }
-
-        to {
-            opacity: 1;
-        }
-    }
-
-    @keyframes modalAboutShow {
-        from {
-            opacity: 0;
-            transform: scale(0.95);
-        }
-
-        to {
-            opacity: 1;
-            transform: scale(1);
-        }
-    }
-
-    @keyframes gradientShift {
-        0% {
-            background-position: 0% 50%;
-        }
-
-        50% {
-            background-position: 100% 50%;
-        }
-
-        100% {
-            background-position: 0% 50%;
-        }
-    }
-
-    .video-wrapper {
-        position: relative;
-        width: 100%;
-        margin-bottom: 20px;
-    }
-
-    .sound-control {
-        position: absolute;
-        bottom: 20px;
-        right: 20px;
-        background: rgba(0, 0, 0, 0.5);
-        border: none;
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        color: white;
-        backdrop-filter: blur(4px);
-    }
-
-    .sound-control:hover {
-        background: rgba(0, 0, 0, 0.7);
-        transform: scale(1.1);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    }
-
-    .sound-control:active {
-        transform: scale(0.95);
-    }
-
-    .sound-control svg {
-        width: 20px;
-        height: 20px;
-        min-width: 20px;
-        min-height: 20px;
-    }
-
-    @media (max-width: 768px) {
-        .sound-control {
-            width: 34px;
-            height: 34px;
-            bottom: 15px;
-            right: 15px;
-        }
-
-        .sound-control svg {
-            width: 16px;
-            height: 16px;
-            min-width: 16px;
-            min-height: 16px;
-        }
-    }
-
 }

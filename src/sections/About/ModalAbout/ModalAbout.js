@@ -11,6 +11,8 @@ export function createModalAbout(parentElement) {
     const styleId = 'modal-about-styles';
     if (document.getElementById(styleId)) return;
 
+    // Указываем ссылку на внешний CSS файл или используем встроенные стили
+    // В реальном проекте лучше подключить внешний CSS
     const style = document.createElement('style');
     style.id = styleId;
     style.textContent = `
@@ -26,7 +28,8 @@ export function createModalAbout(parentElement) {
         align-items: center;
         justify-content: center;
         z-index: 1000;
-        padding: 17px;
+        padding: 30px;
+        animation: modalAboutOverlayShow 0.3s ease;
       }
 
       .modal-about-content {
@@ -36,11 +39,14 @@ export function createModalAbout(parentElement) {
         border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 20px;
         width: 100%;
-        max-width: 680px;
-        max-height: 76.5vh;
-        overflow-y: auto;
+        max-width: 980px;
+        max-height: 85vh;
         position: relative;
+        animation: modalAboutShow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         backdrop-filter: blur(12px);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
       }
 
       .modal-about-close {
@@ -89,15 +95,25 @@ export function createModalAbout(parentElement) {
 
       .modal-about-body {
         padding: 26px;
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+        flex: 1;
       }
 
-      .modal-about-image {
-        width: 100%;
-        aspect-ratio: 1;
-        object-fit: cover;
-        border-radius: 14px;
-        margin-bottom: 20px;
-        box-shadow: 0 7px 27px rgba(0, 0, 0, 0.2);
+      .modal-about-media-container {
+        width: 50%;
+        flex-shrink: 0;
+      }
+
+      .modal-about-content-container {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow-y: auto;
+        max-height: calc(85vh - 82px);
+        padding-right: 10px;
       }
 
       .modal-about-stats {
@@ -113,68 +129,35 @@ export function createModalAbout(parentElement) {
         flex-wrap: wrap;
       }
 
-      .modal-about-price-wrapper {
-        display: flex;
-        flex-direction: column;
-        gap: 3px;
-      }
-
-      .modal-about-original-price {
-        font-size: 17px;
-        color: rgba(255, 255, 255, 0.6);
-        text-decoration: line-through;
-      }
-
-      .modal-about-current-price {
-        font-size: 31px;
-        font-weight: 800;
-        color: #22C55E;
-        display: flex;
-        align-items: center;
-        gap: 3px;
-        text-shadow: 0 2px 3px rgba(34, 197, 94, 0.2);
-      }
-
-      .modal-about-button {
-        padding: 12px 23px;
-        border-radius: 8px;
-        font-size: 16px;
-        font-weight: 700;
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
-        cursor: pointer;
-        letter-spacing: 0.4px;
-        text-decoration: none;
-      }
-
-      .modal-about-button--primary {
-        background: linear-gradient(45deg,
-                #FF3366,
-                #FF6B6B,
-                #4CAF50,
-                #2196F3,
-                #FF3366);
-        background-size: 400% 400%;
-        color: #ffffff;
-        border: none;
-        animation: gradientShift 8s ease infinite;
-        box-shadow: 0 7px 20px rgba(255, 51, 102, 0.3);
-        transform: scale(1);
-        text-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
-      }
-
       .modal-about-description {
         color: #94A3B8;
         line-height: 1.8;
         font-size: 14px;
         white-space: pre-line;
       }
-      
-      @keyframes gradientShift {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
+
+      @media (max-width: 768px) {
+        .modal-about-content {
+          max-width: 680px;
+          max-height: 76.5vh;
+          overflow-y: auto;
+        }
+
+        .modal-about-body {
+          flex-direction: column;
+          padding: 17px;
+        }
+
+        .modal-about-media-container,
+        .modal-about-content-container {
+          width: 100%;
+        }
+
+        .modal-about-content-container {
+          overflow-y: visible;
+          max-height: none;
+          padding-right: 0;
+        }
       }
     `;
     document.head.appendChild(style);
@@ -222,7 +205,7 @@ export function createModalAbout(parentElement) {
     if (feature.videoUrl) {
       return `
         <video
-          class="modal-about-image"
+          class="modal-about-video"
           autoplay
           muted
           loop
@@ -307,31 +290,35 @@ export function createModalAbout(parentElement) {
         </div>
 
         <div class="modal-about-body">
-          ${renderMedia()}
+          <div class="modal-about-media-container">
+            ${renderMedia()}
+          </div>
+          
+          <div class="modal-about-content-container">
+            <div class="modal-about-stats">
+              <div class="modal-about-price-wrapper">
+                <span class="modal-about-original-price">US $108.06</span>
+                <span class="modal-about-current-price">
+                  $35.48
+                  <span style="font-size: 24px">US</span>
+                </span>
+              </div>
 
-          <div class="modal-about-stats">
-            <div class="modal-about-price-wrapper">
-              <span class="modal-about-original-price">US $108.06</span>
-              <span class="modal-about-current-price">
-                $35.48
-                <span style="font-size: 24px">US</span>
-              </span>
+              <a
+                href="https://www.aliexpress.com/item/1005007171465465.html"
+                class="modal-about-button modal-about-button--primary"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span class="modal-about-button-pulse"></span>
+                <span class="modal-about-button-text">BUY NOW -68%</span>
+                <span class="modal-about-button-shine"></span>
+              </a>
             </div>
 
-            <a
-              href="https://www.aliexpress.com/item/1005007171465465.html"
-              class="modal-about-button modal-about-button--primary"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span class="modal-about-button-pulse"></span>
-              <span class="modal-about-button-text">BUY NOW -68%</span>
-              <span class="modal-about-button-shine"></span>
-            </a>
-          </div>
-
-          <div class="modal-about-description">
-            ${feature.fullDescription}
+            <div class="modal-about-description">
+              ${feature.fullDescription}
+            </div>
           </div>
         </div>
       </div>
