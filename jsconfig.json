@@ -1,5 +1,10 @@
 {
   "compilerOptions": {
+    "target": "es2020",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
       "/assets/*": ["./src/assets/*"],
@@ -8,5 +13,7 @@
       "/js/*": ["./src/js/*"],
       "@/*": ["./src/*"]
     }
-  }
+  },
+  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.vue"],
+  "exclude": ["node_modules", "dist"]
 }

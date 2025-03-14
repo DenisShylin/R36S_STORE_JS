@@ -37,7 +37,7 @@ export function initReviews() {
       color: 'Purple 64GB',
       author: 'AliExpress Shopper',
       date: '21 Aug 2024',
-      text: "I just got my hands on the R36S retro console and it's seriously amazing for old-school gaming. The screen is super clear, it runs games smoothly, and battery life is solid. I love how I can load up my favorite classics and play anywhere.",
+      text: "I just got my hands on the R36S retro console and it's seriously amazing for old-school gaming. The screen is super clear, it runs games smoothly, and battery life is solid. I love how I can load up my favorite classics and play...",
       images: {
         webp: reviewImages.review1.webp,
         jpeg: reviewImages.review1.jpg,
