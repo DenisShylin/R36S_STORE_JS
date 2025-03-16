@@ -314,7 +314,6 @@
 
 /* Стили для FAQ секции */
 .articles__seo-content {
-    margin-top: 60px;
     background: rgba(15, 23, 42, 0.5);
     border-radius: 16px;
     padding: 40px;
@@ -357,6 +356,220 @@
 
 .articles__faq-answer p {
     margin-bottom: 12px;
+}
+
+.accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.accordion__item {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.accordion__item:hover {
+    background: rgba(255, 255, 255, 0.03);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.accordion__header {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+}
+
+.accordion__icon {
+    fill: #60A5FA;
+    transition: transform 0.3s ease;
+}
+
+
+
+/* Стили для открытого аккордеона */
+
+.accordion__item.active .accordion__header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.accordion__item.active .accordion__toggle {
+    background: rgba(96, 165, 250, 0.1);
+}
+
+
+/* Оптимизация для мобильных устройств */
+@media (max-width: 768px) {
+    .accordion__header {
+        padding: 15px;
+    }
+
+    .articles__faq-question {
+        font-size: 16px;
+    }
+
+    .accordion__content {
+        padding: 0 15px;
+    }
+}
+
+/* Эффекты при наведении */
+.accordion__header:hover .articles__faq-question {
+    color: #fff;
+}
+
+/* Плавное открытие/закрытие аккордеона */
+.accordion__item.active .accordion__content {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Стили для элегантных иконок аккордеона */
+
+/* Основные стили для кнопки */
+.accordion__toggle {
+    background: transparent;
+    border: none;
+    color: #60A5FA;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.accordion__toggle:hover {
+    background: rgba(96, 165, 250, 0.1);
+    transform: translateY(-2px);
+}
+
+.accordion__toggle:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.4);
+}
+
+/* Стилизация SVG иконки */
+.accordion__icon {
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    width: 24px;
+    height: 24px;
+}
+
+/* Управление видимостью стрелок */
+.accordion__item .arrow-down {
+    display: block;
+    opacity: 1;
+}
+
+.accordion__item .arrow-up {
+    display: none;
+    opacity: 0;
+}
+
+.accordion__item.active .arrow-down {
+    display: none;
+    opacity: 0;
+}
+
+.accordion__item.active .arrow-up {
+    display: block;
+    opacity: 1;
+}
+
+/* Эффекты при наведении и активации */
+.accordion__toggle:hover .accordion__icon {
+    transform: scale(1.15);
+}
+
+.accordion__item.active .accordion__toggle .accordion__icon {
+    transform: translateY(-1px);
+}
+
+/* Стили для круглой версии иконки */
+.accordion__toggle--styled {
+    background: rgba(96, 165, 250, 0.05);
+    box-shadow: 0 2px 5px rgba(96, 165, 250, 0.1);
+}
+
+.accordion__toggle--styled:hover {
+    background: rgba(96, 165, 250, 0.15);
+    box-shadow: 0 3px 8px rgba(96, 165, 250, 0.2);
+}
+
+.accordion__item.active .accordion__toggle--styled {
+    background: rgba(96, 165, 250, 0.2);
+}
+
+/* Более плавное открытие/закрытие контента */
+.accordion__content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0, 1, 0, 1), padding 0.3s ease;
+    padding: 0 20px;
+}
+
+.accordion__item.active .accordion__content {
+    max-height: 1000px;
+    transition: max-height 0.7s cubic-bezier(0.5, 0, 1, 0), padding 0.3s ease;
+    padding-bottom: 20px;
+}
+
+/* Дополнительные анимации для контента */
+/* .accordion__content>div {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition-delay: 0.1s;
+}
+
+.accordion__item.active .accordion__content>div {
+    opacity: 1;
+    transform: translateY(0);
+} */
+
+/* Добавляем анимацию пульсации при инициализации для привлечения внимания */
+/* @keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(96, 165, 250, 0.4);
+    }
+
+    70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 8px rgba(96, 165, 250, 0);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(96, 165, 250, 0);
+    }
+} */
+
+/* .accordion__toggle.pulse {
+    animation: pulse 1.5s ease-in-out;
+} */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0.7;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Анимация для всей секции */

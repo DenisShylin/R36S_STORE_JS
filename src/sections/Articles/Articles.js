@@ -1,4 +1,5 @@
 // Articles.js - Инициализатор секции Articles с SEO-оптимизацией
+import { initFaqAccordion } from '/sections/Articles/accordion.js';
 export function initArticles() {
   // В App.js элементы загружаются со строчной первой буквой в id
   const articlesSection = document.getElementById('articles');
@@ -369,7 +370,9 @@ export function initArticles() {
 
   // Вызываем функцию добавления заголовка
   addSectionHeading();
-
+  setTimeout(() => {
+    initFaqAccordion();
+  }, 500);
   // Запускаем анимации с небольшой задержкой, чтобы DOM успел обработаться
   setTimeout(setupAnimations, 100);
 
