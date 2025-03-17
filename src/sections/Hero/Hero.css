@@ -139,7 +139,7 @@
     line-height: 1.6;
     color: rgba(255, 255, 255, 0.9);
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-    margin-bottom: 32px;
+    margin-bottom: 27px;
     font-weight: 400;
 }
 
@@ -164,7 +164,7 @@
 }
 
 .hero__pricing {
-    margin-bottom: 32px;
+    margin-bottom: 27px;
     display: flex;
     align-items: center;
     gap: 16px;
@@ -452,10 +452,7 @@
         font-size: 42px;
     }
 
-    .hero__content-wrapper {
-        margin-top: 20px;
-        /* При необходимости можно добавить отступ для мобильных устройств */
-    }
+
 
     .hero__container {
         padding: 80px 20px;
@@ -463,6 +460,7 @@
 
     .hero__content-wrapper {
         grid-template-columns: 1fr;
+        margin-top: 20px;
         gap: 5px;
         text-align: center;
     }

@@ -1,4 +1,4 @@
-// Reviews.js - Скрипт для секции отзывов
+// Reviews.js - Исправленный скрипт для секции отзывов
 
 // Функция инициализации секции отзывов
 export function initReviews() {
@@ -9,7 +9,7 @@ export function initReviews() {
   // Константа для определения мобильного устройства
   const MOBILE_BREAKPOINT = 1200;
 
-  // Путь к изображениям отзывов
+  // Путь к изображениям отзывов (оставляем оригинальные пути)
   const reviewImages = {
     review1: {
       webp: `${basename}img/reviews/imm_1_1x.webp`,
@@ -29,7 +29,7 @@ export function initReviews() {
     },
   };
 
-  // Данные отзывов
+  // Данные отзывов (оставляем оригинальные данные)
   const reviews = [
     {
       id: 1,
@@ -396,6 +396,27 @@ export function initReviews() {
 
     // Запускаем обработчик сразу после загрузки для правильной инициализации
     setTimeout(handleResize, 100);
+
+    // Добавляем базовую микроразметку для SEO (минимальное добавление)
+    const reviewsSection = document.getElementById('reviews');
+    if (reviewsSection && !reviewsSection.hasAttribute('itemscope')) {
+      reviewsSection.setAttribute('itemscope', '');
+      reviewsSection.setAttribute('itemtype', 'http://schema.org/Product');
+
+      // Добавляем только основные метатеги
+      const metaName = document.createElement('meta');
+      metaName.setAttribute('itemprop', 'name');
+      metaName.setAttribute('content', 'R36S Handheld Game Console');
+      reviewsSection.prepend(metaName);
+
+      const metaDesc = document.createElement('meta');
+      metaDesc.setAttribute('itemprop', 'description');
+      metaDesc.setAttribute(
+        'content',
+        'R36S Handheld Game Console with 3.5-inch IPS screen and retro games'
+      );
+      reviewsSection.prepend(metaDesc);
+    }
   }
 
   // Запускаем инициализацию

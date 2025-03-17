@@ -126,7 +126,7 @@ async function initApp() {
     <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
       <div style="text-align: center;">
         <div style="border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 50px; height: 50px; animation: spin 2s linear infinite; margin: 0 auto;"></div>
-        <p style="margin-top: 15px; font-family: Arial, sans-serif;">Загрузка...</p>
+        <p style="margin-top: 15px; font-family: Arial, sans-serif;">Loading...</p>
       </div>
     </div>
     <style>
