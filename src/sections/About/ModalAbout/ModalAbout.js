@@ -266,28 +266,27 @@ export function createModalAbout(parentElement) {
     if (!modalElement || !feature) return;
 
     modalElement.innerHTML = `
-      <div class="modal-about-content">
-        <button class="modal-about-close">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <line x1="18" y1="6" x2="6" y2="18" />
-            <line x1="6" y1="6" x2="18" y2="18" />
-          </svg>
-        </button>
-
-        <div class="modal-about-header">
-          <div class="modal-about-icon-wrapper">${feature.icon}</div>
-          <h3 class="modal-about-title">${feature.title}</h3>
-        </div>
+  <div class="modal-about-content">
+    <button class="modal-about-close" aria-label="Close modal">
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    
+    <div class="modal-about-header">
+      <div class="modal-about-icon-wrapper">${feature.icon}</div>
+      <h3 class="modal-about-title">${feature.title}</h3>
+    </div>
 
         <div class="modal-about-body">
           <div class="modal-about-media-container">
