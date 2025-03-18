@@ -1,127 +1,130 @@
-// App.js - Модифицированная версия
+// App.js - Fixed version
 
-// Импорт инициализаторов секций
-import { initHeader } from '/sections/Header/Header.js';
-import { initHero } from '/sections/Hero/Hero.js';
-import { initAbout } from '/sections/About/About.js';
-import { initFeatures } from '/sections/Features/Features.js';
-import { initCategories } from '/sections/Categories/Categories.js';
-import { initArticles } from '/sections/Articles/Articles.js';
-import { initReviews } from '/sections/Reviews/Reviews.js';
-import { initContact } from '/sections/Contact/Contact.js';
-import { initProducts } from '/sections/Products/Products.js';
-import { initFooter } from '/sections/Footer/Footer.js';
+// Import section initializers
+import { initHeader } from './sections/Header/Header.js';
+import { initHero } from './sections/Hero/Hero.js';
+import { initAbout } from './sections/About/About.js';
+import { initFeatures } from './sections/Features/Features.js';
+import { initCategories } from './sections/Categories/Categories.js';
+import { initArticles } from './sections/Articles/Articles.js';
+import { initReviews } from './sections/Reviews/Reviews.js';
+import { initContact } from './sections/Contact/Contact.js';
+import { initProducts } from './sections/Products/Products.js';
+import { initFooter } from './sections/Footer/Footer.js';
 
-// Импорт инициализаторов компонентов
-import { initMobileMenu } from '/components/MobileMenu/MobileMenu.js';
+// Import component initializers
+import { initMobileMenu } from './components/MobileMenu/MobileMenu.js';
 
-// Безопасный импорт Modal
-let initModal = () => console.log('Modal компонент недоступен');
+// Safe Modal import
+let initModal = () => console.log('Modal component unavailable');
 (async function loadModal() {
   try {
-    const module = await import('/components/Modal/ModalPortal.js');
+    const module = await import('./components/Modal/ModalPortal.js');
     initModal = module.initModal;
   } catch (error) {
-    console.log('Modal.js не загружен:', error);
+    console.log('Modal.js not loaded:', error);
   }
 })();
 
-// Функция проверки доступности ресурса перед fetch
+// Get the correct base path for GitHub Pages
+function getBasePath() {
+  const isDevelopment = import.meta.env.DEV;
+  return isDevelopment ? '/' : '/R36S_STORE_JS/';
+}
+
+// Check if resource exists before fetching
 async function checkResourceExists(url) {
   try {
     const response = await fetch(url, { method: 'HEAD' });
     return response.ok;
   } catch (error) {
-    console.warn(`Ресурс ${url} недоступен:`, error);
+    console.warn(`Resource ${url} is unavailable:`, error);
     return false;
   }
 }
 
-// Загрузка HTML-фрагментов секций с проверкой
+// Load HTML sections with proper path handling
 async function loadHtmlSection(name) {
-  // Получаем базовый путь для корректных URL
-  const isDevelopment = import.meta.env.MODE === 'development';
-  const basename = isDevelopment ? '/' : '/R36S_STORE_JS/';
+  const basename = getBasePath();
 
-  // Формируем URL с учетом базового пути
+  // Fix: Handle paths differently for GitHub Pages vs local development
+  // We need to look in the proper location based on how the build tool processes files
   const url = `${basename}sections/${name}/${name}.html`;
 
   try {
     const exists = await checkResourceExists(url);
 
     if (!exists) {
-      console.warn(`Секция ${name} недоступна, используем заглушку`);
+      console.warn(`Section ${name} is unavailable, using fallback`);
       return `<section id="${name.toLowerCase()}" class="section">
                 <div class="container">
-                  <h2>Секция ${name}</h2>
-                  <p>Контент будет доступен позже</p>
+                  <h2>Section ${name}</h2>
+                  <p>Content will be available later</p>
                 </div>
               </section>`;
     }
 
     const response = await fetch(url);
     if (!response.ok) {
-      throw new Error(`HTTP ошибка ${response.status}`);
+      throw new Error(`HTTP error ${response.status}`);
     }
     return await response.text();
   } catch (error) {
-    console.error(`Ошибка загрузки секции ${name}:`, error);
-    return `<div class="error-section">Ошибка загрузки секции ${name}</div>`;
+    console.error(`Error loading section ${name}:`, error);
+    return `<div class="error-section">Error loading section ${name}</div>`;
   }
 }
 
-// Загрузка HTML-фрагментов компонентов с проверкой
+// Load HTML components with proper path handling
 async function loadHtmlComponent(name) {
-  // Получаем базовый путь для корректных URL
-  const isDevelopment = import.meta.env.MODE === 'development';
-  const basename = isDevelopment ? '/' : '/R36S_STORE_JS/';
+  const basename = getBasePath();
 
-  // Формируем URL с учетом базового пути
+  // Fix: Corrected path resolution for components
   const url = `${basename}components/${name}/${name}.html`;
 
   try {
     const exists = await checkResourceExists(url);
 
     if (!exists) {
-      console.warn(`Компонент ${name} недоступен, используем заглушку`);
+      console.warn(`Component ${name} is unavailable, using fallback`);
       return `<div id="${name.toLowerCase()}" class="component">
                 <div class="container">
-                  <p>Компонент ${name} недоступен</p>
+                  <p>Component ${name} unavailable</p>
                 </div>
               </div>`;
     }
 
     const response = await fetch(url);
     if (!response.ok) {
-      throw new Error(`HTTP ошибка ${response.status}`);
+      throw new Error(`HTTP error ${response.status}`);
     }
     return await response.text();
   } catch (error) {
-    console.error(`Ошибка загрузки компонента ${name}:`, error);
-    return `<div class="error-component">Ошибка загрузки компонента ${name}</div>`;
+    console.error(`Error loading component ${name}:`, error);
+    return `<div class="error-component">Error loading component ${name}</div>`;
   }
 }
 
-// Безопасное выполнение инициализации компонентов
+// Safe initialization of components
 function safeInit(name, initFunction) {
   try {
     initFunction();
-    console.log(`${name} инициализирован`);
+    console.log(`${name} initialized`);
   } catch (error) {
-    console.error(`Ошибка инициализации ${name}:`, error);
+    console.error(`${name} initialization error:`, error);
   }
 }
 
-// Инициализация приложения
+// App initialization
 async function initApp() {
-  console.log('Инициализация приложения');
+  console.log('Initializing application');
   const root = document.getElementById('root');
   if (!root) {
-    console.error('Элемент #root не найден');
-    throw new Error('Элемент #root не найден');
+    console.error('#root element not found');
+    throw new Error('#root element not found');
   }
 
-  // Показываем индикатор загрузки
+  // Show loading indicator
   root.innerHTML = `
     <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
       <div style="text-align: center;">
@@ -137,28 +140,26 @@ async function initApp() {
     </style>
   `;
 
-  const isDevelopment = import.meta.env.MODE === 'development';
-  const basename = isDevelopment ? '/' : '/R36S_STORE_JS/';
-
-  console.log('Режим:', import.meta.env.MODE);
-  console.log('Базовый путь:', basename);
+  const basename = getBasePath();
+  console.log('Base path:', basename);
 
   try {
-    // Загрузка базовых HTML-фрагментов с обработкой ошибок
+    // Load basic HTML fragments with error handling
     const [headerHtml, mobileMenuHtml] = await Promise.all([
       loadHtmlSection('Header').catch(
-        () => '<header class="header">Заголовок сайта</header>'
+        () => '<header class="header">Site Header</header>'
       ),
       loadHtmlComponent('MobileMenu').catch(
         () => '<div class="mobile-menu"></div>'
       ),
     ]);
 
-    // Определение текущего маршрута
+    // Determine current route
     const path = window.location.pathname.replace(basename, '/');
+    console.log('Current path:', path);
 
     if (path === '/' || path === '/index.html') {
-      // Главная страница - загружаем все секции параллельно для ускорения
+      // Main page - load all sections in parallel for speed
       const sectionsPromises = {
         hero: loadHtmlSection('Hero'),
         about: loadHtmlSection('About'),
@@ -171,19 +172,19 @@ async function initApp() {
         footer: loadHtmlSection('Footer'),
       };
 
-      // Ждем загрузки всех секций, даже если некоторые завершились с ошибкой
+      // Wait for all sections to load, even if some fail
       const results = await Promise.allSettled(Object.values(sectionsPromises));
       const sections = {};
 
-      // Конвертируем результаты Promise.allSettled в удобную структуру
+      // Convert Promise.allSettled results to a convenient structure
       Object.keys(sectionsPromises).forEach((key, index) => {
         sections[key] =
           results[index].status === 'fulfilled'
             ? results[index].value
-            : `<section id="${key}" class="error-section">Ошибка загрузки ${key}</section>`;
+            : `<section id="${key}" class="error-section">Error loading ${key}</section>`;
       });
 
-      // Вставляем HTML в DOM
+      // Insert HTML into DOM
       root.innerHTML = `
         ${headerHtml}
         ${mobileMenuHtml}
@@ -200,7 +201,7 @@ async function initApp() {
         ${sections.footer}
       `;
 
-      // Безопасная инициализация скриптов секций и компонентов
+      // Safe initialization of section and component scripts
       safeInit('Header', initHeader);
       safeInit('MobileMenu', initMobileMenu);
       safeInit('Hero', initHero);
@@ -214,7 +215,7 @@ async function initApp() {
       safeInit('Footer', initFooter);
       safeInit('Modal', initModal);
     } else {
-      // Страница 404
+      // 404 page
       const footerHtml = await loadHtmlSection('Footer').catch(
         () => '<footer class="footer"><p>© 2025</p></footer>'
       );
@@ -225,8 +226,8 @@ async function initApp() {
         <div class="not-found">
           <div class="container">
             <h1>404</h1>
-            <p>Страница не найдена</p>
-            <a href="${basename}" class="back-home">Вернуться на главную</a>
+            <p>Page not found</p>
+            <a href="${basename}" class="back-home">Return to home page</a>
           </div>
         </div>
         ${footerHtml}
@@ -237,22 +238,22 @@ async function initApp() {
       safeInit('Footer', initFooter);
     }
 
-    console.log('Приложение инициализировано');
+    console.log('Application initialized');
   } catch (error) {
-    console.error('Ошибка при инициализации приложения:', error);
+    console.error('Application initialization error:', error);
     root.innerHTML = `
       <div class="error">
-        <h1>Ошибка</h1>
-        <p>Произошла ошибка при загрузке страницы:</p>
+        <h1>Error</h1>
+        <p>An error occurred while loading the page:</p>
         <pre>${error.message}</pre>
-        <button onclick="location.reload()">Перезагрузить страницу</button>
+        <button onclick="location.reload()">Reload page</button>
       </div>
     `;
-    throw error; // Пробрасываем ошибку дальше для обработки во внешнем обработчике
+    throw error; // Propagate error for external handler
   }
 }
 
-// Обработка хеша в URL и прокрутка к соответствующей секции
+// Handle URL hash and scroll to corresponding section
 function handleHash() {
   if (window.location.hash) {
     const targetId = window.location.hash.substring(1);
@@ -272,18 +273,18 @@ function handleHash() {
           top: targetPosition,
           behavior: 'smooth',
         });
-      }, 300); // Небольшая задержка, чтобы DOM успел обработаться
+      }, 300); // Small delay to allow DOM to process
     }
   }
 }
 
-// Обработка клика по якорным ссылкам
+// Handle clicks on anchor links
 function setupAnchorLinks() {
   document.body.addEventListener('click', e => {
-    // Находим ближайший элемент a от целевого элемента клика
+    // Find the closest a element from the click target
     const link = e.target.closest('a');
 
-    // Если клик был по ссылке и она внутренняя (не внешняя)
+    // If click was on a link and it's internal (not external)
     if (
       link &&
       link.href &&
@@ -292,11 +293,11 @@ function setupAnchorLinks() {
     ) {
       const url = new URL(link.href);
 
-      // Если это хеш-ссылка на якорь на текущей странице
+      // If this is a hash link to an anchor on current page
       if (url.pathname === window.location.pathname && url.hash) {
         e.preventDefault();
 
-        // Обновляем хеш и прокручиваем к элементу
+        // Update hash and scroll to element
         window.history.pushState(null, '', url.hash);
         handleHash();
       }
@@ -304,15 +305,15 @@ function setupAnchorLinks() {
   });
 }
 
-// Запускаем приложение после загрузки DOM с ограничением по времени
+// Start application after DOM loads with time limit
 document.addEventListener('DOMContentLoaded', () => {
-  // Показать временный контент пока загружается приложение
+  // Show temporary content while app loads
   const root = document.getElementById('root');
   if (root) {
     root.innerHTML = `
       <div style="padding: 20px; text-align: center;">
         <div style="border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; margin: 0 auto;"></div>
-        <p style="margin-top: 10px;">Загрузка приложения...</p>
+        <p style="margin-top: 10px;">Loading application...</p>
       </div>
       <style>
         @keyframes spin {
@@ -323,32 +324,31 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
   }
 
-  // Запускаем инициализацию с таймаутом для защиты от бесконечного ожидания
+  // Start initialization with timeout for protection against infinite waiting
   const appInitPromise = initApp();
   const timeoutPromise = new Promise((_, reject) => {
     setTimeout(
-      () =>
-        reject(new Error('Превышено время ожидания инициализации (15 сек)')),
+      () => reject(new Error('Initialization timeout exceeded (15 sec)')),
       15000
     );
   });
 
-  // Используем Promise.race для ограничения времени ожидания
+  // Use Promise.race to limit waiting time
   Promise.race([appInitPromise, timeoutPromise])
     .then(() => {
-      // После инициализации выполняем действия с хешем и якорями
+      // After initialization, handle hash and anchors
       handleHash();
       setupAnchorLinks();
     })
     .catch(error => {
-      console.error('Ошибка инициализации:', error);
+      console.error('Initialization error:', error);
       if (root) {
         root.innerHTML = `
           <div style="padding: 20px; text-align: center; font-family: Arial, sans-serif;">
-            <h1>Не удалось загрузить приложение</h1>
+            <h1>Failed to load application</h1>
             <p>${error.message}</p>
             <button onclick="location.reload()" style="padding: 10px 20px; margin-top: 15px; cursor: pointer;">
-              Попробовать снова
+              Try again
             </button>
           </div>
         `;
@@ -356,8 +356,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Обработка навигации вперед/назад в браузере
+// Handle browser forward/back navigation
 window.addEventListener('popstate', handleHash);
 
-// Экспортируем функции, которые могут понадобиться в других модулях
+// Export functions that may be needed in other modules
 export { handleHash, setupAnchorLinks };
