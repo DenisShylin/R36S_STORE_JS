@@ -7,78 +7,80 @@ import path from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// Helper function to copy directories recursively during build
+// Вспомогательная функция для копирования директорий рекурсивно при сборке
 function copyDirectory(source, destination) {
-  // Create destination directory if it doesn't exist
+  // Создаем директорию назначения, если она не существует
   if (!fs.existsSync(destination)) {
     fs.mkdirSync(destination, { recursive: true });
   }
 
-  // Read source directory
+  // Читаем исходную директорию
   const files = fs.readdirSync(source);
 
-  // Copy each file/directory
+  // Копируем каждый файл/директорию
   for (const file of files) {
     const sourcePath = path.join(source, file);
     const destPath = path.join(destination, file);
 
-    // Get file stats
+    // Получаем статистику файла
     const stats = fs.statSync(sourcePath);
 
     if (stats.isDirectory()) {
-      // Recursively copy subdirectories
+      // Рекурсивно копируем поддиректории
       copyDirectory(sourcePath, destPath);
     } else {
-      // Copy file
+      // Копируем файл
       fs.copyFileSync(sourcePath, destPath);
     }
   }
 }
 
 export default defineConfig(({ mode }) => {
-  // Define production base path for GitHub Pages
+  // Определяем базовый путь для GitHub Pages
   const isProd = mode === 'production';
   const base = isProd ? '/R36S_STORE_JS/' : '/';
 
-  // Custom build plugin to copy HTML fragments to dist
+  // Пользовательский плагин для копирования HTML-фрагментов в dist
   const copyHtmlFragmentsPlugin = {
     name: 'copy-html-fragments',
     closeBundle: () => {
       if (isProd) {
-        // Copy section HTML files to dist
+        // Копируем HTML-файлы секций в dist
         const sectionsDir = resolve(__dirname, './src/sections');
         const destSectionsDir = resolve(__dirname, './dist/sections');
 
         if (fs.existsSync(sectionsDir)) {
           copyDirectory(sectionsDir, destSectionsDir);
-          console.log('✓ Copied section HTML fragments to dist/sections');
+          console.log('✓ Скопированы HTML-фрагменты секций в dist/sections');
         }
 
-        // Copy component HTML files to dist
+        // Копируем HTML-файлы компонентов в dist
         const componentsDir = resolve(__dirname, './src/components');
         const destComponentsDir = resolve(__dirname, './dist/components');
 
         if (fs.existsSync(componentsDir)) {
           copyDirectory(componentsDir, destComponentsDir);
-          console.log('✓ Copied component HTML fragments to dist/components');
+          console.log(
+            '✓ Скопированы HTML-фрагменты компонентов в dist/components'
+          );
         }
       }
     },
   };
 
   return {
-    // Base path for GitHub Pages
+    // Базовый путь для GitHub Pages
     base,
 
-    // Set project root to src directory
+    // Устанавливаем корень проекта в директорию src
     root: 'src',
 
-    // Configure path resolution
+    // Настраиваем разрешение путей
     resolve: {
       alias: {
         '@': resolve(__dirname, './src'),
         '~@': resolve(__dirname, './src'),
-        // Configure aliases for absolute imports
+        // Настраиваем алиасы для абсолютных импортов
         '/sections': resolve(__dirname, './src/sections'),
         '/components': resolve(__dirname, './src/components'),
         '/js': resolve(__dirname, './src/js'),
@@ -90,10 +92,10 @@ export default defineConfig(({ mode }) => {
       },
     },
 
-    // Public directory relative to project root, not src root
+    // Публичная директория относительно корня проекта, не корня src
     publicDir: resolve(__dirname, './public'),
 
-    // Include various asset types
+    // Включаем различные типы ресурсов
     assetsInclude: [
       '**/*.MP4',
       '**/*.mp4',
@@ -104,23 +106,23 @@ export default defineConfig(({ mode }) => {
       '**/*.jpg',
       '**/*.jpeg',
       '**/*.svg',
-      '**/*.html', // Include HTML fragments
+      '**/*.html', // Включаем HTML-фрагменты
     ],
 
-    // Development server config
+    // Конфигурация сервера разработки
     server: {
       port: 5173,
       open: true,
       host: true,
-      // Allow access to files outside src root directory
+      // Разрешаем доступ к файлам вне корневой директории src
       fs: {
         allow: ['.', '..'],
       },
     },
 
-    // Build configuration
+    // Конфигурация сборки
     build: {
-      // Path relative to src root
+      // Путь относительно корня src
       outDir: '../dist',
       assetsDir: 'assets',
       minify: 'esbuild',
@@ -128,22 +130,29 @@ export default defineConfig(({ mode }) => {
       emptyOutDir: true,
       cssCodeSplit: true,
 
-      // Configure Rollup options
+      // Настраиваем опции Rollup
       rollupOptions: {
         input: {
           main: resolve(__dirname, './src/index.html'),
         },
         output: {
+          // Устанавливаем правильный формат вывода
+          format: 'es',
+          // Фиксируем имя файла main.js для избежания хеша
+          entryFileNames: chunkInfo => {
+            return chunkInfo.name === 'main'
+              ? 'js/main.js'
+              : 'assets/js/[name].[hash].js';
+          },
           assetFileNames: 'assets/[name].[hash][extname]',
           chunkFileNames: 'assets/js/[name].[hash].js',
-          entryFileNames: 'assets/js/[name].[hash].js',
         },
       },
 
       target: 'es2015',
     },
 
-    // Add custom plugins
+    // Добавляем пользовательские плагины
     plugins: [copyHtmlFragmentsPlugin],
   };
 });

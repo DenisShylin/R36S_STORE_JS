@@ -24,15 +24,15 @@ jobs:
 
       - name: Print Project Structure 🔍
         run: |
-          echo "Project root structure:"
+          echo "Структура корня проекта:"
           ls -la
-          echo "Source directory structure:"
+          echo "Структура директории src:"
           ls -la src
-          echo "Source sections directory:"
-          ls -la src/sections || echo "Sections directory not found"
-          echo "Source components directory:"
-          ls -la src/components || echo "Components directory not found"
-          echo "Checking vite.config.js content:"
+          echo "Структура директории секций src:"
+          ls -la src/sections || echo "Директория секций не найдена"
+          echo "Структура директории компонентов src:"
+          ls -la src/components || echo "Директория компонентов не найдена"
+          echo "Проверка содержимого vite.config.js:"
           cat vite.config.js
 
       - name: Print package.json scripts 📜
@@ -47,37 +47,37 @@ jobs:
 
       - name: Check build output 📊
         run: |
-          echo "Build output directory:"
-          ls -la dist || echo "Dist directory not found"
+          echo "Директория сборки:"
+          ls -la dist || echo "Директория dist не найдена"
           if [ -d "dist" ]; then
-            echo "Contents of dist directory:"
+            echo "Содержимое директории dist:"
             ls -la dist
-            echo "Checking index.html in dist:"
-            cat dist/index.html || echo "index.html not found in dist"
+            echo "Проверка index.html в dist:"
+            cat dist/index.html || echo "index.html не найден в dist"
           fi
 
-      # Manually copy HTML fragments if needed
-      - name: Ensure section and component HTML files are copied 🔧
+      # Вручную копируем HTML-фрагменты при необходимости
+      - name: Копирование HTML-файлов секций и компонентов 🔧
         run: |
           if [ -d "dist" ] && [ -d "src/sections" ]; then
-            echo "Manually copying section HTML files..."
+            echo "Вручную копируем файлы HTML-секций..."
             mkdir -p dist/sections
             cp -R src/sections/* dist/sections/
           fi
 
           if [ -d "dist" ] && [ -d "src/components" ]; then
-            echo "Manually copying component HTML files..."
+            echo "Вручную копируем файлы HTML-компонентов..."
             mkdir -p dist/components
             cp -R src/components/* dist/components/
           fi
 
-          echo "Final dist directory structure:"
+          echo "Финальная структура директории dist:"
           find dist -type f | sort
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: dist # Make sure dist is in the root, not in src/dist
+          folder: dist
           clean: true
           token: ${{ secrets.GITHUB_TOKEN }}

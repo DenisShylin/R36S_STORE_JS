@@ -1,7 +1,6 @@
-// main.js - Application entry point
+// main.js - Точка входа в приложение
 
-// Import CSS files
-// Using relative paths to avoid path resolution issues
+// Импорт CSS файлов с относительными путями от корня проекта
 import '../index.css';
 import '../sections/Hero/Hero.css';
 import '../sections/Header/Header.css';
@@ -17,37 +16,37 @@ import '../sections/About/ModalAbout/ModalAbout.css';
 import '../components/MobileMenu/MobileMenu.css';
 import '../sections/Footer/PartnershipModal/PartnershipModal.css';
 
-// Import application entry point with correct path
+// Импорт точки входа в приложение с правильным путем
 import '../App.js';
 
-console.log('Main.js initialized');
+console.log('Main.js инициализирован');
 
-// Helper function to check browser compatibility
+// Вспомогательная функция для определения поддержки браузером
 function checkBrowserCompatibility() {
-  // Check IntersectionObserver support (for scroll animations)
+  // Проверка поддержки IntersectionObserver (для анимаций при скролле)
   const hasIntersectionObserver = 'IntersectionObserver' in window;
 
-  // Check Flexbox support
+  // Проверка поддержки Flexbox
   const hasFlexbox = (function () {
     const el = document.createElement('div');
     el.style.display = 'flex';
     return el.style.display === 'flex';
   })();
 
-  // Check CSS Grid support
+  // Проверка поддержки CSS Grid
   const hasGrid = (function () {
     const el = document.createElement('div');
     el.style.display = 'grid';
     return el.style.display === 'grid';
   })();
 
-  // Log compatibility results
-  console.log('Browser support:');
+  // Логирование результатов проверок
+  console.log('Поддержка браузера:');
   console.log('- IntersectionObserver:', hasIntersectionObserver);
   console.log('- Flexbox:', hasFlexbox);
   console.log('- CSS Grid:', hasGrid);
 
-  // Add classes to body for conditional styling
+  // Добавление классов к body для условного стилизования
   if (!hasIntersectionObserver)
     document.body.classList.add('no-intersection-observer');
   if (!hasFlexbox) document.body.classList.add('no-flexbox');
@@ -60,52 +59,52 @@ function checkBrowserCompatibility() {
   };
 }
 
-// Initialize page after DOM load
+// Инициализация страницы после загрузки DOM
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('DOM loaded');
+  console.log('DOM загружен');
 
-  // Check browser compatibility
+  // Проверка совместимости браузера
   const compatibility = checkBrowserCompatibility();
 
-  // Add page load time info to console for debugging
+  // Добавим информацию о загрузке страницы в консоль для отладки
   const loadTime = performance.now();
-  console.log(`Page loaded in ${loadTime.toFixed(2)}ms`);
+  console.log(`Страница загружена за ${loadTime.toFixed(2)}ms`);
 
-  // Register service worker for offline functionality (if needed)
+  // Регистрация сервис-воркера для офлайн-функциональности (если нужно)
   if ('serviceWorker' in navigator && import.meta.env.PROD) {
     window.addEventListener('load', () => {
-      // Get the correct base path for GitHub Pages
+      // Правильный базовый путь для GitHub Pages
       const base = import.meta.env.DEV ? '/' : '/R36S_STORE_JS/';
 
       navigator.serviceWorker
         .register(`${base}service-worker.js`)
         .then(registration => {
-          console.log('ServiceWorker registered:', registration);
+          console.log('ServiceWorker зарегистрирован:', registration);
         })
         .catch(error => {
-          console.error('ServiceWorker registration error:', error);
+          console.error('Ошибка регистрации ServiceWorker:', error);
         });
     });
   }
 
-  // Track page performance
+  // Отслеживание производительности страницы
   if ('performance' in window && 'getEntriesByType' in performance) {
     window.addEventListener('load', () => {
       const pageNavigation = performance.getEntriesByType('navigation')[0];
       const pageResources = performance.getEntriesByType('resource');
 
-      // Total page load time
+      // Общее время загрузки страницы
       console.log(
-        `Total load time: ${pageNavigation.loadEventEnd.toFixed(2)}ms`
+        `Общее время загрузки: ${pageNavigation.loadEventEnd.toFixed(2)}ms`
       );
 
-      // Count resources and their total size
+      // Количество ресурсов и их общий размер
       const totalResourceSize = pageResources.reduce(
         (acc, resource) => acc + resource.transferSize,
         0
       );
       console.log(
-        `Loaded ${pageResources.length} resources (${(
+        `Загружено ${pageResources.length} ресурсов (${(
           totalResourceSize / 1024
         ).toFixed(2)} KB)`
       );
@@ -113,9 +112,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// Handle global window errors
+// Обработка ошибок на уровне window
 window.onerror = function (message, source, lineno, colno, error) {
-  console.error('Global error:', {
+  console.error('Глобальная ошибка:', {
     message,
     source,
     lineno,
@@ -123,10 +122,10 @@ window.onerror = function (message, source, lineno, colno, error) {
     error,
   });
 
-  return false; // Let browser also show errors in console
+  return false; // Пусть браузер также показывает ошибки в консоли
 };
 
-// Export app version for debugging
+// Экспорт версии приложения для отладки
 window.appVersion = {
   version: '1.0.0',
   buildDate: new Date().toISOString(),
@@ -134,4 +133,4 @@ window.appVersion = {
   basePath: import.meta.env.DEV ? '/' : '/R36S_STORE_JS/',
 };
 
-console.log('Main.js execution completed');
+console.log('Main.js выполнение завершено');
