@@ -2,25 +2,47 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-// Получаем текущую директорию в ES модулях
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Путь к директориям
 const distDir = path.resolve(__dirname, 'dist');
 const assetsDir = path.resolve(__dirname, 'dist/assets');
+const jsDir = path.resolve(assetsDir, 'js');
 
 try {
   // Найти HTML файл в assets
-  const files = fs.readdirSync(assetsDir);
-  const htmlFile = files.find(file => file.endsWith('.html'));
+  const assetFiles = fs.readdirSync(assetsDir);
+  const htmlFile = assetFiles.find(file => file.endsWith('.html'));
 
   if (htmlFile) {
     console.log(`Найден HTML файл: ${htmlFile}`);
 
     // Прочитать содержимое правильного HTML
     const htmlPath = path.join(assetsDir, htmlFile);
-    const htmlContent = fs.readFileSync(htmlPath, 'utf-8');
+    let htmlContent = fs.readFileSync(htmlPath, 'utf-8');
+
+    // Найти JS файл main в директории assets/js
+    let mainJsPath = '';
+    if (fs.existsSync(jsDir)) {
+      const jsFiles = fs.readdirSync(jsDir);
+      const mainJsFile = jsFiles.find(
+        file => file.startsWith('main.') && file.endsWith('.js')
+      );
+
+      if (mainJsFile) {
+        console.log(`Найден Main JS файл: ${mainJsFile}`);
+        mainJsPath = `./assets/js/${mainJsFile}`;
+      }
+    }
+
+    // Исправить путь к main.js если найден
+    if (mainJsPath) {
+      htmlContent = htmlContent.replace(
+        /<script type="module" src="\.\/js\/main\.js"><\/script>/,
+        `<script type="module" src="${mainJsPath}"></script>`
+      );
+    }
 
     // Записать в основной index.html
     fs.writeFileSync(path.join(distDir, 'index.html'), htmlContent);
