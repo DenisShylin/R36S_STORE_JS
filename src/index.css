@@ -1,23 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&display=swap');
 
-/* Импорт стилей секций */
-/* @import './sections/hero.css';
-@import './sections/header.css';
-@import './sections/features.css';
-@import './sections/about.css';
-@import './sections/articles.css';
-@import './sections/categories.css';
-@import './sections/products.css';
-@import './sections/reviews.css';
-@import './sections/contact.css';
-@import './sections/footer.css';
-@import './components/scroll.css';
-
-
-@import './components/modal.css';
-@import './components/mobileMenu.css';
- */
-
 
 /* Глобальные CSS переменные */
 :root {

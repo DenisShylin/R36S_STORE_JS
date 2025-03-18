@@ -1,23 +1,23 @@
 // main.js - Точка входа в приложение
 
 // Импорт CSS файлов с относительными путями от корня проекта
-import '../index.css';
-import '../sections/Hero/Hero.css';
-import '../sections/Header/Header.css';
-import '../sections/About/About.css';
-import '../sections/Articles/Articles.css';
-import '../sections/Categories/Categories.css';
-import '../sections/Contact/Contact.css';
-import '../sections/Features/Features.css';
-import '../sections/Footer/Footer.css';
-import '../sections/Products/Products.css';
-import '../sections/Reviews/Reviews.css';
-import '../sections/About/ModalAbout/ModalAbout.css';
-import '../components/MobileMenu/MobileMenu.css';
-import '../sections/Footer/PartnershipModal/PartnershipModal.css';
+import './index.css';
+import './sections/Hero/Hero.css';
+import './sections/Header/Header.css';
+import './sections/About/About.css';
+import './sections/Articles/Articles.css';
+import './sections/Categories/Categories.css';
+import './sections/Contact/Contact.css';
+import './sections/Features/Features.css';
+import './sections/Footer/Footer.css';
+import './sections/Products/Products.css';
+import './sections/Reviews/Reviews.css';
+import './sections/About/ModalAbout/ModalAbout.css';
+import './components/MobileMenu/MobileMenu.css';
+import './sections/Footer/PartnershipModal/PartnershipModal.css';
 
 // Импорт точки входа в приложение с правильным путем
-import '../App.js';
+import './App.js';
 
 console.log('Main.js инициализирован');
 

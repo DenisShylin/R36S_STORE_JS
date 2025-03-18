@@ -39,8 +39,25 @@ try {
     // Исправить путь к main.js если найден
     if (mainJsPath) {
       htmlContent = htmlContent.replace(
-        /<script type="module" src="\.\/js\/main\.js"><\/script>/,
-        `<script type="module" src="${mainJsPath}"></script>`
+        /<script type="module" src="\.\/main\.js"><\/script>/,
+        `<script type="module">
+    // Базовая инициализация приложения
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('Приложение R36S инициализировано');
+      
+      // Проверка, доступен ли App.js
+      import('./assets/js/App.js')
+        .then(module => {
+          const initApp = module.default || module.initApp;
+          if (typeof initApp === 'function') {
+            initApp();
+          }
+        })
+        .catch(error => {
+          console.error('Ошибка загрузки App.js:', error);
+        });
+    });
+  </script>`
       );
     }
 
