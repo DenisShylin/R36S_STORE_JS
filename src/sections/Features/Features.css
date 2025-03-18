@@ -301,6 +301,40 @@ html {
     }
 }
 
+@media (max-width: 1280px) {
+    .features__container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+    }
+
+    .features__content {
+        max-width: 100%;
+    }
+
+    .features__title {
+        font-size: 36px;
+    }
+
+    .features__image-wrapper {
+        transform: perspective(1000px) rotateY(0);
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .features__buttons {
+        justify-content: center;
+        gap: 16px;
+    }
+
+    .features__button,
+    .features__button-secondary {
+        padding: 14px 28px;
+        font-size: 16px;
+    }
+}
+
+
 /* Медиа запросы */
 @media (max-width: 992px) {
     .features__container {

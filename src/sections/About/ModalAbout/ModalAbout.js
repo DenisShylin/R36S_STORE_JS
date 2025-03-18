@@ -177,6 +177,9 @@ export function createModalAbout(parentElement) {
   function createModalElement() {
     const modalDiv = document.createElement('div');
     modalDiv.className = 'modal-about-overlay';
+    modalDiv.setAttribute('role', 'dialog');
+    modalDiv.setAttribute('aria-modal', 'true');
+    modalDiv.setAttribute('tabindex', '-1');
     modalDiv.style.display = 'none';
 
     modalDiv.addEventListener('click', close);
@@ -196,6 +199,9 @@ export function createModalAbout(parentElement) {
           src="${feature.colorImages[currentImageIndex]}"
           alt="R36S Color Variant ${currentImageIndex + 1}"
           class="modal-about-image"
+          loading="lazy"
+          width="400" 
+          height="400"
           onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzMzMyIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LXNpemU9IjI0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBhbGlnbm1lbnQtYmFzZWxpbmU9Im1pZGRsZSIgZmlsbD0iI2ZmZiI+Q29sb3IgVmFyaWFudCBJbWFnZTwvdGV4dD48L3N2Zz4=';"
         />
       `;
@@ -210,7 +216,9 @@ export function createModalAbout(parentElement) {
           muted
           loop
           playsInline
-          preload="auto"
+          preload="metadata"
+          width="640" 
+          height="360"
           poster="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzMzMyIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LXNpemU9IjI0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBhbGlnbm1lbnQtYmFzZWxpbmU9Im1pZGRsZSIgZmlsbD0iI2ZmZiI+VmlkZW8gLSAke2ZlYXR1cmUuaW1hZ2VBbHR9PC90ZXh0Pjwvc3ZnPg=="
         >
           <source src="${feature.videoUrl}" type="video/mp4" />
@@ -226,6 +234,9 @@ export function createModalAbout(parentElement) {
         src="${feature.imageUrl}"
         alt="${feature.imageAlt || 'Feature image'}"
         class="modal-about-image"
+        loading="lazy"
+        width="400" 
+        height="400"
         onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzMzMyIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LXNpemU9IjI0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBhbGlnbm1lbnQtYmFzZWxpbmU9Im1pZGRsZSIgZmlsbD0iI2ZmZiI+SW1hZ2UgLSAke2ZlYXR1cmUuaW1hZ2VBbHR9PC90ZXh0Pjwvc3ZnPg==';"
       />
     `
@@ -261,46 +272,107 @@ export function createModalAbout(parentElement) {
     }
   }
 
-  // Обновление содержимого модального окна
+  // Обновление содержимого модального окна с добавлением структурированных данных
   function updateModalContent() {
     if (!modalElement || !feature) return;
 
+    // Создаем структурированные данные для текущей функции
+    const structuredData = {
+      '@context': 'https://schema.org',
+      '@type': 'ItemPage',
+      mainEntity: {
+        '@type': 'Product',
+        name: 'R36S Handheld Game Console',
+        description: feature.fullDescription,
+        image:
+          feature.imageUrl ||
+          (feature.colorImages ? feature.colorImages[0] : ''),
+        offers: {
+          '@type': 'Offer',
+          price: '35.48',
+          priceCurrency: 'USD',
+          url: 'https://www.aliexpress.com/item/1005007171465465.html',
+        },
+        category: 'Video Game Console',
+        feature: feature.title,
+      },
+    };
+
+    // Добавляем FAQ (если есть вопросы)
+    if (feature.id === 1) {
+      // Для демонстрации добавляем FAQ только для первого элемента
+      structuredData.mainEntity.faqPage = {
+        '@type': 'FAQPage',
+        mainEntity: [
+          {
+            '@type': 'Question',
+            name: 'How many games are included in the R36S console?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'The R36S console includes over 15,000 classic retro games from various platforms.',
+            },
+          },
+        ],
+      };
+    }
+
+    // JSON-LD для структурированных данных
+    const structuredDataScript = `
+      <script type="application/ld+json">
+        ${JSON.stringify(structuredData)}
+      </script>
+    `;
+
     modalElement.innerHTML = `
-  <div class="modal-about-content">
-    <button class="modal-about-close" aria-label="Close modal">
-      <svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <line x1="18" y1="6" x2="6" y2="18"></line>
-        <line x1="6" y1="6" x2="18" y2="18"></line>
-      </svg>
-    </button>
-    
-    <div class="modal-about-header">
-      <div class="modal-about-icon-wrapper">${feature.icon}</div>
-      <h3 class="modal-about-title">${feature.title}</h3>
-    </div>
+      ${structuredDataScript}
+      <div class="modal-about-content" itemscope itemtype="https://schema.org/Product">
+        <meta itemprop="name" content="R36S Handheld Game Console" />
+        <meta itemprop="description" content="${
+          feature.title
+        } for R36S console" />
+        <meta itemprop="sku" content="R36S-${feature.id}" />
+        <meta itemprop="brand" content="R36S" />
+        <meta itemprop="productID" content="R36S-F${feature.id}" />
+        
+        <button class="modal-about-close" aria-label="Close modal">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+        
+        <div class="modal-about-header">
+          <div class="modal-about-icon-wrapper" aria-hidden="true">${
+            feature.icon
+          }</div>
+          <h3 class="modal-about-title" itemprop="name">${feature.title}</h3>
+        </div>
 
         <div class="modal-about-body">
-          <div class="modal-about-media-container">
+          <div class="modal-about-media-container" itemprop="image">
             ${renderMedia()}
           </div>
           
           <div class="modal-about-content-container">
-            <div class="modal-about-stats">
+            <div class="modal-about-stats" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
               <div class="modal-about-price-wrapper">
                 <span class="modal-about-original-price">US $108.06</span>
-                <span class="modal-about-current-price">
+                <span class="modal-about-current-price" itemprop="price" content="35.48">
                   $35.48
-                  <span style="font-size: 24px">US</span>
+                  <span style="font-size: 24px" itemprop="priceCurrency" content="USD">US</span>
                 </span>
+                <meta itemprop="availability" content="https://schema.org/InStock" />
+                <meta itemprop="url" content="https://www.aliexpress.com/item/1005007171465465.html" />
               </div>
 
               <a
@@ -308,6 +380,7 @@ export function createModalAbout(parentElement) {
                 class="modal-about-button modal-about-button--primary"
                 target="_blank"
                 rel="noopener noreferrer"
+                itemprop="url"
               >
                 <span class="modal-about-button-pulse"></span>
                 <span class="modal-about-button-text">BUY NOW -68%</span>
@@ -315,7 +388,7 @@ export function createModalAbout(parentElement) {
               </a>
             </div>
 
-            <div class="modal-about-description">
+            <div class="modal-about-description" itemprop="description">
               ${feature.fullDescription}
             </div>
           </div>
@@ -336,7 +409,7 @@ export function createModalAbout(parentElement) {
     }
   }
 
-  // Открытие модального окна
+  // Открытие модального окна с поддержкой истории браузера
   function open(featureData) {
     feature = featureData;
 
@@ -347,9 +420,20 @@ export function createModalAbout(parentElement) {
     // Обновление содержимого модального окна
     updateModalContent();
 
+    // Сохраняем текущий URL для возврата при закрытии
+    const currentUrl = window.location.href;
+
+    // Добавляем параметр в URL для поддержки истории
+    const newUrl = new URL(currentUrl);
+    newUrl.searchParams.set('feature', feature.id);
+    window.history.pushState({ featureId: feature.id }, '', newUrl);
+
     // Отображение модального окна
     modalElement.style.display = 'flex';
     isOpen = true;
+
+    // Фокус на модальном окне для клавиатурной навигации
+    modalElement.focus();
 
     // Добавление обработчиков событий
     window.addEventListener('keydown', handleEscPress);
@@ -358,10 +442,20 @@ export function createModalAbout(parentElement) {
     // Настройка смены изображений цветов при необходимости
     setupColorImagesRotation();
 
+    // Отслеживание события навигации назад
+    window.addEventListener('popstate', handlePopState);
+
     return { close };
   }
 
-  // Закрытие модального окна
+  // Обработчик события popstate для поддержки истории браузера
+  function handlePopState(event) {
+    if (isOpen && (!event.state || !event.state.featureId)) {
+      close();
+    }
+  }
+
+  // Закрытие модального окна с поддержкой истории браузера
   function close() {
     if (!isOpen || !modalElement) return;
 
@@ -370,6 +464,7 @@ export function createModalAbout(parentElement) {
 
     // Удаление обработчиков событий
     window.removeEventListener('keydown', handleEscPress);
+    window.removeEventListener('popstate', handlePopState);
     document.body.style.overflow = 'visible';
 
     // Очистка интервала смены изображений
@@ -377,6 +472,11 @@ export function createModalAbout(parentElement) {
       clearInterval(colorImagesInterval);
       colorImagesInterval = null;
     }
+
+    // Удаляем параметр из URL
+    const currentUrl = new URL(window.location.href);
+    currentUrl.searchParams.delete('feature');
+    window.history.pushState({}, '', currentUrl);
   }
 
   // Уничтожение и очистка модального окна

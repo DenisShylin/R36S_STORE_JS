@@ -22,16 +22,15 @@
     border-radius: 20px;
     width: 100%;
     max-width: 980px;
-    /* Увеличенная максимальная ширина */
     max-height: 85vh;
-    /* Увеличенная максимальная высота */
     position: relative;
     animation: modalAboutShow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     backdrop-filter: blur(12px);
     overflow: hidden;
-    /* Изменено с overflow-y: auto на overflow: hidden */
     display: flex;
     flex-direction: column;
+    will-change: transform, opacity;
+    /* Улучшает производительность анимаций */
 }
 
 .modal-about-close {
@@ -59,10 +58,8 @@
 
 .modal-about-close:before {
     content: "×";
-    /* Используем символ × вместо SVG */
-    font-size: 32px;
-    /* font-weight: bold; */
-    /* line-height: 1; */
+    font-size: 24px;
+
 }
 
 .modal-about-header {
@@ -94,29 +91,41 @@
     padding: 26px;
     display: flex;
     flex-direction: row;
-    /* Изменено на flex-row для десктопной версии */
     gap: 30px;
     flex: 1;
 }
 
 .modal-about-media-container {
     width: 50%;
-    /* Размер блока с медиа */
     flex-shrink: 0;
 }
 
 .modal-about-content-container {
     width: 50%;
-    /* Размер блока с текстом */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     overflow-y: auto;
-    /* Добавлена прокрутка только для текстового контента */
     max-height: calc(85vh - 82px);
-    /* Вычитаем высоту шапки модалки */
     padding-right: 10px;
-    /* Отступ для прокрутки */
+    scrollbar-width: thin;
+    /* Для Firefox */
+    scrollbar-color: rgba(37, 99, 235, 0.3) transparent;
+    /* Для Firefox */
+}
+
+/* Стили для скроллбара Webkit (Chrome, Safari, etc.) */
+.modal-about-content-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-about-content-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.modal-about-content-container::-webkit-scrollbar-thumb {
+    background-color: rgba(37, 99, 235, 0.3);
+    border-radius: 4px;
 }
 
 .modal-about-image,
@@ -125,17 +134,15 @@
     border-radius: 14px;
     box-shadow: 0 7px 27px rgba(0, 0, 0, 0.2);
     aspect-ratio: 1;
-    /* Поддерживаем соотношение сторон */
     object-fit: cover;
+    background-color: #0F172A;
+    /* Цвет фона для загрузки */
 }
 
 .modal-about-video {
     aspect-ratio: 16/9;
-    /* Видео в соотношении 16:9 */
     max-height: calc(85vh - 82px - 52px);
-    /* Уменьшаем для соответствия контейнеру */
     object-fit: contain;
-    /* Сохраняем соотношение сторон видео */
     background-color: #000;
 }
 
@@ -209,6 +216,11 @@
     animation: gradientShift 4s ease infinite;
 }
 
+.modal-about-button--primary:focus {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+}
+
 .modal-about-description {
     color: #94A3B8;
     line-height: 1.8;
@@ -216,6 +228,7 @@
     white-space: pre-line;
 }
 
+/* Animations */
 @keyframes modalAboutOverlayShow {
     from {
         opacity: 0;
@@ -250,6 +263,25 @@
     100% {
         background-position: 0% 50%;
     }
+}
+
+/* Loading animation for images */
+@keyframes imagePulse {
+    0% {
+        background-color: rgba(15, 23, 42, 0.8);
+    }
+
+    50% {
+        background-color: rgba(15, 23, 42, 0.6);
+    }
+
+    100% {
+        background-color: rgba(15, 23, 42, 0.8);
+    }
+}
+
+.modal-about-image.loading {
+    animation: imagePulse 1.5s infinite;
 }
 
 /* Адаптивность для мобильных устройств */
@@ -331,5 +363,18 @@
     .modal-about-button {
         padding: 10px 17px;
         font-size: 12px;
+    }
+}
+
+/* Prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+    .modal-about-content,
+    .modal-about-overlay {
+        animation: none;
+    }
+
+    .modal-about-button--primary {
+        animation: none;
     }
 }

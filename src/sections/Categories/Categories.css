@@ -56,6 +56,24 @@
     font-weight: 700;
     line-height: 1.2;
     margin-bottom: 20px;
+    position: relative;
+}
+
+.categories__title-highlight {
+    font-family: 'Orbitron', sans-serif;
+    position: relative;
+    display: inline-block;
+    background-image: linear-gradient(45deg, #1ba050, #e0e3e0, #2196F3);
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientTextAnimation 6s linear infinite;
+    text-shadow: 0 2px 10px rgba(34, 197, 94, 0.3);
+}
+
+/* Залишок стилю заголовка для тексту після R36S */
+.categories__title-rest {
     background: linear-gradient(135deg, #fff 0%, #94A3B8 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

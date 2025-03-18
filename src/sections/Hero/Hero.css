@@ -123,6 +123,7 @@
 
 .hero__content.animate-in {
     animation: contentFadeIn 1s forwards;
+    margin-bottom: 25px;
 }
 
 /* Update styles for prices */
@@ -333,6 +334,7 @@
 }
 
 .hero__button-text {
+    /* font-family: 'Orbitron', sans-serif; */
     position: relative;
     z-index: 2;
     display: flex;
@@ -410,6 +412,8 @@
 
 /* Media queries */
 @media (max-width: 1280px) {
+
+
     .hero__title {
         font-size: 52px;
     }
@@ -446,6 +450,13 @@
 }
 
 @media (max-width: 992px) {
+
+    .hero__title {
+        display: block;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
     .hero__title-line:not(:first-child) {
         display: inline-block;
         white-space: nowrap;
@@ -460,7 +471,7 @@
 
     .hero__content-wrapper {
         grid-template-columns: 1fr;
-        margin-top: 20px;
+        margin-top: 10px;
         gap: 5px;
         text-align: center;
     }
@@ -588,7 +599,7 @@
 
     .hero__content-wrapper {
         margin-top: 20px;
-        /* При необходимости можно добавить отступ для мобильных устройств */
+
     }
 
     .hero__title-line:not(:first-child) {
