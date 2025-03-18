@@ -1,0 +1,86 @@
+<!-- Reviews.html - HTML шаблон для секции отзывов с минимальными SEO-улучшениями -->
+<section
+  class="reviews"
+  id="reviews"
+  itemscope
+  itemtype="http://schema.org/Product"
+>
+  <meta itemprop="name" content="R36S Handheld Game Console" />
+  <meta
+    itemprop="description"
+    content="R36S Handheld Game Console with 3.5-inch IPS screen, 15,000+ retro games"
+  />
+
+  <div class="reviews__container">
+    <div class="reviews__header">
+      <span class="reviews__label">Reviews</span>
+      <h2 class="reviews__title" id="customer-reviews">Customer Reviews</h2>
+      <p class="reviews__subtitle">
+        See what gamers say about the R36S retro console
+      </p>
+    </div>
+
+    <div class="reviews__grid" id="reviewsGrid">
+      <!-- Шаблон карточки отзыва - исправлен для совместимости -->
+      <template id="reviewCardTemplate">
+        <div class="review-card" data-id="">
+          <div class="review-card__content">
+            <div class="review-card__header">
+              <div class="review-card__rating">
+                <!-- Звезды рейтинга будут добавлены динамически -->
+              </div>
+              <span class="review-card__variant"></span>
+            </div>
+
+            <p class="review-card__text"></p>
+
+            <div class="review-card__image-wrapper">
+              <picture>
+                <source srcset="" type="image/webp" />
+                <img src="" alt="" class="review-card__image" loading="lazy" />
+              </picture>
+              <div class="review-card__arrow-wrapper" style="display: none">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  class="review-card__arrow"
+                >
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </div>
+            </div>
+
+            <div class="review-card__footer">
+              <div class="review-card__author">
+                <span class="review-card__name">
+                  <!-- Тут будет иконка verified и имя автора -->
+                </span>
+                <span class="review-card__date"></span>
+              </div>
+              <div class="review-card__helpful">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  class="review-card__helpful-icon"
+                >
+                  <path
+                    d="M14 9V5a3 3 0 0 0-3-3L7 11v10h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"
+                  />
+                </svg>
+                <span class="review-card__helpful-count">Helpful (0)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </template>
+    </div>
+  </div>
+</section>

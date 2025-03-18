@@ -1,0 +1,239 @@
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.mobile-menu.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-menu__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(5px);
+}
+
+.mobile-menu__container {
+    position: relative;
+    width: 300px;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 5rem 1rem 1rem;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.mobile-menu.open .mobile-menu__container {
+    transform: translateX(0);
+}
+
+.mobile-menu__nav {
+    flex-grow: 1;
+}
+
+.mobile-menu__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mobile-menu__item {
+    margin-bottom: 1rem;
+}
+
+.mobile-menu__link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu__link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+/* Стили для иконок */
+.mobile-menu__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0);
+}
+
+.mobile-menu__link:hover .mobile-menu__icon {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+.mobile-menu__icon svg {
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu__link:hover .mobile-menu__icon svg {
+    color: rgba(255, 255, 255, 1);
+    filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.5));
+}
+
+/* Стили для текста */
+.mobile-menu__text {
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu__link:hover .mobile-menu__text {
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.mobile-menu__link.active {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.mobile-menu__footer {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+    padding: 20px 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    margin: 0 20px;
+}
+
+/* Свечение для футера при наведении */
+.mobile-menu__footer:hover {
+    color: rgba(255, 255, 255, 0.8);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+/* Стили для кнопки закрытия */
+.close-button,
+.mobile-menu__close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: all 0.3s ease;
+    z-index: 1002;
+}
+
+.close-button:hover,
+.mobile-menu__close-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+.close-icon {
+    position: relative;
+    width: 20px;
+    height: 20px;
+}
+
+.close-icon::before,
+.close-icon::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: white;
+}
+
+.close-icon::before {
+    transform: rotate(45deg);
+}
+
+.close-icon::after {
+    transform: rotate(-45deg);
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .mobile-menu__footer {
+        padding: 20px 40px;
+        margin: 0 30px;
+    }
+
+    .mobile-menu__container {
+        position: relative;
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+/* Анимация для иконок */
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.mobile-menu.open .mobile-menu__icon {
+    animation: fadeInRight 0.4s ease forwards;
+}
+
+/* Задержка анимации для каждой иконки */
+.mobile-menu.open .mobile-menu__item:nth-child(1) .mobile-menu__icon {
+    animation-delay: 0.1s;
+}
+
+.mobile-menu.open .mobile-menu__item:nth-child(2) .mobile-menu__icon {
+    animation-delay: 0.17s;
+}
+
+.mobile-menu.open .mobile-menu__item:nth-child(3) .mobile-menu__icon {
+    animation-delay: 0.24s;
+}
+
+.mobile-menu.open .mobile-menu__item:nth-child(4) .mobile-menu__icon {
+    animation-delay: 0.31s;
+}
+
+.mobile-menu.open .mobile-menu__item:nth-child(5) .mobile-menu__icon {
+    animation-delay: 0.38s;
+}

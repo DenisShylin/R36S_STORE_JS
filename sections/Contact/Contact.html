@@ -1,0 +1,338 @@
+<!-- Contact.html - SEO-оптимизированный HTML для секции Contact -->
+<section
+  class="contact"
+  id="contact"
+  itemscope
+  itemtype="http://schema.org/Organization"
+>
+  <meta itemprop="name" content="R36S Gaming Consoles" />
+  <meta itemprop="url" content="https://r36s-store.com" />
+  <meta itemprop="logo" content="https://r36s-store.com/img/logo.png" />
+  <meta
+    itemprop="description"
+    content="R36S handheld retro gaming console with 3.5-inch IPS screen and 15,000+ games collection"
+  />
+  <meta itemprop="sameAs" content="https://facebook.com/R36SGaming" />
+  <meta itemprop="sameAs" content="https://instagram.com/R36SConsole" />
+
+  <div class="contact__noise"></div>
+  <div class="contact__container">
+    <div class="contact__header">
+      <span class="contact__label">Start a Conversation</span>
+      <h2 class="contact__title" id="contact-heading">
+        Contact R36S Support Team
+      </h2>
+      <p class="contact__description">
+        We are always ready to help you with choosing a console and answer any
+        questions about the R36S handheld retro gaming console with 3.5-inch IPS
+        screen
+      </p>
+    </div>
+
+    <div class="contact__content">
+      <form class="contact__form" aria-labelledby="contact-heading">
+        <!-- Место для сообщения об ошибке добавляется динамически -->
+
+        <div class="form__group">
+          <label class="form__label" for="name">
+            <span
+              class="form__icon"
+              data-icon="message-circle"
+              data-size="16"
+              aria-hidden="true"
+            ></span>
+            Your name
+          </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            class="form__input"
+            placeholder="John Smith"
+            required
+            aria-required="true"
+            autocomplete="name"
+          />
+        </div>
+
+        <div class="form__group">
+          <label class="form__label" for="email">
+            <span
+              class="form__icon"
+              data-icon="mail"
+              data-size="16"
+              aria-hidden="true"
+            ></span>
+            Email
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form__input"
+            placeholder="example@email.com"
+            required
+            aria-required="true"
+            autocomplete="email"
+          />
+        </div>
+
+        <div class="form__group">
+          <label class="form__label" for="phone">
+            <span
+              class="form__icon"
+              data-icon="phone-call"
+              data-size="16"
+              aria-hidden="true"
+            ></span>
+            Telephone
+          </label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            class="form__input"
+            placeholder="+7 (___) ___-__-__"
+            required
+            aria-required="true"
+            autocomplete="tel"
+          />
+        </div>
+
+        <div class="form__group">
+          <label class="form__label" for="message">
+            <span
+              class="form__icon"
+              data-icon="message-circle"
+              data-size="16"
+              aria-hidden="true"
+            ></span>
+            Message
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            class="form__textarea"
+            placeholder="Write your message about R36S console..."
+            required
+            aria-required="true"
+            rows="5"
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          class="form__button"
+          aria-label="Send contact message to R36S support"
+        >
+          <span
+            class="button__icon"
+            data-icon="send"
+            data-size="20"
+            aria-hidden="true"
+          ></span>
+          Send message
+        </button>
+      </form>
+
+      <div class="contact__info">
+        <div
+          class="info__card"
+          itemprop="contactPoint"
+          itemscope
+          itemtype="http://schema.org/ContactPoint"
+        >
+          <meta itemprop="contactType" content="customer support" />
+          <meta itemprop="availableLanguage" content="en" />
+          <meta itemprop="availableLanguage" content="ru" />
+          <div
+            class="info__icon"
+            data-icon="phone-call"
+            data-size="40"
+            aria-hidden="true"
+          ></div>
+          <h3 class="info__title">Telephone</h3>
+          <p class="info__text">
+            <a href="tel:+78005553535" itemprop="telephone"
+              >+7 (800) 555-35-35</a
+            >
+          </p>
+          <p
+            class="info__text"
+            itemprop="hoursAvailable"
+            itemscope
+            itemtype="http://schema.org/OpeningHoursSpecification"
+          >
+            <meta
+              itemprop="dayOfWeek"
+              content="Monday Tuesday Wednesday Thursday Friday"
+            />
+            <meta itemprop="opens" content="09:00:00" />
+            <meta itemprop="closes" content="18:00:00" />
+            Mon-Fri: 9:00 - 18:00
+          </p>
+        </div>
+
+        <div
+          class="info__card"
+          itemprop="contactPoint"
+          itemscope
+          itemtype="http://schema.org/ContactPoint"
+        >
+          <meta itemprop="contactType" content="technical support" />
+          <meta itemprop="availableLanguage" content="en" />
+          <div
+            class="info__icon"
+            data-icon="mail"
+            data-size="40"
+            aria-hidden="true"
+          ></div>
+          <h3 class="info__title">Email</h3>
+          <p class="info__text">
+            <a href="mailto:support@R36S.com" itemprop="email"
+              >support@R36S.com</a
+            >
+          </p>
+          <p class="info__text">
+            <a href="mailto:sales@R36S.com" itemprop="email">sales@R36S.com</a>
+          </p>
+        </div>
+
+        <div
+          class="info__card"
+          itemprop="address"
+          itemscope
+          itemtype="http://schema.org/PostalAddress"
+        >
+          <div
+            class="info__icon"
+            data-icon="map-pin"
+            data-size="40"
+            aria-hidden="true"
+          ></div>
+          <h3 class="info__title">Address</h3>
+          <p class="info__text">
+            <span itemprop="addressRegion">Zhejiang</span>,
+            <span itemprop="addressCountry">China</span>
+          </p>
+          <p class="info__text">
+            We work <span itemprop="areaServed">all over the world</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Скрытая информация для SEO -->
+    <div class="contact__seo" style="display: none" aria-hidden="true">
+      <div itemscope itemtype="http://schema.org/Product">
+        <meta itemprop="name" content="R36S Handheld Game Console" />
+        <meta
+          itemprop="description"
+          content="R36S Handheld Game Console with 3.5-inch IPS screen, 15,000+ retro games, 7-8 hours battery life"
+        />
+        <meta itemprop="brand" content="R36S" />
+        <meta itemprop="category" content="Retro Gaming Consoles" />
+        <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+          <meta itemprop="price" content="35.48" />
+          <meta itemprop="priceCurrency" content="USD" />
+          <meta itemprop="availability" content="https://schema.org/InStock" />
+        </div>
+      </div>
+      <div itemscope itemtype="http://schema.org/FAQPage">
+        <div
+          itemscope
+          itemprop="mainEntity"
+          itemtype="http://schema.org/Question"
+        >
+          <meta
+            itemprop="name"
+            content="How can I contact R36S support team?"
+          />
+          <div
+            itemscope
+            itemprop="acceptedAnswer"
+            itemtype="http://schema.org/Answer"
+          >
+            <meta
+              itemprop="text"
+              content="You can contact R36S support team via phone at +7 (800) 555-35-35, by email at support@R36S.com, or by filling out the contact form on our website."
+            />
+          </div>
+        </div>
+        <div
+          itemscope
+          itemprop="mainEntity"
+          itemtype="http://schema.org/Question"
+        >
+          <meta
+            itemprop="name"
+            content="What is the warranty for R36S handheld console?"
+          />
+          <div
+            itemscope
+            itemprop="acceptedAnswer"
+            itemtype="http://schema.org/Answer"
+          >
+            <meta
+              itemprop="text"
+              content="The R36S handheld console comes with a standard 1-year manufacturer warranty covering all hardware defects. Contact our support team for warranty claims and repairs."
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JSON-LD разметка для контактной информации -->
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "name": "R36S Gaming Consoles",
+      "url": "https://r36s-store.com",
+      "logo": "https://r36s-store.com/img/logo.png",
+      "description": "Official store of R36S handheld retro gaming consoles with 3.5-inch IPS screen and 15,000+ games",
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "Zhejiang",
+        "addressCountry": "China"
+      },
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": "+7 (800) 555-35-35",
+          "contactType": "customer support",
+          "availableLanguage": ["English", "Russian"],
+          "hoursAvailable": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday"
+            ],
+            "opens": "09:00:00",
+            "closes": "18:00:00"
+          }
+        },
+        {
+          "@type": "ContactPoint",
+          "email": "support@R36S.com",
+          "contactType": "technical support",
+          "availableLanguage": "English"
+        },
+        {
+          "@type": "ContactPoint",
+          "email": "sales@R36S.com",
+          "contactType": "sales",
+          "availableLanguage": "English"
+        }
+      ],
+      "sameAs": [
+        "https://facebook.com/R36SGaming",
+        "https://instagram.com/R36SConsole"
+      ]
+    }
+  </script>
+</section>

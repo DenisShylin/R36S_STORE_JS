@@ -1,0 +1,627 @@
+/* SEO-оптимизированные стили для секции Articles */
+.articles {
+    background-color: #0F172A;
+    background-image:
+        radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.1) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(255, 51, 102, 0.1) 0px, transparent 50%);
+    color: #E2E8F0;
+    padding: 60px 0;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.articles__container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Стили для заголовка секции */
+.articles__heading {
+    font-size: 48px;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 40px;
+    background: linear-gradient(135deg, #fff 0%, #60A5FA 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+}
+
+/* Стили для хлебных крошек */
+.articles__breadcrumbs {
+    margin-bottom: 30px;
+}
+
+.breadcrumbs__list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+}
+
+.breadcrumbs__item {
+    display: flex;
+    align-items: center;
+    color: #94A3B8;
+    font-size: 14px;
+}
+
+.breadcrumbs__item:not(:last-child)::after {
+    content: '/';
+    margin: 0 10px;
+    color: #64748B;
+}
+
+.breadcrumbs__link {
+    color: #60A5FA;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.breadcrumbs__link:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.breadcrumbs__current {
+    color: #94A3B8;
+}
+
+/* Основная сетка статей */
+.articles__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.article {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    padding: 30px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.article:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(37, 99, 235, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Стили для заголовков и текста статей */
+.article__title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    background: linear-gradient(135deg, #fff 0%, #94A3B8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.2;
+}
+
+.article__subtitle {
+    font-size: 24px;
+    font-weight: 600;
+    color: #60A5FA;
+    margin: 20px 0 16px;
+}
+
+.article__content {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #94A3B8;
+    margin-bottom: 24px;
+}
+
+.article__content p {
+    margin-bottom: 12px;
+}
+
+.article__content strong {
+    color: #60A5FA;
+    font-weight: 600;
+}
+
+.article__content em {
+    color: #F9FAFB;
+    font-style: italic;
+}
+
+.article__content mark {
+    background: transparent;
+    color: #F472B6;
+    font-weight: 500;
+}
+
+.article__content a {
+    color: #38BDF8;
+    text-decoration: none;
+    position: relative;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.article__content a:hover {
+    color: #60A5FA;
+    text-decoration: underline;
+}
+
+.article__content a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    transform-origin: right;
+}
+
+.article__content a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Стили для списков в контенте */
+.article__content ul {
+    padding-left: 20px;
+    margin: 16px 0;
+}
+
+.article__content ul li {
+    margin-bottom: 12px;
+    position: relative;
+    padding-left: 5px;
+    list-style-type: disc;
+    color: #94A3B8;
+}
+
+.article__content ul li::marker {
+    color: #60A5FA;
+}
+
+.article__highlight {
+    background: linear-gradient(90deg, rgba(37, 99, 235, 0.1), transparent);
+    padding: 20px;
+    border-left: 3px solid #60A5FA;
+    margin: 25px 0;
+    border-radius: 0 8px 8px 0;
+}
+
+/* Стили для подвала статьи */
+.article__footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.article__cta {
+    display: inline-block;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #2563EB 0%, #1E40AF 100%);
+    color: #fff;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.article__cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+/* Стили для связанных тем */
+.articles__related {
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 60px;
+}
+
+.articles__related-title {
+    font-size: 24px;
+    color: #fff;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.articles__related-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    list-style: none;
+    padding: 0;
+}
+
+.articles__related-list li {
+    flex: 0 0 calc(33.33% - 10px);
+}
+
+.articles__related-list a {
+    display: block;
+    padding: 12px;
+    background: rgba(37, 99, 235, 0.1);
+    border-radius: 8px;
+    color: #60A5FA;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    text-align: center;
+}
+
+.articles__related-list a:hover {
+    background: rgba(37, 99, 235, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Стили для CTA секции */
+.articles__cta {
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.2) 0%, rgba(255, 51, 102, 0.2) 100%);
+    border-radius: 16px;
+    padding: 40px;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.articles__cta-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 16px;
+}
+
+.articles__cta-text {
+    font-size: 18px;
+    color: #94A3B8;
+    margin-bottom: 30px;
+}
+
+.articles__cta-button {
+    display: inline-block;
+    padding: 16px 32px;
+    background: linear-gradient(135deg, #2563EB 0%, #1E40AF 100%);
+    color: #fff;
+    font-weight: 600;
+    font-size: 18px;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.articles__cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+}
+
+/* Стили для FAQ секции */
+.articles__seo-content {
+    background: rgba(15, 23, 42, 0.5);
+    border-radius: 16px;
+    padding: 40px;
+}
+
+.articles__faq-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.articles__faq-item {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.articles__faq-item:hover {
+    background: rgba(255, 255, 255, 0.03);
+    transform: translateY(-2px);
+}
+
+.articles__faq-question {
+    font-size: 20px;
+    font-weight: 600;
+    color: #60A5FA;
+    margin-bottom: 15px;
+}
+
+.articles__faq-answer {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #94A3B8;
+}
+
+.articles__faq-answer p {
+    margin-bottom: 12px;
+}
+
+.accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.accordion__item {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.accordion__item:hover {
+    background: rgba(255, 255, 255, 0.03);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.accordion__header {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+}
+
+.accordion__icon {
+    fill: #60A5FA;
+    transition: transform 0.3s ease;
+}
+
+
+
+/* Стили для открытого аккордеона */
+
+.accordion__item.active .accordion__header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.accordion__item.active .accordion__toggle {
+    background: rgba(96, 165, 250, 0.1);
+}
+
+
+/* Оптимизация для мобильных устройств */
+@media (max-width: 768px) {
+    .accordion__header {
+        padding: 15px;
+    }
+
+    .articles__faq-question {
+        font-size: 16px;
+    }
+
+    .accordion__content {
+        padding: 0 15px;
+    }
+}
+
+/* Эффекты при наведении */
+.accordion__header:hover .articles__faq-question {
+    color: #fff;
+}
+
+/* Плавное открытие/закрытие аккордеона */
+.accordion__item.active .accordion__content {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Стили для элегантных иконок аккордеона */
+
+/* Основные стили для кнопки */
+.accordion__toggle {
+    background: transparent;
+    border: none;
+    color: #60A5FA;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.accordion__toggle:hover {
+    background: rgba(96, 165, 250, 0.1);
+    transform: translateY(-2px);
+}
+
+.accordion__toggle:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.4);
+}
+
+/* Стилизация SVG иконки */
+.accordion__icon {
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    width: 24px;
+    height: 24px;
+}
+
+/* Управление видимостью стрелок */
+.accordion__item .arrow-down {
+    display: block;
+    opacity: 1;
+}
+
+.accordion__item .arrow-up {
+    display: none;
+    opacity: 0;
+}
+
+.accordion__item.active .arrow-down {
+    display: none;
+    opacity: 0;
+}
+
+.accordion__item.active .arrow-up {
+    display: block;
+    opacity: 1;
+}
+
+/* Эффекты при наведении и активации */
+.accordion__toggle:hover .accordion__icon {
+    transform: scale(1.15);
+}
+
+.accordion__item.active .accordion__toggle .accordion__icon {
+    transform: translateY(-1px);
+}
+
+/* Стили для круглой версии иконки */
+.accordion__toggle--styled {
+    background: rgba(96, 165, 250, 0.05);
+    box-shadow: 0 2px 5px rgba(96, 165, 250, 0.1);
+}
+
+.accordion__toggle--styled:hover {
+    background: rgba(96, 165, 250, 0.15);
+    box-shadow: 0 3px 8px rgba(96, 165, 250, 0.2);
+}
+
+.accordion__item.active .accordion__toggle--styled {
+    background: rgba(96, 165, 250, 0.2);
+}
+
+/* Более плавное открытие/закрытие контента */
+.accordion__content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0, 1, 0, 1), padding 0.3s ease;
+    padding: 0 20px;
+}
+
+.accordion__item.active .accordion__content {
+    max-height: 1000px;
+    transition: max-height 0.7s cubic-bezier(0.5, 0, 1, 0), padding 0.3s ease;
+    padding-bottom: 20px;
+}
+
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0.7;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Анимация для всей секции */
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Адаптивные стили */
+@media (max-width: 1024px) {
+    .articles__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .article__title {
+        font-size: 28px;
+    }
+
+    .article__subtitle {
+        font-size: 20px;
+    }
+
+    .articles__related-list li {
+        flex: 0 0 calc(50% - 10px);
+    }
+}
+
+@media (max-width: 768px) {
+    .articles {
+        padding: 40px 0;
+    }
+
+    .articles__heading {
+        font-size: 36px;
+    }
+
+    .article {
+        padding: 20px;
+    }
+
+    .article__title {
+        font-size: 24px;
+    }
+
+    .article__subtitle {
+        font-size: 18px;
+    }
+
+    .article__content {
+        font-size: 14px;
+    }
+
+    .articles__cta {
+        padding: 30px 20px;
+    }
+
+    .articles__cta-title {
+        font-size: 24px;
+    }
+
+    .articles__related-list li {
+        flex: 0 0 100%;
+    }
+
+    .articles__seo-content {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .articles__heading {
+        font-size: 28px;
+    }
+
+    .articles__cta-button {
+        width: 100%;
+        padding: 14px;
+    }
+}

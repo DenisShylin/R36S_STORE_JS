@@ -1,0 +1,303 @@
+<section
+  class="categories"
+  id="categories"
+  itemscope
+  itemtype="http://schema.org/VideoObject"
+>
+  <meta itemprop="name" content="R36S Handheld Game Console Gameplay Demo" />
+  <meta
+    itemprop="description"
+    content="Experience retro gaming with improved graphics and smooth gameplay on the R36S 3.5-inch IPS screen handheld console."
+  />
+  <meta itemprop="uploadDate" content="2024-03-15" />
+  <meta itemprop="thumbnailUrl" content="/img/video-placeholder.jpg" />
+  <meta itemprop="duration" content="PT1M30S" />
+  <!-- предполагаемая длительность видео -->
+  <meta
+    itemprop="contentUrl"
+    content="/video/categories/video_categories_.MP4"
+  />
+  <meta itemprop="embedUrl" content="/video/categories/video_categories_.MP4" />
+  <link itemprop="url" href="https://r36s-store.com/gameplay-demonstration" />
+
+  <div class="categories__container">
+    <div class="categories__content">
+      <div class="categories__info">
+        <div class="categories__labels">
+          <span class="categories__label">Gameplay Demonstration</span>
+          <span class="categories__label categories__label--outline">
+            Retro Gaming
+          </span>
+        </div>
+        <h2 class="categories__title" itemprop="headline">
+          <span class="categories__title-highlight">R36S</span>
+          <span class="categories__title-rest">Gameplay Video</span>
+        </h2>
+        <p class="categories__description">
+          Immerse yourself in the world of classic games with improved graphics
+          and smooth gameplay. Enjoy your favorite retro games in high quality
+          on a bright 3.5-inch IPS screen with enhanced performance and long
+          battery life.
+        </p>
+      </div>
+
+      <div class="categories__video-wrapper">
+        <div class="categories__video-container">
+          <!-- Использование тега img в качестве плейсхолдера, пока видео не загрузится -->
+          <img
+            class="categories__video-placeholder"
+            src="/img/video-placeholder.jpg"
+            alt="R36S Handheld Console Gameplay Preview"
+            style="display: none; width: 100%; border-radius: 24px"
+            itemprop="thumbnail"
+          />
+
+          <!-- Видео с несколькими вариантами путей -->
+          <video
+            class="categories__video"
+            muted
+            loop
+            playsinline
+            itemprop="video"
+          >
+            <!-- Подтвержденный работающий путь к видео -->
+            <source
+              src="/video/categories/video_categories_.MP4"
+              type="video/mp4"
+            />
+            <source
+              src="/public/video/categories/video_categories_.MP4"
+              type="video/mp4"
+            />
+            <source src="video_categories_.MP4" type="video/mp4" />
+            This video demonstrates the R36S handheld gaming console with
+            3.5-inch IPS screen displaying classic retro games with enhanced
+            graphics and smooth 60 FPS gameplay.
+          </video>
+          <div class="categories__video-overlay"></div>
+
+          <div class="categories__video-controls">
+            <button
+              class="categories__video-play"
+              aria-label="Pause R36S gameplay video"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                aria-hidden="true"
+              >
+                <rect x="6" y="4" width="4" height="16"></rect>
+                <rect x="14" y="4" width="4" height="16"></rect>
+              </svg>
+            </button>
+
+            <button
+              class="categories__video-mute"
+              aria-label="Enable sound for R36S gameplay video"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                aria-hidden="true"
+              >
+                <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+              </svg>
+            </button>
+
+            <div class="categories__video-progress">
+              <input
+                type="range"
+                min="0"
+                max="100"
+                value="0"
+                step="0.1"
+                class="categories__video-slider"
+                aria-label="Video playback progress"
+              />
+              <div class="categories__video-time">
+                <span>0:00</span>
+                <span>0:00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="categories__video-info">
+          <div
+            class="categories__video-stats"
+            itemprop="additionalProperty"
+            itemscope
+            itemtype="http://schema.org/PropertyValue"
+          >
+            <div class="categories__stat">
+              <span class="categories__stat-number" itemprop="value">60</span>
+              <span class="categories__stat-label" itemprop="name">FPS</span>
+            </div>
+            <div class="categories__stat">
+              <span class="categories__stat-number" itemprop="value">HD</span>
+              <span class="categories__stat-label" itemprop="name"
+                >Quality</span
+              >
+            </div>
+            <div class="categories__stat">
+              <span class="categories__stat-number" itemprop="value">3.5"</span>
+              <span class="categories__stat-label" itemprop="name"
+                >IPS Screen</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Добавленная секция с категориями игр для SEO -->
+      <div class="categories__game-types visually-hidden">
+        <h3>Popular Game Categories on R36S</h3>
+        <ul itemscope itemtype="http://schema.org/ItemList">
+          <li
+            itemprop="itemListElement"
+            itemscope
+            itemtype="http://schema.org/ListItem"
+          >
+            <meta itemprop="position" content="1" />
+            <span itemprop="name">Arcade Classics</span>
+          </li>
+          <li
+            itemprop="itemListElement"
+            itemscope
+            itemtype="http://schema.org/ListItem"
+          >
+            <meta itemprop="position" content="2" />
+            <span itemprop="name">Retro RPG Games</span>
+          </li>
+          <li
+            itemprop="itemListElement"
+            itemscope
+            itemtype="http://schema.org/ListItem"
+          >
+            <meta itemprop="position" content="3" />
+            <span itemprop="name">Fighting Games</span>
+          </li>
+          <li
+            itemprop="itemListElement"
+            itemscope
+            itemtype="http://schema.org/ListItem"
+          >
+            <meta itemprop="position" content="4" />
+            <span itemprop="name">Adventure Games</span>
+          </li>
+          <li
+            itemprop="itemListElement"
+            itemscope
+            itemtype="http://schema.org/ListItem"
+          >
+            <meta itemprop="position" content="5" />
+            <span itemprop="name">Platformers</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Добавленные микроданные FAQ для SEO -->
+      <div
+        class="categories__faq visually-hidden"
+        itemscope
+        itemtype="https://schema.org/FAQPage"
+      >
+        <div
+          itemscope
+          itemprop="mainEntity"
+          itemtype="https://schema.org/Question"
+        >
+          <h3 itemprop="name">What games can I play on the R36S console?</h3>
+          <div
+            itemscope
+            itemprop="acceptedAnswer"
+            itemtype="https://schema.org/Answer"
+          >
+            <div itemprop="text">
+              The R36S handheld console supports over 15,000 retro games from
+              multiple platforms including NES, SNES, Game Boy, Sega Genesis,
+              and PlayStation 1 titles with smooth 60FPS gameplay on its
+              3.5-inch IPS screen.
+            </div>
+          </div>
+        </div>
+        <div
+          itemscope
+          itemprop="mainEntity"
+          itemtype="https://schema.org/Question"
+        >
+          <h3 itemprop="name">How long does the R36S battery last?</h3>
+          <div
+            itemscope
+            itemprop="acceptedAnswer"
+            itemtype="https://schema.org/Answer"
+          >
+            <div itemprop="text">
+              The R36S features a 3200mAh battery that provides 7-8 hours of
+              continuous gameplay on a single charge, perfect for gaming on the
+              go.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Разметка для хлебных крошек -->
+      <div
+        class="visually-hidden"
+        itemscope
+        itemtype="https://schema.org/BreadcrumbList"
+      >
+        <div
+          itemprop="itemListElement"
+          itemscope
+          itemtype="https://schema.org/ListItem"
+        >
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </div>
+        <div
+          itemprop="itemListElement"
+          itemscope
+          itemtype="https://schema.org/ListItem"
+        >
+          <a href="/gaming-consoles" itemprop="item"
+            ><span itemprop="name">Handheld Gaming Consoles</span></a
+          >
+          <meta itemprop="position" content="2" />
+        </div>
+        <div
+          itemprop="itemListElement"
+          itemscope
+          itemtype="https://schema.org/ListItem"
+        >
+          <a href="/r36s-console" itemprop="item"
+            ><span itemprop="name">R36S Console</span></a
+          >
+          <meta itemprop="position" content="3" />
+        </div>
+        <div
+          itemprop="itemListElement"
+          itemscope
+          itemtype="https://schema.org/ListItem"
+        >
+          <a href="/r36s-gameplay" itemprop="item"
+            ><span itemprop="name">R36S Gameplay Video</span></a
+          >
+          <meta itemprop="position" content="4" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
