@@ -68,6 +68,67 @@ export default defineConfig(({ mode }) => {
     },
   };
 
+  // Плагин для обеспечения наличия main.js
+  const ensureMainJsPlugin = {
+    name: 'ensure-main-js',
+    closeBundle: async () => {
+      if (isProd) {
+        // Проверить наличие main.js в выводе
+        const mainJsPath = resolve(__dirname, './dist/assets/js/main.js');
+        const mainJsDir = resolve(__dirname, './dist/assets/js');
+
+        if (!fs.existsSync(mainJsDir)) {
+          fs.mkdirSync(mainJsDir, { recursive: true });
+        }
+
+        if (!fs.existsSync(mainJsPath)) {
+          console.log('⚠️ main.js не найден, создаем вручную...');
+
+          // Используем исходный main.js если он существует
+          const srcMainJs = resolve(__dirname, './src/assets/js/main.js');
+          if (fs.existsSync(srcMainJs)) {
+            fs.copyFileSync(srcMainJs, mainJsPath);
+            console.log('✓ Скопирован main.js из исходников');
+          } else {
+            // Или создаем минимальный main.js
+            const mainJsContent = `
+// Минимальная версия main.js
+import './App.js';
+console.log('Main.js загружен');
+            `;
+            fs.writeFileSync(mainJsPath, mainJsContent);
+            console.log('✓ Создан новый main.js');
+          }
+        }
+
+        // Пути для App.js
+        const srcAppJs = resolve(__dirname, './src/App.js');
+        const destAppJs = resolve(__dirname, './dist/assets/js/App.js');
+
+        // Если App.js существует, копируем его
+        if (fs.existsSync(srcAppJs) && !fs.existsSync(destAppJs)) {
+          fs.copyFileSync(srcAppJs, destAppJs);
+          console.log('✓ Скопирован App.js');
+        }
+
+        // Обновляем index.html для использования правильного пути к main.js
+        const indexHtmlPath = resolve(__dirname, './dist/index.html');
+        if (fs.existsSync(indexHtmlPath)) {
+          let htmlContent = fs.readFileSync(indexHtmlPath, 'utf-8');
+
+          // Обновляем путь к main.js
+          htmlContent = htmlContent.replace(
+            /<script type="module" src="\.\/main\.js"><\/script>/g,
+            '<script type="module" src="./assets/js/main.js"></script>'
+          );
+
+          fs.writeFileSync(indexHtmlPath, htmlContent);
+          console.log('✓ Обновлен путь к main.js в index.html');
+        }
+      }
+    },
+  };
+
   return {
     // Базовый путь для GitHub Pages
     base,
@@ -138,14 +199,17 @@ export default defineConfig(({ mode }) => {
         output: {
           // Устанавливаем правильный формат вывода
           format: 'es',
-          // Фиксируем имя файла main.js для избежания хеша
-          entryFileNames: chunkInfo => {
-            return chunkInfo.name === 'main'
-              ? 'js/main.js'
-              : 'assets/js/[name].[hash].js';
-          },
-          assetFileNames: 'assets/[name].[hash][extname]',
+          // Указываем правильные имена файлов
+          entryFileNames: 'assets/js/[name].js', // Без хеша для упрощения ссылок
           chunkFileNames: 'assets/js/[name].[hash].js',
+          assetFileNames: assetInfo => {
+            if (assetInfo.name && assetInfo.name.endsWith('.css')) {
+              return 'assets/css/[name].[hash][extname]';
+            }
+            return 'assets/[name].[hash][extname]';
+          },
+          // Предотвратить манглинг имен модулей
+          manualChunks: undefined,
         },
       },
 
@@ -153,6 +217,6 @@ export default defineConfig(({ mode }) => {
     },
 
     // Добавляем пользовательские плагины
-    plugins: [copyHtmlFragmentsPlugin],
+    plugins: [copyHtmlFragmentsPlugin, ensureMainJsPlugin],
   };
 });
