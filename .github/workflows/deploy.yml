@@ -1,187 +1,45 @@
-name: Build and deploy to GitHub Pages
+name: Deploy static site to Pages
 
 on:
   push:
-    branches: [main]
+    branches: ['main']
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
+
 jobs:
-  build-and-deploy:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout 🛎️
+      - name: Checkout
         uses: actions/checkout@v3
-
-      - name: Setup Node.js ⚙️
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: 'npm'
-
-      - name: Install dependencies 📦
+      - name: Install dependencies
         run: npm ci
-
-      - name: Debug GitHub Pages settings
-        run: |
-          echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
-          echo "GITHUB_REF: $GITHUB_REF"
-          echo "GitHub Pages должен быть настроен на ветку gh-pages"
-
-      - name: Print Project Structure 🔍
-        run: |
-          echo "Структура корня проекта:"
-          ls -la
-          echo "Структура директории src:"
-          ls -la src
-          echo "Структура директории секций src:"
-          ls -la src/sections || echo "Директория секций не найдена"
-          echo "Структура директории компонентов src:"
-          ls -la src/components || echo "Директория компонентов не найдена"
-          echo "Проверка содержимого vite.config.js:"
-          cat vite.config.js
-
-      - name: Print package.json scripts 📜
-        run: |
-          echo "Package scripts:"
-          cat package.json | grep -A 10 "scripts"
-
-      - name: Create .nojekyll file
-        run: touch .nojekyll
-
-      - name: Build 🔧
+      - name: Build
         run: npm run build
-        env:
-          NODE_ENV: production
-
-      - name: Debug build output
-        run: |
-          echo "Поиск main.js в исходниках:"
-          find src -name "main.js"
-          echo "Директория сборки:"
-          ls -la dist || echo "Директория dist не найдена"
-          echo "Все JS файлы в сборке:"
-          find dist -name "*.js" || echo "JS файлы не найдены"
-          echo "Содержимое assets в dist:"
-          ls -la dist/assets || echo "Директория assets не найдена"
-
-      - name: Check build output 📊
-        run: |
-          echo "Директория сборки:"
-          ls -la dist || echo "Директория dist не найдена"
-          if [ -d "dist" ]; then
-            echo "Содержимое директории dist:"
-            ls -la dist
-            echo "Проверка index.html в dist:"
-            cat dist/index.html || echo "index.html не найден в dist"
-          fi
-
-      # Создание main.js если он отсутствует
-      - name: Create main.js if missing
-  run: |
-    if [ ! -f "dist/main.js" ] && [ ! -d "dist/assets/js" ] || ! find dist -name "main*.js" | grep -q .; then
-      echo "main.js не найден в стандартных местах, создаем вручную..."
-      mkdir -p dist/assets/js
-      
-      # Создаем main.js построчно
-      echo "// Manually created main.js" > dist/assets/js/main.js
-      echo "console.log('Manual main.js loaded');" >> dist/assets/js/main.js
-      echo "// Attempt to load App.js" >> dist/assets/js/main.js
-      echo "try {" >> dist/assets/js/main.js
-      echo "  import('./App.js')" >> dist/assets/js/main.js
-      echo "    .then(module => {" >> dist/assets/js/main.js
-      echo "      console.log('App.js loaded successfully');" >> dist/assets/js/main.js
-      echo "      if (typeof module.default === 'function') {" >> dist/assets/js/main.js
-      echo "        module.default();" >> dist/assets/js/main.js
-      echo "      } else if (typeof module.initApp === 'function') {" >> dist/assets/js/main.js
-      echo "        module.initApp();" >> dist/assets/js/main.js
-      echo "      }" >> dist/assets/js/main.js
-      echo "    })" >> dist/assets/js/main.js
-      echo "    .catch(error => {" >> dist/assets/js/main.js
-      echo "      console.error('Error loading App.js:', error);" >> dist/assets/js/main.js
-      echo "    });" >> dist/assets/js/main.js
-      echo "} catch (e) {" >> dist/assets/js/main.js
-      echo "  console.error('Error in main.js:', e);" >> dist/assets/js/main.js
-      echo "}" >> dist/assets/js/main.js
-      
-      # Исправляем путь в index.html
-      if [ -f "dist/index.html" ]; then
-        sed -i 's|<script type="module" src="./main.js"></script>|<script type="module" src="./assets/js/main.js"></script>|g' dist/index.html
-        echo "index.html обновлен с новым путем к main.js"
-      fi
-    else
-      echo "main.js найден в сборке, пропускаем создание."
-    fi
-
-      # Копирование статических ресурсов из public в dist
-      - name: Copy public resources
-        run: |
-          if [ -d "public" ]; then
-            echo "Копируем файлы из public в dist..."
-            cp -R public/* dist/ || echo "Ошибка при копировании файлов"
-          fi
-
-      # Вручную копируем HTML-фрагменты при необходимости
-      - name: Копирование HTML-файлов секций и компонентов 🔧
-        run: |
-          if [ -d "dist" ] && [ -d "src/sections" ]; then
-            echo "Вручную копируем файлы HTML-секций..."
-            mkdir -p dist/sections
-            cp -R src/sections/* dist/sections/
-          fi
-
-          if [ -d "dist" ] && [ -d "src/components" ]; then
-            echo "Вручную копируем файлы HTML-компонентов..."
-            mkdir -p dist/components
-            cp -R src/components/* dist/components/
-          fi
-
-      # Создаем .nojekyll в dist
-      - name: Create .nojekyll in dist
+      - name: Create .nojekyll file
         run: touch dist/.nojekyll
-
-      # Создаем тестовую страницу
-      - name: Create test page
-        run: |
-          echo '<!DOCTYPE html>
-          <html>
-          <head>
-            <title>Test Page</title>
-            <meta charset="UTF-8">
-          </head>
-          <body style="font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px;">
-            <h1>Test Page for R36S_STORE_JS</h1>
-            <p>If you see this, basic routing works!</p>
-            <div>
-              <h2>Debugging Info:</h2>
-              <p>Deployment time: <span id="time"></span></p>
-              <p>Base URL: <span id="baseUrl"></span></p>
-              <p>Current path: <span id="path"></span></p>
-            </div>
-            <script>
-              document.getElementById("time").textContent = new Date().toLocaleString();
-              document.getElementById("baseUrl").textContent = window.location.origin + window.location.pathname.replace("test.html", "");
-              document.getElementById("path").textContent = window.location.pathname;
-            </script>
-          </body>
-          </html>' > dist/test.html
-
-      - name: Final check
-        run: |
-          echo "===================="
-          echo "FINAL BUILD STRUCTURE"
-          echo "===================="
-          find dist -type f | sort
-          echo "===================="
-          echo "INDEX.HTML CONTENT"
-          echo "===================="
-          cat dist/index.html
-          echo "===================="
-
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
         with:
-          branch: gh-pages
-          folder: dist
-          clean: true
-          token: ${{ secrets.GITHUB_TOKEN }}
+          path: './dist'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
