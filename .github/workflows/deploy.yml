@@ -1,17 +1,16 @@
-# .github/workflows/github-pages.yml
 name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
-  workflow_dispatch:
+    branches: [main] # Используйте вашу основную ветку (main или master)
+  workflow_dispatch: # Позволяет запускать workflow вручную
 
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Разрешить только одно параллельное развертывание на ветку
+# Разрешить только одно параллельное развертывание
 concurrency:
   group: 'pages'
   cancel-in-progress: true
@@ -26,7 +25,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
           cache: 'npm'
 
       - name: Install dependencies
