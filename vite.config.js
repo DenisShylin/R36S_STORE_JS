@@ -122,10 +122,65 @@ console.log('Main.js загружен');
             '<script type="module" src="./assets/js/main.js"></script>'
           );
 
+          // Вставляем вместо неправильного импорта правильный скрипт main.js
+          htmlContent = htmlContent.replace(
+            /export default ["']\/R36S_STORE_JS\/assets\/index\.[^"']+\.html["'];?/g,
+            ''
+          );
+
           fs.writeFileSync(indexHtmlPath, htmlContent);
           console.log('✓ Обновлен путь к main.js в index.html');
         }
+
+        // Новая проверка: если есть хешированный index.html в assets, копируем его в корень
+        const assetsDir = resolve(__dirname, './dist/assets');
+        if (fs.existsSync(assetsDir)) {
+          const files = fs.readdirSync(assetsDir);
+          const indexHtmlInAssets = files.find(
+            file => file.startsWith('index') && file.endsWith('.html')
+          );
+
+          if (indexHtmlInAssets) {
+            const indexInAssetsPath = resolve(assetsDir, indexHtmlInAssets);
+            const rootIndexPath = resolve(__dirname, './dist/index.html');
+
+            // Читаем содержимое файла из assets
+            let indexContent = fs.readFileSync(indexInAssetsPath, 'utf-8');
+
+            // Удаляем любые export default директивы
+            indexContent = indexContent.replace(
+              /export default ["']\/R36S_STORE_JS\/assets\/[^"']+["'];?/g,
+              ''
+            );
+
+            // Проверяем, есть ли ссылка на main.js
+            if (!indexContent.includes('main.js')) {
+              indexContent = indexContent.replace(
+                '</body>',
+                '<script type="module" src="./assets/js/main.js"></script>\n</body>'
+              );
+            }
+
+            // Записываем в корень dist
+            fs.writeFileSync(rootIndexPath, indexContent);
+            console.log(
+              `✓ Скопирован и исправлен ${indexHtmlInAssets} в корень как index.html`
+            );
+          }
+        }
       }
+    },
+  };
+
+  // Плагин для исправления проблемы с экспортом по умолчанию
+  const fixExportDefaultPlugin = {
+    name: 'fix-export-default-plugin',
+    transformIndexHtml(html) {
+      // Удаляем любые экспорты по умолчанию из HTML
+      return html.replace(
+        /export default ["']\/R36S_STORE_JS\/assets\/[^"']+["'];?/g,
+        ''
+      );
     },
   };
 
@@ -203,6 +258,10 @@ console.log('Main.js загружен');
           entryFileNames: 'assets/js/[name].js', // Без хеша для упрощения ссылок
           chunkFileNames: 'assets/js/[name].[hash].js',
           assetFileNames: assetInfo => {
+            // Важно: не добавляем хеш к HTML файлам
+            if (assetInfo.name && assetInfo.name.endsWith('.html')) {
+              return '[name][extname]';
+            }
             if (assetInfo.name && assetInfo.name.endsWith('.css')) {
               return 'assets/css/[name].[hash][extname]';
             }
@@ -217,6 +276,10 @@ console.log('Main.js загружен');
     },
 
     // Добавляем пользовательские плагины
-    plugins: [copyHtmlFragmentsPlugin, ensureMainJsPlugin],
+    plugins: [
+      fixExportDefaultPlugin,
+      copyHtmlFragmentsPlugin,
+      ensureMainJsPlugin,
+    ],
   };
 });
