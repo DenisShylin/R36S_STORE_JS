@@ -1,76 +1,47 @@
+// fix-html.js
+// Скрипт для исправления путей в HTML после сборки
+
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const distDir = './dist';
+const basePath = '/R36S_STORE_JS/';
 
-// Путь к директориям
-const distDir = path.resolve(__dirname, 'dist');
-const assetsDir = path.resolve(__dirname, 'dist/assets');
-const jsDir = path.resolve(assetsDir, 'js');
+// Функция для фиксации относительных путей в HTML-файлах
+function fixHtmlPaths(filePath) {
+  try {
+    let content = fs.readFileSync(filePath, 'utf8');
 
-try {
-  // Найти HTML файл в assets
-  const assetFiles = fs.readdirSync(assetsDir);
-  const htmlFile = assetFiles.find(file => file.endsWith('.html'));
+    // Исправляем пути к CSS и JS
+    content = content.replace(/href="\//g, `href="${basePath}`);
+    content = content.replace(/src="\//g, `src="${basePath}`);
 
-  if (htmlFile) {
-    console.log(`Найден HTML файл: ${htmlFile}`);
+    // Исправляем пути к изображениям и другим статическим файлам
+    content = content.replace(/url\(\//g, `url(${basePath}`);
 
-    // Прочитать содержимое правильного HTML
-    const htmlPath = path.join(assetsDir, htmlFile);
-    let htmlContent = fs.readFileSync(htmlPath, 'utf-8');
-
-    // Найти JS файл main в директории assets/js
-    let mainJsPath = '';
-    if (fs.existsSync(jsDir)) {
-      const jsFiles = fs.readdirSync(jsDir);
-      const mainJsFile = jsFiles.find(
-        file => file.startsWith('main.') && file.endsWith('.js')
-      );
-
-      if (mainJsFile) {
-        console.log(`Найден Main JS файл: ${mainJsFile}`);
-        mainJsPath = `./assets/js/${mainJsFile}`;
-      }
-    }
-
-    // Исправить путь к main.js если найден
-    if (mainJsPath) {
-      htmlContent = htmlContent.replace(
-        /<script type="module" src="\.\/main\.js"><\/script>/,
-        `<script type="module">
-    // Базовая инициализация приложения
-    document.addEventListener('DOMContentLoaded', () => {
-      console.log('Приложение R36S инициализировано');
-      
-      // Проверка, доступен ли App.js
-      import('./assets/js/App.js')
-        .then(module => {
-          const initApp = module.default || module.initApp;
-          if (typeof initApp === 'function') {
-            initApp();
-          }
-        })
-        .catch(error => {
-          console.error('Ошибка загрузки App.js:', error);
-        });
-    });
-  </script>`
-      );
-    }
-
-    // Записать в основной index.html
-    fs.writeFileSync(path.join(distDir, 'index.html'), htmlContent);
-    console.log('✓ Исправлен index.html');
-
-    // Опционально: создать 404.html для SPA на GitHub Pages
-    fs.writeFileSync(path.join(distDir, '404.html'), htmlContent);
-    console.log('✓ Создан 404.html для GitHub Pages');
-  } else {
-    console.error('HTML файл не найден в директории assets!');
+    // Записываем обратно
+    fs.writeFileSync(filePath, content, 'utf8');
+    console.log(`Fixed paths in ${filePath}`);
+  } catch (error) {
+    console.error(`Error fixing ${filePath}:`, error);
   }
-} catch (error) {
-  console.error('Ошибка при исправлении HTML:', error);
 }
+
+// Обработка всех HTML-файлов в директории сборки
+function processDirectory(dir) {
+  const files = fs.readdirSync(dir, { withFileTypes: true });
+
+  for (const file of files) {
+    const fullPath = path.join(dir, file.name);
+
+    if (file.isDirectory()) {
+      processDirectory(fullPath);
+    } else if (file.name.endsWith('.html')) {
+      fixHtmlPaths(fullPath);
+    }
+  }
+}
+
+// Запускаем обработку
+processDirectory(distDir);
+console.log('HTML path fixing completed!');
