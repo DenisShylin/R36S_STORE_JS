@@ -71,41 +71,11 @@ jobs:
           fi
 
       # Создание main.js если он отсутствует
-      - name: Create main.js if missing
-        run: |
-          if [ ! -f "dist/main.js" ] && [ ! -d "dist/assets/js" ] || ! find dist -name "main*.js" | grep -q .; then
-            echo "main.js не найден в стандартных местах, создаем вручную..."
-            mkdir -p dist/assets/js
-            cat > dist/assets/js/main.js << 'EOF'
-            // Manually created main.js
-            console.log('Manual main.js loaded');
-            // Attempt to load App.js
-            try {
-              import('./App.js')
-                .then(module => {
-                  console.log('App.js loaded successfully');
-                  if (typeof module.default === 'function') {
-                    module.default();
-                  } else if (typeof module.initApp === 'function') {
-                    module.initApp();
-                  }
-                })
-                .catch(error => {
-                  console.error('Error loading App.js:', error);
-                });
-            } catch (e) {
-              console.error('Error in main.js:', e);
-            }
-            EOF
-            
-            # Исправляем путь в index.html
-            if [ -f "dist/index.html" ]; then
-              sed -i 's|<script type="module" src="./main.js"></script>|<script type="module" src="./assets/js/main.js"></script>|g' dist/index.html
-              echo "index.html обновлен с новым путем к main.js"
-            fi
-          else
-            echo "main.js найден в сборке, пропускаем создание."
-          fi
+      - name: Ensure main.js exists
+  run: |
+    mkdir -p dist/assets/js
+    echo "console.log('Main.js loaded');" > dist/assets/js/main.js
+    echo "Создан простой main.js"
 
       # Копирование статических ресурсов из public в dist
       - name: Copy public resources
