@@ -5,14 +5,14 @@
  */
 
 /**
- * Initializes the Hero section on the page.
- * Sets up images, handles load events, configures responsiveness and animations.
+ * Инициализирует секцию Hero на странице.
+ * Настраивает изображения, обрабатывает события загрузки, настраивает адаптивность и анимации.
  * @returns {void}
  */
 export function initHero() {
   console.log('Hero section initialized');
 
-  // DOM elements
+  // DOM элементы
   const heroSection = document.querySelector('.hero');
   const heroImage = document.querySelector('.hero__console-img');
   const heroImageSource = document.querySelector('.hero__image source');
@@ -27,16 +27,33 @@ export function initHero() {
   const buyButton = document.getElementById('buy-button');
   const moreDetailsButton = document.getElementById('more-details-button');
 
-  // Using verified working paths from public directory
-  const heroImage1x = '/img/hero/herou1_1x_.png';
-  const heroImage2x = '/img/hero/herou1_2x_.png';
-  const fallbackImage = '/img/hero/fallback-image.png'; // Fallback image
+  /**
+   * Получение корректного пути с учетом базового пути динамически
+   * @param {string} path - Путь к ресурсу
+   * @returns {string} - Полный путь с учетом базового URL
+   */
+  function getCorrectPath(path) {
+    // Используем глобальную переменную BASE_PATH, если она определена
+    const basePath =
+      window.BASE_PATH ||
+      (window.r36sApp && window.r36sApp.basePath) ||
+      (import.meta.env.DEV ? '/' : '/R36S_STORE_JS/');
+
+    // Удаляем начальный слеш, если он есть
+    const cleanPath = path.startsWith('/') ? path.substring(1) : path;
+    return `${basePath}${cleanPath}`;
+  }
+
+  // Используем проверенные пути с учетом базового пути
+  const heroImage1x = getCorrectPath('img/hero/herou1_1x_.png');
+  const heroImage2x = getCorrectPath('img/hero/herou1_2x_.png');
+  const fallbackImage = getCorrectPath('img/hero/fallback-image.png'); // Резервное изображение
 
   console.log('Using image paths:', { heroImage1x, heroImage2x });
 
   /**
-   * Sets up hero section images.
-   * Establishes paths and event handlers for the main image.
+   * Настраивает изображения для секции hero.
+   * Устанавливает пути и обработчики событий для основного изображения.
    * @private
    */
   function setupHeroImage() {
@@ -47,12 +64,12 @@ export function initHero() {
 
     console.log('Setting hero image paths');
 
-    // Event handlers
+    // Обработчики событий
     heroImage.onerror = () => {
       console.error('Failed to load hero image:', heroImage.src);
-      // Try fallback image
+      // Пробуем резервное изображение
       heroImage.src = fallbackImage;
-      heroSection.classList.add('hero--loaded'); // Still show the section
+      heroSection.classList.add('hero--loaded'); // Все равно показываем секцию
     };
 
     heroImage.onload = () => {
@@ -60,14 +77,14 @@ export function initHero() {
       heroSection.classList.add('hero--loaded');
     };
 
-    // Set attributes
+    // Устанавливаем атрибуты
     heroImage.src = heroImage2x;
     heroImage.srcset = `${heroImage1x} 1x, ${heroImage2x} 2x`;
 
-    // Add decoding attribute for better performance
+    // Добавляем атрибут декодирования для лучшей производительности
     heroImage.decoding = 'async';
 
-    // If the image is already loaded (from cache)
+    // Если изображение уже загружено (из кэша)
     if (heroImage.complete) {
       console.log('Hero image already loaded (from cache)');
       heroSection.classList.add('hero--loaded');
@@ -75,7 +92,7 @@ export function initHero() {
   }
 
   /**
-   * Set up source element for high-resolution image.
+   * Настройка элемента source для изображения высокого разрешения.
    * @private
    */
   function setupSourceElement() {
@@ -87,8 +104,8 @@ export function initHero() {
   }
 
   /**
-   * Adapts content for different screen sizes.
-   * Toggles between mobile and desktop versions of the description.
+   * Адаптирует контент для разных размеров экрана.
+   * Переключает между мобильной и десктопной версиями описания.
    * @private
    */
   function adjustForViewport() {
@@ -106,8 +123,8 @@ export function initHero() {
   }
 
   /**
-   * Sets up content appearance animation on scroll.
-   * Uses IntersectionObserver to determine element visibility.
+   * Настраивает анимацию появления контента при прокрутке.
+   * Использует IntersectionObserver для определения видимости элемента.
    * @private
    */
   function setupContentAnimation() {
@@ -128,14 +145,14 @@ export function initHero() {
   }
 
   /**
-   * Sets up event handlers for section buttons.
+   * Настраивает обработчики событий для кнопок секции.
    * @private
    */
   function setupButtonHandlers() {
-    // Handler for buy button
+    // Обработчик для кнопки покупки
     if (buyButton) {
       buyButton.addEventListener('click', () => {
-        // Open product link in new tab
+        // Открыть ссылку на продукт в новой вкладке
         window.open(
           'https://www.aliexpress.com/item/1005007171465465.html',
           '_blank',
@@ -144,16 +161,16 @@ export function initHero() {
       });
     }
 
-    // Handler for "More details" button
+    // Обработчик для кнопки "Подробнее"
     if (moreDetailsButton) {
       moreDetailsButton.addEventListener('click', handleMoreDetailsClick);
     }
   }
 
   /**
-   * Handles click on "More details" button.
-   * Performs smooth scrolling to features section.
-   * @param {Event} e - Click event
+   * Обрабатывает клик по кнопке "Подробнее".
+   * Выполняет плавную прокрутку к секции features.
+   * @param {Event} e - Событие клика
    * @private
    */
   function handleMoreDetailsClick(e) {
@@ -162,19 +179,19 @@ export function initHero() {
     const header = document.querySelector('.header');
 
     if (featuresSection && header) {
-      // Account for fixed header height when scrolling
+      // Учитываем высоту фиксированного заголовка при прокрутке
       const headerHeight = header.offsetHeight;
       const elementPosition = featuresSection.getBoundingClientRect().top;
       const currentScrollY = window.scrollY || window.pageYOffset;
       const offsetPosition = elementPosition + currentScrollY - headerHeight;
 
-      // Smooth scroll to features section
+      // Плавная прокрутка к секции features
       window.scrollTo({
         top: offsetPosition,
         behavior: 'smooth',
       });
 
-      // Update URL without page reload
+      // Обновляем URL без перезагрузки страницы
       window.history.replaceState(
         null,
         '',
@@ -183,13 +200,13 @@ export function initHero() {
     }
   }
 
-  // Component initialization
+  // Инициализация компонента
   setupHeroImage();
   setupSourceElement();
   adjustForViewport();
   setupContentAnimation();
   setupButtonHandlers();
 
-  // Listen for window resize event
+  // Прослушивание события изменения размера окна
   window.addEventListener('resize', adjustForViewport);
 }

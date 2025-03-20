@@ -1,7 +1,7 @@
 // main.js - Точка входа в приложение
 
 // Импорт всех стилей
-import '../../assets/js/styles.js';
+// import '../../assets/js/styles.js';
 
 // Импорт точки входа в приложение
 import '../../App.js';

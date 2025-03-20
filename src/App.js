@@ -1,4 +1,4 @@
-// App.js - Исправленная версия
+// App.js - Исправленная версия с динамическим базовым путем
 
 // Импорт инициализаторов секций
 import { initHeader } from './sections/Header/Header.js';
@@ -26,10 +26,18 @@ let initModal = () => console.log('Modal компонент недоступен
   }
 })();
 
-// Получение правильного базового пути для GitHub Pages
+// Получение правильного базового пути, используя глобальную переменную
 function getBasePath() {
-  const isDevelopment = import.meta.env.DEV;
-  return isDevelopment ? '/' : '/R36S_STORE_JS/';
+  // Используем глобальную переменную, установленную в index.html
+  if (window.BASE_PATH) {
+    return window.BASE_PATH;
+  }
+
+  // Резервный способ: проверяем хост
+  const isLocalHost =
+    window.location.hostname === 'localhost' ||
+    window.location.hostname === '127.0.0.1';
+  return isLocalHost ? '/' : '/R36S_STORE_JS/';
 }
 
 // Функция проверки доступности ресурса перед fetch
@@ -47,7 +55,7 @@ async function checkResourceExists(url) {
 async function loadHtmlSection(name) {
   const basename = getBasePath();
 
-  // Исправлено: обработка путей по-разному для GitHub Pages и локальной разработки
+  // Правильное разрешение пути для любого окружения
   const url = `${basename}sections/${name}/${name}.html`;
 
   try {
@@ -67,7 +75,21 @@ async function loadHtmlSection(name) {
     if (!response.ok) {
       throw new Error(`HTTP ошибка ${response.status}`);
     }
-    return await response.text();
+
+    // Получаем HTML и заменяем пути к изображениям на абсолютные с базовым путем
+    let htmlContent = await response.text();
+
+    // Заменяем относительные пути на пути с базовым префиксом
+    htmlContent = htmlContent.replace(
+      /src="\.\/img\//g,
+      `src="${basename}img/`
+    );
+    htmlContent = htmlContent.replace(
+      /srcset="\.\/img\//g,
+      `srcset="${basename}img/`
+    );
+
+    return htmlContent;
   } catch (error) {
     console.error(`Ошибка загрузки секции ${name}:`, error);
     return `<div class="error-section">Ошибка загрузки секции ${name}</div>`;
@@ -78,7 +100,7 @@ async function loadHtmlSection(name) {
 async function loadHtmlComponent(name) {
   const basename = getBasePath();
 
-  // Исправлено: правильное разрешение пути для компонентов
+  // Правильное разрешение пути для любого окружения
   const url = `${basename}components/${name}/${name}.html`;
 
   try {
@@ -97,11 +119,63 @@ async function loadHtmlComponent(name) {
     if (!response.ok) {
       throw new Error(`HTTP ошибка ${response.status}`);
     }
-    return await response.text();
+
+    // Получаем HTML и заменяем пути к изображениям на абсолютные с базовым путем
+    let htmlContent = await response.text();
+
+    // Заменяем относительные пути на пути с базовым префиксом
+    htmlContent = htmlContent.replace(
+      /src="\.\/img\//g,
+      `src="${basename}img/`
+    );
+    htmlContent = htmlContent.replace(
+      /srcset="\.\/img\//g,
+      `srcset="${basename}img/`
+    );
+
+    return htmlContent;
   } catch (error) {
     console.error(`Ошибка загрузки компонента ${name}:`, error);
     return `<div class="error-component">Ошибка загрузки компонента ${name}</div>`;
   }
+}
+
+// Функция для добавления CSS в страницу с правильными путями
+function addStylesheet(href) {
+  const basename = getBasePath();
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+
+  // Добавляем базовый путь, если href не начинается с него
+  if (!href.startsWith(basename) && !href.startsWith('http')) {
+    href = `${basename}${href.startsWith('/') ? href.substring(1) : href}`;
+  }
+
+  link.href = href;
+  document.head.appendChild(link);
+  console.log(`Добавлен стиль: ${href}`);
+}
+
+// Функция для загрузки всех необходимых стилей
+function loadStylesheets() {
+  const stylesheets = [
+    'index.css',
+    'sections/Header/Header.css',
+    'sections/Hero/Hero.css',
+    'sections/About/About.css',
+    'sections/Articles/Articles.css',
+    'sections/Categories/Categories.css',
+    'sections/Contact/Contact.css',
+    'sections/Features/Features.css',
+    'sections/Footer/Footer.css',
+    'sections/Products/Products.css',
+    'sections/Reviews/Reviews.css',
+    'components/MobileMenu/MobileMenu.css',
+  ];
+
+  stylesheets.forEach(stylesheet => {
+    addStylesheet(stylesheet);
+  });
 }
 
 // Безопасное выполнение инициализации компонентов
@@ -141,6 +215,9 @@ async function initApp() {
 
   const basename = getBasePath();
   console.log('Базовый путь:', basename);
+
+  // Загружаем стили с правильными путями
+  loadStylesheets();
 
   try {
     // Загрузка базовых HTML-фрагментов с обработкой ошибок
@@ -359,5 +436,13 @@ document.addEventListener('DOMContentLoaded', () => {
 // Обработка навигации вперед/назад в браузере
 window.addEventListener('popstate', handleHash);
 
+// Добавляем информацию о версии и базовом пути в глобальный объект
+window.r36sApp = {
+  version: '1.0.0',
+  basePath: getBasePath(),
+  env: import.meta.env.MODE || 'production',
+  debug: !!import.meta.env.DEV,
+};
+
 // Экспортируем функции, которые могут понадобиться в других модулях
-export { handleHash, setupAnchorLinks };
+export { getBasePath, handleHash, setupAnchorLinks };

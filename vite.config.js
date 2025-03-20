@@ -40,37 +40,48 @@ export default defineConfig(({ mode }) => {
   const isProd = mode === 'production';
   const base = isProd ? '/R36S_STORE_JS/' : '/';
 
-  // Пользовательский плагин для копирования HTML-фрагментов в dist
-  const copyHtmlFragmentsPlugin = {
-    name: 'copy-html-fragments',
+  // Пользовательский плагин для копирования HTML-фрагментов и CSS в dist
+  const copyHtmlAndCssPlugin = {
+    name: 'copy-html-and-css-fragments',
     closeBundle: () => {
       if (isProd) {
-        // Копируем HTML-файлы секций в dist
+        // Копируем HTML-файлы и CSS секций в dist
         const sectionsDir = resolve(__dirname, './src/sections');
         const destSectionsDir = resolve(__dirname, './dist/sections');
 
         if (fs.existsSync(sectionsDir)) {
           copyDirectory(sectionsDir, destSectionsDir);
-          console.log('✓ Скопированы HTML-фрагменты секций в dist/sections');
+          console.log(
+            '✓ Скопированы HTML-фрагменты и CSS секций в dist/sections'
+          );
         }
 
-        // Копируем HTML-файлы компонентов в dist
+        // Копируем HTML-файлы и CSS компонентов в dist
         const componentsDir = resolve(__dirname, './src/components');
         const destComponentsDir = resolve(__dirname, './dist/components');
 
         if (fs.existsSync(componentsDir)) {
           copyDirectory(componentsDir, destComponentsDir);
           console.log(
-            '✓ Скопированы HTML-фрагменты компонентов в dist/components'
+            '✓ Скопированы HTML-фрагменты и CSS компонентов в dist/components'
           );
+        }
+
+        // Копируем основные CSS файлы в dist
+        const srcIndexCss = resolve(__dirname, './src/index.css');
+        const destIndexCss = resolve(__dirname, './dist/index.css');
+
+        if (fs.existsSync(srcIndexCss)) {
+          fs.copyFileSync(srcIndexCss, destIndexCss);
+          console.log('✓ Скопирован index.css в dist');
         }
       }
     },
   };
 
-  // Плагин для обеспечения наличия main.js
-  const ensureMainJsPlugin = {
-    name: 'ensure-main-js',
+  // Плагин для обеспечения наличия main.js и исправления путей в CSS
+  const ensureFilesAndFixPathsPlugin = {
+    name: 'ensure-files-and-fix-paths',
     closeBundle: async () => {
       if (isProd) {
         // Проверить наличие main.js в выводе
@@ -111,7 +122,7 @@ console.log('Main.js загружен');
           console.log('✓ Скопирован App.js');
         }
 
-        // Обновляем index.html для использования правильного пути к main.js
+        // Исправление путей в index.html
         const indexHtmlPath = resolve(__dirname, './dist/index.html');
         if (fs.existsSync(indexHtmlPath)) {
           let htmlContent = fs.readFileSync(indexHtmlPath, 'utf-8');
@@ -122,6 +133,20 @@ console.log('Main.js загружен');
             '<script type="module" src="./assets/js/main.js"></script>'
           );
 
+          // Исправляем пути к CSS файлам, добавляя базовый путь для GitHub Pages
+          htmlContent = htmlContent.replace(
+            /(href="\.\/sections\/)/g,
+            `href="${base}sections/`
+          );
+          htmlContent = htmlContent.replace(
+            /(href="\.\/components\/)/g,
+            `href="${base}components/`
+          );
+          htmlContent = htmlContent.replace(
+            /(href="\.\/index\.css")/g,
+            `href="${base}index.css"`
+          );
+
           // Вставляем вместо неправильного импорта правильный скрипт main.js
           htmlContent = htmlContent.replace(
             /export default ["']\/R36S_STORE_JS\/assets\/index\.[^"']+\.html["'];?/g,
@@ -129,8 +154,50 @@ console.log('Main.js загружен');
           );
 
           fs.writeFileSync(indexHtmlPath, htmlContent);
-          console.log('✓ Обновлен путь к main.js в index.html');
+          console.log('✓ Обновлены пути в index.html');
         }
+
+        // Исправление путей в CSS файлах
+        const fixCssPaths = dir => {
+          if (!fs.existsSync(dir)) return;
+
+          const files = fs.readdirSync(dir, { withFileTypes: true });
+
+          for (const file of files) {
+            const fullPath = path.join(dir, file.name);
+
+            if (file.isDirectory()) {
+              fixCssPaths(fullPath);
+            } else if (file.name.endsWith('.css')) {
+              let cssContent = fs.readFileSync(fullPath, 'utf8');
+
+              // Исправляем url() в CSS, добавляя базовый путь
+              cssContent = cssContent.replace(
+                /url\(['"]?(\/[^'")]+)['"]?\)/g,
+                `url('${base}$1')`
+              );
+
+              // Исправляем относительные пути в url() для разных уровней вложенности
+              if (
+                fullPath.includes('/sections/') ||
+                fullPath.includes('/components/')
+              ) {
+                cssContent = cssContent.replace(
+                  /url\(['"]?(\.\.\/img\/[^'")]+)['"]?\)/g,
+                  `url('${base}img/$1')`
+                );
+              }
+
+              fs.writeFileSync(fullPath, cssContent);
+              console.log(`✓ Исправлены пути в: ${fullPath}`);
+            }
+          }
+        };
+
+        // Исправляем пути в CSS файлах в директориях
+        fixCssPaths(resolve(__dirname, './dist/sections'));
+        fixCssPaths(resolve(__dirname, './dist/components'));
+        fixCssPaths(resolve(__dirname, './dist'));
 
         // Новая проверка: если есть хешированный index.html в assets, копируем его в корень
         const assetsDir = resolve(__dirname, './dist/assets');
@@ -153,11 +220,25 @@ console.log('Main.js загружен');
               ''
             );
 
+            // Исправляем пути к CSS файлам
+            indexContent = indexContent.replace(
+              /(href="\.\/sections\/)/g,
+              `href="${base}sections/`
+            );
+            indexContent = indexContent.replace(
+              /(href="\.\/components\/)/g,
+              `href="${base}components/`
+            );
+            indexContent = indexContent.replace(
+              /(href="\.\/index\.css")/g,
+              `href="${base}index.css"`
+            );
+
             // Проверяем, есть ли ссылка на main.js
             if (!indexContent.includes('main.js')) {
               indexContent = indexContent.replace(
                 '</body>',
-                '<script type="module" src="./assets/js/main.js"></script>\n</body>'
+                `<script type="module" src="${base}assets/js/main.js"></script>\n</body>`
               );
             }
 
@@ -172,15 +253,41 @@ console.log('Main.js загружен');
     },
   };
 
-  // Плагин для исправления проблемы с экспортом по умолчанию
-  const fixExportDefaultPlugin = {
-    name: 'fix-export-default-plugin',
+  // Плагин для исправления проблемы с экспортом по умолчанию и путями в HTML
+  const fixExportDefaultAndPathsPlugin = {
+    name: 'fix-export-default-and-paths-plugin',
     transformIndexHtml(html) {
       // Удаляем любые экспорты по умолчанию из HTML
-      return html.replace(
+      let fixedHtml = html.replace(
         /export default ["']\/R36S_STORE_JS\/assets\/[^"']+["'];?/g,
         ''
       );
+
+      // Исправляем пути к CSS для GitHub Pages
+      if (isProd) {
+        fixedHtml = fixedHtml.replace(
+          /(href="\.\/sections\/)/g,
+          `href="${base}sections/`
+        );
+        fixedHtml = fixedHtml.replace(
+          /(href="\.\/components\/)/g,
+          `href="${base}components/`
+        );
+        fixedHtml = fixedHtml.replace(
+          /(href="\.\/index\.css")/g,
+          `href="${base}index.css"`
+        );
+
+        // Добавляем правильный путь к main.js
+        if (!fixedHtml.includes('assets/js/main.js')) {
+          fixedHtml = fixedHtml.replace(
+            /<\/body>/,
+            `<script type="module" src="${base}assets/js/main.js"></script>\n</body>`
+          );
+        }
+      }
+
+      return fixedHtml;
     },
   };
 
@@ -277,9 +384,9 @@ console.log('Main.js загружен');
 
     // Добавляем пользовательские плагины
     plugins: [
-      fixExportDefaultPlugin,
-      copyHtmlFragmentsPlugin,
-      ensureMainJsPlugin,
+      fixExportDefaultAndPathsPlugin,
+      copyHtmlAndCssPlugin,
+      ensureFilesAndFixPathsPlugin,
     ],
   };
 });
