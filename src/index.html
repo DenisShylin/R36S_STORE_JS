@@ -98,7 +98,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- Preload критических ресурсов - исправляем пути с базовым URL -->
+    <!-- Preload критических ресурсов -->
     <link
       rel="preload"
       href="/R36S_STORE_JS/assets/Orbitron-Bold.woff2"
@@ -127,123 +127,36 @@
         rel="stylesheet"
       />
     </noscript>
+    <!-- Базовые стили -->
+    <link rel="stylesheet" href="./index.css" />
 
-    <!-- Базовые стили с правильными путями -->
-    <link rel="stylesheet" href="/R36S_STORE_JS/index.css" />
+    <!-- Стили секций -->
+    <link rel="stylesheet" href="./sections/Header/Header.css" />
+    <link rel="stylesheet" href="./sections/Hero/Hero.css" />
+    <link rel="stylesheet" href="./sections/About/About.css" />
+    <link rel="stylesheet" href="./sections/Articles/Articles.css" />
+    <link rel="stylesheet" href="./sections/Categories/Categories.css" />
+    <link rel="stylesheet" href="./sections/Contact/Contact.css" />
+    <link rel="stylesheet" href="./sections/Features/Features.css" />
+    <link rel="stylesheet" href="./sections/Footer/Footer.css" />
+    <link rel="stylesheet" href="./sections/Products/Products.css" />
+    <link rel="stylesheet" href="./sections/Reviews/Reviews.css" />
 
-    <!-- Стили секций с правильными путями -->
-    <link rel="stylesheet" href="/R36S_STORE_JS/sections/Header/Header.css" />
-    <link rel="stylesheet" href="/R36S_STORE_JS/sections/Hero/Hero.css" />
-    <link rel="stylesheet" href="/R36S_STORE_JS/sections/About/About.css" />
-    <link
-      rel="stylesheet"
-      href="/R36S_STORE_JS/sections/Articles/Articles.css"
-    />
-    <link
-      rel="stylesheet"
-      href="/R36S_STORE_JS/sections/Categories/Categories.css"
-    />
-    <link rel="stylesheet" href="/R36S_STORE_JS/sections/Contact/Contact.css" />
-    <link
-      rel="stylesheet"
-      href="/R36S_STORE_JS/sections/Features/Features.css"
-    />
-    <link rel="stylesheet" href="/R36S_STORE_JS/sections/Footer/Footer.css" />
-    <link
-      rel="stylesheet"
-      href="/R36S_STORE_JS/sections/Products/Products.css"
-    />
-    <link rel="stylesheet" href="/R36S_STORE_JS/sections/Reviews/Reviews.css" />
+    <!-- Стили компонентов -->
+    <link rel="stylesheet" href="./components/MobileMenu/MobileMenu.css" />
 
-    <!-- Стили компонентов с правильными путями -->
+    <!-- Стили модальных окон -->
+    <link rel="stylesheet" href="./sections/About/ModalAbout/ModalAbout.css" />
     <link
       rel="stylesheet"
-      href="/R36S_STORE_JS/components/MobileMenu/MobileMenu.css"
-    />
-
-    <!-- Стили модальных окон с правильными путями -->
-    <link
-      rel="stylesheet"
-      href="/R36S_STORE_JS/sections/About/ModalAbout/ModalAbout.css"
-    />
-    <link
-      rel="stylesheet"
-      href="/R36S_STORE_JS/sections/Footer/PartnershipModal/PartnershipModal.css"
+      href="./sections/Footer/PartnershipModal/PartnershipModal.css"
     />
   </head>
   <body>
     <!-- Пустой div для JavaScript -->
-    <div id="root">
-      <!-- Header section -->
-      <header class="header">
-        <!-- Содержимое Header.html -->
-        <!-- ... -->
-      </header>
-
-      <!-- Mobile menu -->
-      <div class="mobile-menu">
-        <!-- Содержимое MobileMenu.html -->
-        <!-- ... -->
-      </div>
-
-      <main id="main-content">
-        <!-- Hero section -->
-        <section id="hero" class="hero">
-          <!-- Содержимое Hero.html -->
-          <!-- ... -->
-        </section>
-
-        <!-- About section -->
-        <section id="about" class="about">
-          <!-- Содержимое About.html -->
-          <!-- ... -->
-        </section>
-
-        <!-- Features section -->
-        <section id="features" class="features">
-          <!-- Содержимое Features.html -->
-          <!-- ... -->
-        </section>
-
-        <!-- Categories section -->
-        <section id="categories" class="categories">
-          <!-- Содержимое Categories.html -->
-          <!-- ... -->
-        </section>
-
-        <!-- Articles section -->
-        <section id="articles" class="articles">
-          <!-- Содержимое Articles.html -->
-          <!-- ... -->
-        </section>
-
-        <!-- Reviews section -->
-        <section id="reviews" class="reviews">
-          <!-- Содержимое Reviews.html -->
-          <!-- ... -->
-        </section>
-
-        <!-- Contact section -->
-        <section id="contact" class="contact">
-          <!-- Содержимое Contact.html -->
-          <!-- ... -->
-        </section>
-
-        <!-- Products section -->
-        <section id="products" class="products">
-          <!-- Содержимое Products.html -->
-          <!-- ... -->
-        </section>
-      </main>
-
-      <!-- Footer section -->
-      <footer class="footer">
-        <!-- Содержимое Footer.html -->
-        <!-- ... -->
-      </footer>
-    </div>
+    <div id="root"></div>
 
     <!-- Исправленный путь к main.js -->
-    <script type="module" src="/assets/js/main.js"></script>
+    <script type="module" src="./assets/js/main.js"></script>
   </body>
 </html>
