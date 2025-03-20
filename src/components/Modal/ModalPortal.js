@@ -159,64 +159,12 @@ function handleEscapeKey(e) {
 export function initModal() {
   console.log('Модуль модальных окон инициализирован');
 
-  // Добавление базовых стилей, если они не были добавлены через CSS-файл
-  if (!document.querySelector('style[data-modal-styles]')) {
-    const styleEl = document.createElement('style');
-    styleEl.setAttribute('data-modal-styles', 'true');
-    styleEl.textContent = `
-      .modal-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: rgba(0, 0, 0, 0.5);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 1000;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
-      
-      .modal-overlay--visible {
-        opacity: 1;
-      }
-      
-      .modal-container {
-        background-color: #fff;
-        border-radius: 8px;
-        padding: 20px;
-        max-width: 90%;
-        max-height: 90vh;
-        overflow-y: auto;
-        transform: scale(0.8);
-        transition: transform 0.3s ease;
-        position: relative;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-      }
-      
-      .modal-container--visible {
-        transform: scale(1);
-      }
-      
-      .modal-close-button {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        background: none;
-        border: none;
-        font-size: 24px;
-        cursor: pointer;
-        color: #999;
-        transition: color 0.2s;
-      }
-      
-      .modal-close-button:hover {
-        color: #333;
-      }
-    `;
-    document.head.appendChild(styleEl);
+  // Загружаем стили из отдельного файла
+  if (!document.querySelector('link[href="./modalStyles.css"]')) {
+    const linkEl = document.createElement('link');
+    linkEl.rel = 'stylesheet';
+    linkEl.href = './modalStyles.css';
+    document.head.appendChild(linkEl);
   }
 
   // Добавляем метод для глобального доступа (если необходимо)
